@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+  <!-- Your existing CSS -->
+  <link rel="stylesheet" href="../css/websitecss.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico" />
+
+  <title>Resume – Hafiza Mehak Munir</title>
+
+  <style>
+    :root {
+      --mm-bg: #f4f4ff;
+      --mm-card-bg: #ffffff;
+      --mm-accent: #6b5bff;
+      --mm-accent-soft: #e3deff;
+      --mm-text-main: #222222;
+      --mm-text-soft: #4a4a4a;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, var(--mm-accent-soft) 0, var(--mm-bg) 40%, #ffffff 100%);
+      color: var(--mm-text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      padding: 2.5rem 0;
+    }
+
+    @media (max-width: 767.98px) {
+      main {
+        padding-top: 1.5rem;
+      }
+    }
+
+    /* Navbar – same pattern as other pages */
+    .navbar-mm {
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    .navbar-mm .navbar-brand span {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .navbar-mm .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .navbar-mm .nav-link.active {
+      color: var(--mm-accent) !important;
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: none;
+      position: relative;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after,
+    .navbar-toggler-icon span {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      border-radius: 999px;
+      background-color: #111827;
+    }
+
+    .navbar-toggler-icon::before {
+      top: 0.3rem;
+    }
+
+    .navbar-toggler-icon::after {
+      bottom: 0.3rem;
+    }
+
+    .navbar-toggler-icon span {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Resume layout */
+    .resume-wrapper {
+      background: var(--mm-card-bg);
+      border-radius: 1.5rem;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+      padding: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 992px) {
+      .resume-wrapper {
+        padding: 3rem;
+      }
+    }
+
+    .resume-header-name {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 992px) {
+      .resume-header-name {
+        font-size: 2.2rem;
+      }
+    }
+
+    .resume-tagline {
+      font-size: 0.98rem;
+      color: var(--mm-text-soft);
+    }
+
+    .resume-contact a {
+      color: var(--mm-accent);
+      text-decoration: none;
+    }
+
+    .resume-contact a:hover {
+      text-decoration: underline;
+    }
+
+    .resume-section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      color: var(--mm-accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .resume-section-heading {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .resume-summary {
+      font-size: 0.95rem;
+      color: var(--mm-text-soft);
+      line-height: 1.7;
+    }
+
+    .resume-subtitle-line {
+      font-size: 0.9rem;
+      color: var(--mm-text-soft);
+    }
+
+    .resume-meta {
+      font-size: 0.82rem;
+      color: var(--mm-text-soft);
+    }
+
+    .resume-bullets {
+      padding-left: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .resume-bullets li {
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .resume-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--mm-accent-soft);
+      font-size: 0.78rem;
+      margin: 0.1rem;
+      background: #f9fafb;
+    }
+
+    .resume-skill-subtitle {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.6rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .resume-list-compact {
+      font-size: 0.9rem;
+      padding-left: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .resume-list-compact li {
+      margin-bottom: 0.15rem;
+    }
+
+    /* Footer */
+    .footer-mm {
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      font-size: 0.85rem;
+      color: var(--mm-text-soft);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-mm sticky-top">
+    <div class="container-lg">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+        <img src="../favicon/favicon-32x32.png" alt="Logo" width="30" height="30" />
+        <span>Mehak Munir</span>
+      </a>
+
+      <!-- Hamburger -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mmNavbar"
+        aria-controls="mmNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <span></span>
+        </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mmNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Projects
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="../portfoliodocs/HCI 440_Group 1_ Assignment 4.pdf" target="_blank">
+                  Accessibility
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="../portfoliodocs/HCI 457 Group 9 Final Presentation (2).pdf"
+                  target="_blank">
+                  Content Strategy
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="../portfoliodocs/HCI 430 - A7 - Portfolio Piece - Group 7.pdf"
+                  target="_blank">
+                  Prototyping &amp; Implementation
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./resume.html">Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact/contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- /Navbar -->
+
+  <main>
+    <div class="container-xxl">
+      <div class="resume-wrapper">
+        <!-- Header -->
+        <header class="mb-4">
+          <div class="row align-items-center g-3">
+            <div class="col-12 col-lg-7">
+              <h1 class="resume-header-name">Hafiza Mehak Munir</h1>
+              <p class="resume-tagline mb-0">
+                UX Researcher &amp; Designer &middot; Former E-commerce Professional
+              </p>
+            </div>
+            <!-- <div class="col-12 col-lg-5">
+              <div class="resume-contact text-lg-end small">
+                <div><a href="mailto:Hmunir1@depaul.edu">Hmunir1@depaul.edu</a></div>
+                <div>+1 (360) 930-9693</div>
+                <div>
+                  <a href="https://www.linkedin.com/in/hmehakm" target="_blank" rel="noopener noreferrer">
+                    LinkedIn: hmehakm
+                  </a>
+                </div>
+                <div>
+                  <a href="https://hmehakm.github.io" target="_blank" rel="noopener noreferrer">
+                    Portfolio: hmehakm.github.io
+                  </a>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </header>
+
+        <div class="row g-4">
+          <!-- LEFT COLUMN -->
+          <div class="col-12 col-lg-4">
+            <!-- Summary -->
+            <section class="mb-4">
+              <div class="resume-section-title">Profile</div>
+              <p class="resume-summary mb-0">
+                Transitioning from an e-commerce career to UX/UI design with a strong interest in project management.
+                Experienced in collaborating with cross-functional teams, presenting design rationale to both design
+                and non-design stakeholders, and aligning work with business and user goals. Known as an adaptable,
+                creative problem-solver and resilient team member ready to contribute to research and product teams.
+              </p>
+            </section>
+
+            <!-- Skills -->
+            <section class="mb-4">
+              <div class="resume-section-title">Skills</div>
+
+              <div class="resume-skill-subtitle">UX Research &amp; Testing</div>
+              <div>
+                <span class="resume-pill">Contextual Inquiry</span>
+                <span class="resume-pill">Surveys</span>
+                <span class="resume-pill">Interviews</span>
+                <span class="resume-pill">Usability Testing</span>
+                <span class="resume-pill">Tree Testing</span>
+                <span class="resume-pill">Card Sorting</span>
+                <span class="resume-pill">Heuristic Evaluation</span>
+                <span class="resume-pill">Cognitive Walkthroughs</span>
+                <span class="resume-pill">First-Click Testing</span>
+                <span class="resume-pill">AEIOU Framework</span>
+                <span class="resume-pill">Accessibility Evaluation</span>
+              </div>
+
+              <div class="resume-skill-subtitle mt-3">Design &amp; Prototyping</div>
+              <div>
+                <span class="resume-pill">Figma</span>
+                <span class="resume-pill">Balsamiq</span>
+                <span class="resume-pill">Axure RP</span>
+                <span class="resume-pill">Adobe XD</span>
+                <span class="resume-pill">Illustrator</span>
+                <span class="resume-pill">Photoshop</span>
+                <span class="resume-pill">Canva</span>
+                <span class="resume-pill">Wireframes</span>
+                <span class="resume-pill">Mockups</span>
+                <span class="resume-pill">Interactive Prototypes</span>
+              </div>
+
+              <div class="resume-skill-subtitle mt-3">Development &amp; Data</div>
+              <div>
+                <span class="resume-pill">HTML</span>
+                <span class="resume-pill">CSS</span>
+                <span class="resume-pill">JavaScript</span>
+                <span class="resume-pill">Google Analytics</span>
+                <span class="resume-pill">SPSS</span>
+                <span class="resume-pill">ATLAS.ti</span>
+              </div>
+
+              <div class="resume-skill-subtitle mt-3">Certifications</div>
+              <ul class="resume-list-compact">
+                <li>CITI IRB (Ethics in Research)</li>
+                <li>Google Analytics</li>
+                <li>Design Thinking – Data Intelligence</li>
+              </ul>
+            </section>
+
+            <!-- Education -->
+            <section class="mb-4">
+              <div class="resume-section-title">Education</div>
+
+              <div class="mb-3">
+                <div class="resume-section-heading">
+                  Master of Science in Human-Computer Interaction
+                </div>
+                <div class="resume-subtitle-line">DePaul University &mdash; Chicago, IL</div>
+                <div class="resume-meta">Expected March 2026</div>
+                <div class="mt-1">
+                  <span class="resume-pill">User-Centered Design</span>
+                  <span class="resume-pill">Prototyping &amp; Implementation</span>
+                  <span class="resume-pill">Usability Evaluation</span>
+                  <span class="resume-pill">Accessibility Considerations</span>
+                  <span class="resume-pill">User Research Methods</span>
+                  <span class="resume-pill">Scripting for Interactive Systems</span>
+                  <span class="resume-pill">IT Project Management</span>
+                  <span class="resume-pill">Data Visualization</span>
+                </div>
+              </div>
+              <div>
+                <div class="resume-section-heading">
+                  Masters in Philosophy
+                </div>
+                <div class="resume-subtitle-line">
+                  Lahore School of Economics &mdash; Lahore, Pakistan
+                </div>
+                <div class="resume-meta">2020</div>
+                <div class="mt-1">
+                  <span class="resume-pill">Gender Studies</span>
+                  <span class="resume-pill">Development Studies</span>
+                </div>
+              </div>
+              <div>
+                <div class="resume-section-heading">
+                  Bachelor of Science in Business Administration
+                </div>
+                <div class="resume-subtitle-line">
+                  Forman Christian College &mdash; Lahore, Pakistan
+                </div>
+                <div class="resume-meta">2017</div>
+                <div class="mt-1">
+                  <span class="resume-pill">New Product Development</span>
+                  <span class="resume-pill">Qualitative &amp; Quantitative Research</span>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- RIGHT COLUMN -->
+          <div class="col-12 col-lg-8">
+            <!-- Professional Experience -->
+            <section class="mb-4">
+              <div class="resume-section-title">Professional Experience</div>
+
+              <article class="mb-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <div class="resume-section-heading">Graduate Scholarship Assistant</div>
+                    <div class="resume-subtitle-line">Office of Financial Aid, DePaul University</div>
+                  </div>
+                  <div class="resume-meta text-end">
+                    Chicago, IL<br />
+                    Dec 2023 &ndash; Present
+                  </div>
+                </div>
+                <ul class="resume-bullets">
+                  <li>Administer DePaul’s award management system to support scholarship operations and student funding.</li>
+                  <li>Produce instructional videos and documentation to support scholarship operations and partner training.</li>
+                  <li>Propose and implement design and process enhancements based on user feedback, improving usability and efficiency.</li>
+                  <li>Assist in planning and executing student-facing events that increase awareness of scholarships and financial aid.</li>
+                </ul>
+              </article>
+
+              <article class="mb-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <div class="resume-section-heading">Assistant E-Commerce Manager</div>
+                    <div class="resume-subtitle-line">Cresset Technologies</div>
+                  </div>
+                  <div class="resume-meta text-end">
+                    Lahore, Pakistan<br />
+                    Mar 2021 &ndash; Jun 2023
+                  </div>
+                </div>
+                <ul class="resume-bullets">
+                  <li>Coordinated cross-functional teams (marketing, logistics, sales, customer support, design) to streamline workflows and improve campaign execution.</li>
+                  <li>Supported development of client marketing strategies, contributing to increased engagement and conversion rates.</li>
+                  <li>Recommended and implemented website design changes informed by Google Analytics, improving user experience and retention.</li>
+                </ul>
+              </article>
+
+              <article class="mb-3">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <div class="resume-section-heading">Senior Project Associate</div>
+                    <div class="resume-subtitle-line">Kincsem Consultancy</div>
+                  </div>
+                  <div class="resume-meta text-end">
+                    Lahore, Pakistan<br />
+                    Dec 2017 &ndash; Dec 2019
+                  </div>
+                </div>
+                <ul class="resume-bullets">
+                  <li>Supported diverse projects in academic and professional sectors, contributing to research, coordination, and delivery.</li>
+                  <li>Participated in content planning meetings, resulting in more coherent deliverables and higher project success rates.</li>
+                </ul>
+              </article>
+            </section>
+
+            <!-- Selected Projects -->
+            <section class="mb-4">
+              <div class="resume-section-title">Selected Projects</div>
+
+              <article class="mb-3">
+                <div class="resume-section-heading">Research Assistant</div>
+                <div class="resume-subtitle-line">
+                  Jarvis School of Computing and Digital Media, DePaul University &mdash; Aug 2025 &ndash; Present
+                </div>
+                <ul class="resume-bullets">
+                  <li>Gather data via surveys and manage responses using Qualtrics.</li>
+                  <li>Create and analyze reports to support ongoing research projects and faculty initiatives.</li>
+                </ul>
+              </article>
+
+              <article class="mb-3">
+                <div class="resume-section-heading">Accessible Rideshare Design for Blind and Low Vision (BLV) Users</div>
+                <div class="resume-subtitle-line">Accessibility Considerations, DePaul University &mdash; 2025</div>
+                <ul class="resume-bullets">
+                  <li>Interviewed blind Uber users to identify accessibility barriers in rideshare experiences.</li>
+                  <li>Co-designed solutions including haptic feedback, en-route voice notifications, and driver accessibility training.</li>
+                  <li>Delivered recommendations grounded in universal design principles to improve overall accessibility.</li>
+                </ul>
+              </article>
+
+              <article class="mb-3">
+                <div class="resume-section-heading">Hike IL &mdash; Smartwatch-Integrated Hiking App</div>
+                <div class="resume-subtitle-line">Prototyping &amp; Implementation, DePaul University &mdash; 2024</div>
+                <ul class="resume-bullets">
+                  <li>Designed responsive mobile and smartwatch prototypes in Axure RP.</li>
+                  <li>Conducted contextual inquiries and iterative usability tests to improve navigation and offline access.</li>
+                  <li>Enhanced trail discovery and personalization based on user feedback and observed behavior.</li>
+                </ul>
+              </article>
+
+              <article class="mb-1">
+                <div class="resume-section-heading">SHEIN Redesign &mdash; Navigation &amp; Information Architecture</div>
+                <div class="resume-subtitle-line">
+                  Information Architecture &amp; Content Strategy, DePaul University &mdash; 2024
+                </div>
+                <ul class="resume-bullets">
+                  <li>Optimized site navigation through card sorting and tree testing with 15 participants.</li>
+                  <li>Redesigned the site map and reduced redundancy in category labels to clarify user paths.</li>
+                  <li>Validated information architecture changes via usability testing and task success metrics.</li>
+                </ul>
+              </article>
+            </section>
+
+            <!-- Publications & Early Experience -->
+            <section class="mb-4">
+              <div class="resume-section-title">Publications &amp; Research</div>
+              <ul class="resume-list-compact">
+                <li>Plant Assessment for MAKNIT Pvt Ltd, Productivity Enhancement (+8%) Program using PMBOK®, PMI USA</li>
+                <li>Psychological Empowerment of Employees at FCC</li>
+                <li>Quality Analysis of Emergency Procedures in FCC</li>
+                <li>Marketing Analysis of Cold Stone Creamery</li>
+                <li>Development of Dolphin Squad, PSCA</li>
+                <li>The Demise of Pakistan Steel Mills (Magazine: School of Management, FCC)</li>
+              </ul>
+            </section>
+
+            <section>
+              <div class="resume-section-title">Internships &amp; Early Roles</div>
+              <ul class="resume-list-compact">
+                <li>Finja.pk, Pakistan &mdash; Project Intern (Jun 2017 &ndash; Aug 2017)</li>
+                <li>WWF, Pakistan &mdash; Management Intern (Mar 2016)</li>
+                <li>Nestlé, Pakistan &mdash; Sales Associate (Jul 2016 &ndash; Sep 2016)</li>
+                <li>Bank Alfalah Ltd., Pakistan &mdash; Intern (Jun 2015 &ndash; Aug 2015)</li>
+                <li>Forman Christian College, Pakistan &mdash; Academics Office Intern (Jun 2014 &ndash; Aug 2014)</li>
+              </ul>
+
+              <div class="resume-skill-subtitle mt-3">Additional Certifications &amp; Seminars</div>
+              <ul class="resume-list-compact">
+                <li>TEFL (Teaching English as a Foreign Language), Recknors Corporate Training &amp; Workshops</li>
+                <li>"LET’S GET MAD" by Tanzila Khan (Workshop on Marketing &amp; Sales and Self-Determination)</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-mm py-3 px-3">
+    <div class="container-lg d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span><small>&copy;</small> <time>2023</time> Hafiza Mehak Munir</span>
+      <span class="d-flex gap-3">
+        <a href="https://www.linkedin.com/in/hmehakm" target="_blank" rel="noopener noreferrer"
+          class="text-decoration-none">LinkedIn</a>
+        <a href="mailto:Hafizamehakmunir@gmail.com" class="text-decoration-none">Email</a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
