@@ -132,6 +132,24 @@
       }
     }
 
+    /* Uber logo band (no hero image now) */
+    .uber-hero {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      padding-bottom: 1rem;
+    }
+
+    .uber-hero-logo {
+      max-width: 180px;
+      width: 100%;
+    }
+
+    @media (max-width: 767.98px) {
+      .uber-hero-logo {
+        max-width: 150px;
+      }
+    }
+
     .project-pill {
       display: inline-flex;
       align-items: center;
@@ -415,6 +433,17 @@
   <main>
     <div class="container-xxl">
       <article class="project-wrapper">
+        <!-- Uber logo band -->
+        <div class="uber-hero">
+          <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+            <img
+              src="../images/uber-index.png"
+              alt="Uber logo"
+              class="uber-hero-logo"
+            />
+          </div>
+        </div>
+
         <!-- Hero / Intro -->
         <header class="mb-3">
           <div class="row g-4 align-items-start">
@@ -585,34 +614,31 @@
             <li>We then moved everything into FigJam, where we manually regrouped quotes and reorganized themes.</li>
             <li>This became our affinity map – and the backbone for all findings and recommendations.</li>
           </ul>
-<!-- Affinity mapp image -->
+
+          <!-- Affinity map image -->
           <div class="mt-3">
-  <figure class="text-center">
-
-      <img
-        src="../images/uberaffinitymap.png"
-        alt="Affinity map clustering quotes from blind Uber riders into themes around communication, pick-up and drop-off, driver behavior, and app accessibility."
-        class="img-fluid rounded-4"
-        style="border: 1px solid rgba(148, 163, 184, 0.5);"
-      />
-    </a>
-
-    <figcaption class="mt-2 small text-muted">
-      Affinity map where I helped cluster raw interview quotes into themes that later became our three major
-      findings.
-      <br />
-      <a
-        href="https://www.figma.com/board/xSh7ssDL5fqo3CMjTOPJMw/HCI511---Rideshare-Data?node-id=0-1&t=prTUXR7AWxYAjw09-1"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link"
-      >
-        View full affinity map
-      </a>
-    </figcaption>
-  </figure>
-</div>
-
+            <figure class="text-center">
+              <img
+                src="../images/uberaffinitymap.png"
+                alt="Affinity map clustering quotes from blind Uber riders into themes around communication, pick-up and drop-off, driver behavior, and app accessibility."
+                class="img-fluid rounded-4"
+                style="border: 1px solid rgba(148, 163, 184, 0.5);"
+              />
+              <figcaption class="mt-2 small text-muted">
+                Affinity map where I helped cluster raw interview quotes into themes that later became our three major
+                findings.
+                <br />
+                <a
+                  href="https://www.figma.com/board/xSh7ssDL5fqo3CMjTOPJMw/HCI511---Rideshare-Data?node-id=0-1&t=prTUXR7AWxYAjw09-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-link"
+                >
+                  View full affinity map
+                </a>
+              </figcaption>
+            </figure>
+          </div>
 
           <div class="callout">
             <strong>My lens:</strong> I treated the analysis as translation work – moving from emotional, messy stories into
@@ -846,7 +872,7 @@
           </p>
           <ul class="project-list">
             <li>Co-moderated interviews, balancing structure with space for storytelling.</li>
-            <li>worked with the team for affinity mapping and theme definition in FigJam.</li>
+            <li>Worked with the team for affinity mapping and theme definition in FigJam.</li>
             <li>Translated themes into design directions, constantly asking “How would a product team use this?”</li>
             <li>Co-authored the final report and helped shape the narrative for our class presentation.</li>
           </ul>
@@ -861,7 +887,6 @@
             <a href="#top" class="btn-mm-primary btn btn-sm">
               Back to top
             </a>
-            <!-- Update the href to your actual PDF path if you want to link the full report -->
             <a href="../portfoliodocs/uberblv.pdf" class="btn-mm-ghost btn btn-sm" target="_blank"
               rel="noopener noreferrer">
               View full report (PDF)
@@ -877,7 +902,7 @@
     <div class="container-lg d-flex flex-wrap justify-content-between align-items-center gap-2">
       <span><small>&copy;</small> <time>2023</time> Hafiza Mehak Munir</span>
       <span class="d-flex gap-3">
-        <a href="https://www.linkedin.com/in/hmehakm" target="_blank" rel="noopener noreferrer"
+        <a href="https://www.linkedin.com/in/hmehakmunir" target="_blank" rel="noopener noreferrer"
           class="text-decoration-none">LinkedIn</a>
         <a href="mailto:hafizamehakmunir@gmail.com" class="text-decoration-none">Email</a>
       </span>
