@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
-  <!-- Your existing CSS -->
+  <!-- Shared site CSS -->
   <link rel="stylesheet" href="../css/websitecss.css" />
 
   <!-- Google Fonts -->
@@ -22,7 +22,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico" />
 
-  <title>SHEIN Navigation Redesign – Case Study | Mehak Munir</title>
+  <title>SHEIN Navigation & IA Redesign – Case Study | Mehak Munir</title>
 
   <style>
     :root {
@@ -32,11 +32,13 @@
       --mm-accent-soft: #e3deff;
       --mm-text-main: #222222;
       --mm-text-soft: #4a4a4a;
+      --mm-accent-alt: #f9e2ff;
     }
 
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, var(--mm-accent-soft) 0, var(--mm-bg) 40%, #ffffff 100%);
+      background:
+        radial-gradient(circle at top left, var(--mm-accent-soft) 0, var(--mm-bg) 40%, #ffffff 100%);
       color: var(--mm-text-main);
       min-height: 100vh;
       display: flex;
@@ -54,7 +56,7 @@
       }
     }
 
-    /* Navbar – same pattern as other pages */
+    /* Navbar – shared style */
     .navbar-mm {
       background-color: #ffffff;
       box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
@@ -237,6 +239,88 @@
       text-decoration: none;
     }
 
+    .card-mm {
+      background: #f9fafb;
+      border-radius: 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1rem 1.1rem;
+      height: 100%;
+    }
+
+    .card-mm h3 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-mm .tag {
+      display: inline-block;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #eef2ff;
+      color: #4338ca;
+      margin-bottom: 0.35rem;
+    }
+
+    .table-responsive {
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      overflow: hidden;
+      background: #f9fafb;
+    }
+
+    .callout {
+      border-left: 4px solid var(--mm-accent);
+      padding: 0.75rem 1rem;
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      background: #f5f3ff;
+      border-radius: 0.9rem;
+    }
+
+    blockquote {
+      font-size: 0.9rem;
+      margin: 0.4rem 0;
+      padding-left: 0.85rem;
+      border-left: 3px solid var(--mm-accent);
+      color: var(--mm-text-soft);
+      font-style: italic;
+    }
+
+    .footer-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn-mm-primary {
+      background: var(--mm-accent);
+      border: none;
+      color: #ffffff;
+      font-weight: 500;
+      border-radius: 999px;
+      padding-inline: 1.6rem;
+    }
+
+    .btn-mm-primary:hover {
+      background: #5745f0;
+      color: #ffffff;
+    }
+
+    .btn-mm-ghost {
+      border-radius: 999px;
+      border: 1px solid var(--mm-accent-soft);
+      color: var(--mm-text-main);
+      font-weight: 500;
+      background: #ffffff;
+    }
+
+    .btn-mm-ghost:hover {
+      background: var(--mm-accent-soft);
+      color: var(--mm-text-main);
+    }
+
     /* Footer */
     .footer-mm {
       background: #ffffffcc;
@@ -270,7 +354,6 @@
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Home</a>
           </li>
-          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -281,30 +364,21 @@
                 <a class="dropdown-item" href="./shein-case-study.html">SHEIN Navigation Redesign</a>
               </li>
               <li>
-                <a class="dropdown-item" href="../portfoliodocs/HCI 440_Group 1_ Assignment 4.pdf" target="_blank">
-                  Accessibility – Uber for BLV Users
-                </a>
+                <a class="dropdown-item" href="./blv-rideshare.html">BLV Rideshare Accessibility</a>
               </li>
               <li>
-                <a class="dropdown-item" href="../portfoliodocs/HCI 457 Group 9 Final Presentation (2).pdf"
-                  target="_blank">
-                  Content Strategy – Presentation PDF
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="../portfoliodocs/HCI 430 - A7 - Portfolio Piece - Group 7.pdf"
-                  target="_blank">
+                <a class="dropdown-item"
+                  href="../portfoliodocs/HCI 430 - A7 - Portfolio Piece - Group 7.pdf" target="_blank">
                   Hike IL – Prototyping
                 </a>
               </li>
             </ul>
-            <li class="nav-item">
-                <a class="nav-link" href="../resume/resume.html">Resume</a>
-              </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../contact/contact.html">Contact</a>
-              </li>
-              
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../resume/resume.html">Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact/contact.html">Contact</a>
           </li>
         </ul>
       </div>
@@ -321,302 +395,535 @@
           <div class="row g-4 align-items-start">
             <div class="col-12 col-lg-7">
               <div class="project-pill">
-                <span>Content Strategy &amp; Information Systems</span>
+                <span>Content Strategy · Information Architecture</span>
               </div>
-              <h1 class="project-title">SHEIN Navigation &amp; Information Architecture Redesign</h1>
+              <h1 class="project-title">Re-structuring SHEIN’s Navigation for Real People, Not Just Categories</h1>
               <p class="project-subtitle mb-2">
-                Restructuring SHEIN’s navigation, content hierarchy, and onboarding flow using
-                card sorting, tree testing, heuristics, and sitemap redesign.
+                A course project where our team used card sorting, tree testing, heuristics, and wireframing
+                to bring order to SHEIN’s overwhelming navigation and to design a more trustworthy onboarding flow.
               </p>
               <div class="mt-2">
                 <span class="project-tag-pill">Information Architecture</span>
-                <span class="project-tag-pill">Navigation Design</span>
                 <span class="project-tag-pill">Card Sorting</span>
                 <span class="project-tag-pill">Tree Testing</span>
                 <span class="project-tag-pill">Heuristic Evaluation</span>
               </div>
             </div>
             <div class="col-12 col-lg-5">
-              <div class="project-meta-card">
-                <div class="row gy-2">
-                  <div class="col-6">
-                    <div class="project-meta-label">Course</div>
-                    <div class="project-meta-value">Content Strategy and information Architechture</div>
-                  </div>
-                  <div class="col-6">
-                    <div class="project-meta-label">Role</div>
-                    <div class="project-meta-value">UX Researcher &amp; IA Designer</div>
-                  </div>
-                  <div class="col-6">
-                    <div class="project-meta-label">Team</div>
-                    <div class="project-meta-value">Parthil Ajmera, Hafiza Mehak Munir, Shilpa Jain</div>
-                  </div>
-                  <div class="col-6">
-                    <div class="project-meta-label">Platform</div>
-                    <div class="project-meta-value">Desktop Website</div>
-                  </div>
-                  <div class="col-12 mt-2">
-                    <div class="project-meta-label">Methods &amp; Tools</div>
-                    <div class="project-meta-value">
-                      Card Sorting, Tree Testing, Heuristic Analysis, Sitemaps, Wireframes<br />
-                      Miro, Figma, Online card sort tools
+                <div class="project-meta-card position-relative">
+                  <!-- SHEIN Logo -->
+                  <figure class="position-absolute top-0 end-0 m-2 text-end">
+                    <img
+                      src="../images/shein-logo.png"
+                      alt="SHEIN logo"
+                      style="max-height: 32px; width: auto; opacity: 0.9;"
+                    />
+                  </figure>
+              
+                  <div class="row gy-2 mt-3">
+                    <div class="col-6">
+                      <div class="project-meta-label">Course</div>
+                      <div class="project-meta-value">HCI 457 – Content Strategy</div>
+                    </div>
+                    <div class="col-6">
+                      <div class="project-meta-label">Timeline</div>
+                      <div class="project-meta-value">10 weeks</div>
+                    </div>
+                    <div class="col-6">
+                      <div class="project-meta-label">Team</div>
+                      <div class="project-meta-value">Group 9 (3 members)</div>
+                    </div>
+                    <div class="col-6">
+                      <div class="project-meta-label">My Role</div>
+                      <div class="project-meta-value">UX Researcher & IA Designer</div>
+                    </div>
+                    <div class="col-12 mt-2">
+                      <div class="project-meta-label">Methods & Tools</div>
+                      <div class="project-meta-value">
+                        Card sorting · Tree testing · Heuristic analysis · Sitemaps · Wireframes<br />
+                        Miro / FigJam · Figma · Online card sorting tools · Google Docs
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+              
           </div>
         </header>
 
         <!-- Overview -->
         <section>
           <div class="project-section-title">Overview</div>
-          <h2 class="project-section-heading">Why SHEIN’s navigation needed help</h2>
+          <h2 class="project-section-heading">Fast fashion, slow navigation</h2>
           <p class="project-body-text">
-            SHEIN is a global fast-fashion e-commerce platform with thousands of new items added weekly.
-            While the catalog is extensive, its navigation and information architecture can feel overwhelming,
-            with redundant categories, overlapping labels, and an onboarding flow that doesn’t always feel
-            secure or intuitive. Our goal in this course project was to treat SHEIN as a content and structure
-            problem—not just a visual one.
+            SHEIN ships clothes and accessories to more than 200 countries and adds thousands of products every week.
+            From a business perspective, that’s exciting. From a navigation perspective, it’s chaos. :contentReference[oaicite:1]{index=1}
+          </p>
+          <p class="project-body-text">
+            When I looked at the site with my team, we saw redundant categories, vague labels like “Globe,” and
+            scattered content placements that made it easy to get lost. Our goal was not to “re-skin” the UI, but to
+            re-build the underlying information structure so people like Emma and Dave (our personas) could actually
+            find what they came for.
+          </p>
+          <p class="project-body-text mb-0">
+            Over the quarter, we:
           </p>
           <ul class="project-list">
-            <li>Create a clearer, more logical navigation structure for the website.</li>
-            <li>Remove redundancy and overlap in categories and labels.</li>
-            <li>Design a more secure and trustworthy sign-in / registration flow.</li>
+            <li>Mapped user needs through personas grounded in real scenarios.</li>
+            <li>Ran multiple rounds of card sorting to understand how people naturally group products.</li>
+            <li>Validated our structure through tree testing and heuristic evaluations.</li>
+            <li>Created a new sitemap and wireframes for registration and purchase flows.</li>
           </ul>
         </section>
 
-        <!-- Context & Problem -->
+        <!-- Personas (with image placeholders) -->
         <section>
-          <div class="project-section-title">Problem space</div>
-          <h2 class="project-section-heading">Content &amp; IA challenges we focused on</h2>
+          <div class="project-section-title">Personas</div>
+          <h2 class="project-section-heading">Designing for Emma and Dave</h2>
           <p class="project-body-text">
-            Through our initial review and heuristic analysis, we identified recurring content and navigation issues:
+            Before touching categories, we wanted to ground our decisions in real stories. We created two core personas
+            based on research and typical SHEIN user behavior: Emma, a trend-focused student influencer, and Dave, a
+            time-pressed tech enthusiast shopping for electronics. :contentReference[oaicite:2]{index=2}
           </p>
-          <ul class="project-list">
-            <li>Redundant or overlapping categories (e.g., multiple areas for similar items).</li>
-            <li>Ambiguous labels such as “Globe” and unclear placement of items like “Family Outfits”.</li>
-            <li>Inconsistent separation of content (kids’ accessories vs. general accessories).</li>
-            <li>Onboarding and account creation flows that did not clearly communicate security or next steps.</li>
-          </ul>
+
+          <div class="row g-3 mt-2">
+            <div class="col-12 col-md-6">
+              <div class="card-mm">
+                <span class="tag">Persona 01</span>
+                <h3>Emma – “Don’t make me lose my progress”</h3>
+                <!-- Persona image placeholder -->
+                <figure class="text-center mb-2">
+                  <!-- Update src once you have the persona image -->
+                  <img src="../images/persona-emma.png"
+                    alt="Persona illustration of Emma, a 23-year-old student and influencer who shops at SHEIN."
+                    class="img-fluid rounded-4"
+                    style="max-height: 220px; object-fit: cover; border: 1px solid rgba(148,163,184,0.4);" />
+                  <figcaption class="mt-1 small text-muted">Placeholder for Emma’s persona image.</figcaption>
+                </figure>
+                <p class="project-body-text mb-1">
+                  Emma is a 23-year-old student and social media influencer from Los Angeles. She loves
+                  trendy, affordable (and ideally sustainable) fashion.
+                </p>
+                <ul class="project-list">
+                  <li><strong>Goal:</strong> Find pieces fast, without losing items she already liked.</li>
+                  <li><strong>Frustration:</strong> Redundant categories and unclear navigation that force her to re-search items.</li>
+                  <li><strong>Needs:</strong> Clear category labels, predictable navigation, and a feeling that the site “remembers” her path.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card-mm">
+                <span class="tag">Persona 02</span>
+                <h3>Dave – “I just want to find the right gadget”</h3>
+                <!-- Persona image placeholder -->
+                <figure class="text-center mb-2">
+                  <!-- Update src once you have the persona image -->
+                  <img src="../images/persona-dave.png"
+                    alt="Persona illustration of Dave, a 27-year-old software developer shopping for electronics on SHEIN."
+                    class="img-fluid rounded-4"
+                    style="max-height: 220px; object-fit: cover; border: 1px solid rgba(148,163,184,0.4);" />
+                  <figcaption class="mt-1 small text-muted">Placeholder for Dave’s persona image.</figcaption>
+                </figure>
+                <p class="project-body-text mb-1">
+                  Dave is a 27-year-old software developer and tech enthusiast. He comes to SHEIN looking
+                  for specific electronics and accessories.
+                </p>
+                <ul class="project-list">
+                  <li><strong>Goal:</strong> Quickly locate and purchase tech products with minimal clicks.</li>
+                  <li><strong>Frustration:</strong> Disorganized categories and cluttered navigation slow him down.</li>
+                  <li><strong>Needs:</strong> A streamlined IA that mirrors how he thinks about product types and specs.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- Users & Personas -->
+        <!-- Method / Testing Strategy -->
         <section>
-          <div class="project-section-title">Users</div>
-          <h2 class="project-section-heading">Who we were designing for</h2>
+          <div class="project-section-title">Approach</div>
+          <h2 class="project-section-heading">How we broke the problem down</h2>
           <p class="project-body-text">
-            We created two primary personas to guide content and navigation decisions:
+            We treated the navigation as a hypothesis to test and iterate on. Instead of guessing category labels, we
+            watched how people grouped and searched for items, then reflected that back into the IA.
           </p>
-          <ul class="project-list">
-            <li>
-              <strong>Emma, 23 – Trend-focused student &amp; influencer (Los Angeles)</strong><br />
-              Wants trendy, affordable, and ideally sustainable pieces. She values efficiency, hates losing progress,
-              and gets frustrated when redundant categories make it hard to find items quickly.
-            </li>
-            <li>
-              <strong>Dave, 27 – Tech enthusiast &amp; busy professional (New York)</strong><br />
-              Focused on electronics and gadgets. He expects a streamlined experience and becomes frustrated when
-              disorganized categories make it difficult to find specific items.
-            </li>
-          </ul>
-          <p class="project-body-text">
-            These personas helped us stay grounded in real motivations: speed, clarity, and trust while navigating a
-            very dense catalog. :contentReference[oaicite:0]{index=0}
-          </p>
+
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">01</span>
+                <h3>Heuristic analysis</h3>
+                <p class="project-body-text mb-1">
+                  We first evaluated key flows like logging in, registering, and making a purchase using heuristic
+                  principles, scoring tasks on clarity and usability. This gave us a baseline of where users struggled. :contentReference[oaicite:3]{index=3}
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">02</span>
+                <h3>Card sorting (3 rounds)</h3>
+                <p class="project-body-text mb-1">
+                  We ran a pilot and two main card sorts (5, 6, and 7 participants) using 25–35 cards and 10–15
+                  categories, including a hybrid sort with 18 participants overall. :contentReference[oaicite:4]{index=4}
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">03</span>
+                <h3>Tree testing & sitemap iterations</h3>
+                <p class="project-body-text mb-1">
+                  Finally, we ran tree tests with 7 participants to validate findability and used that data to iterate
+                  our sitemap through three versions before landing on a final structure. :contentReference[oaicite:5]{index=5}
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- Process -->
+        <!-- Card Sorting (with space for card sort image) -->
         <section>
-          <div class="project-section-title">Process</div>
-          <h2 class="project-section-heading">How we evolved the navigation with research</h2>
+          <div class="project-section-title">Research – Card sorting</div>
+          <h2 class="project-section-heading">Learning how people naturally group SHEIN’s world</h2>
           <p class="project-body-text">
-            Our process combined multiple IA and usability methods, each feeding into the next:
+            In our first card sort, we gave participants 35 cards and 10 categories. Broad buckets like “Men,” “Women,”
+            “Kids,” “Pets,” and “Electronics” felt intuitive. The trouble started with items like “Accessories,”
+            “Language,” “Globe,” “Account,” and especially “Family Outfits.” Many people created an “I don’t know where
+            this goes” pile just for that one. :contentReference[oaicite:6]{index=6}
           </p>
-          <ul class="project-list">
-            <li><strong>Heuristic analysis</strong> of key flows (registering, making a purchase).</li>
-            <li><strong>Hybrid card sorting</strong> to understand mental models for category groupings.</li>
-            <li><strong>Tree testing</strong> to validate findability of key tasks.</li>
-            <li><strong>Sitemap iterations</strong> based on real participant data.</li>
-            <li><strong>Wireframes &amp; task flows</strong> for onboarding and purchase journeys.</li>
-          </ul>
+          <p class="project-body-text">
+            By the second card sort, we refined the stimuli: 25 cards across 15 categories. We wanted to see if earlier
+            patterns held. 57.1% of participants placed “Kids Accessories” under “Accessories,” which was helpful but not
+            decisive; we ultimately kept it there after looking across all data. Meanwhile, over 85% recommended moving
+            “Language” from “Globe” into “Account,” which became a key IA decision later.
+          </p>
+
+          <!-- Card sort image placeholder -->
+          <div class="mt-3">
+            <figure class="text-center">
+              <!-- Update src once you have a card sort screenshot -->
+              <img src="../images/shein-card-sort.png"
+                alt="Card sorting board showing how participants grouped SHEIN categories."
+                class="img-fluid rounded-4"
+                style="border: 1px solid rgba(148, 163, 184, 0.5);" />
+              <figcaption class="mt-2 small text-muted">
+                Placeholder for a card sorting screenshot (pilot + main rounds).
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="callout">
+            <strong>What changed for me:</strong> I stopped treating categories as fixed. Once I saw how confidently
+            users disagreed with the original structure, it became easier to let go of legacy labels like “Globe” and
+            re-home content where it truly belonged.
+          </div>
         </section>
 
-        <!-- Card Sorting -->
+        <!-- Tree Testing (with image placeholder) -->
         <section>
-          <div class="project-section-title">Research</div>
-          <h2 class="project-section-heading">Card sorting – uncovering mental models</h2>
+          <div class="project-section-title">Research – Tree testing</div>
+          <h2 class="project-section-heading">Could people actually find what they needed?</h2>
           <p class="project-body-text">
-            We ran two main rounds of card sorting (plus a pilot), testing up to 35 cards across 10–15 categories with
-            18 total participants. :contentReference[oaicite:1]{index=1}
+            With a draft IA in place, we ran a tree test with 7 participants to see whether the structure held up in
+            practice. We focused on four tasks:
           </p>
           <ul class="project-list">
-            <li>
-              <strong>What worked:</strong> Top-level categories like <em>Women, Men, Kids, Pets, Electronics</em> were intuitive.
-            </li>
-            <li>
-              <strong>Where users struggled:</strong> Items like <em>Accessories</em>, <em>Language</em>, <em>Globe</em>, and
-              <em>Account</em> often overlapped or felt unclear.
-            </li>
-            <li>
-              <strong>Edge cases:</strong> “Family Outfits” consistently landed in “I don’t know where this goes,” signaling
-              it deserved its own dedicated category instead of being buried under Kids.
-            </li>
+            <li>Creating a new account.</li>
+            <li>Buying a pet leash.</li>
+            <li>Finding a phone case and screen protector.</li>
+            <li>Finding home decor for Christmas. :contentReference[oaicite:7]{index=7}</li>
           </ul>
-          <p class="project-body-text">
-            In a later round, we specifically revisited contentious items like “Kids Accessories” and confirmed that
-            our initial placement under Accessories was still acceptable, while “Language” clearly belonged under
-            Account, not a vague “Globe” icon.
-          </p>
-        </section>
-
-        <!-- Tree Testing -->
-        <section>
-          <div class="project-section-title">Research</div>
-          <h2 class="project-section-heading">Tree testing – validating findability</h2>
-          <p class="project-body-text">
-            After restructuring categories conceptually, we used tree testing with 7 participants to check whether
-            users could actually find key items and actions in the revised structure.
+          <p class="project-body-text mb-0">
+            The results told a nuanced story:
           </p>
           <ul class="project-list">
-            <li>
-              <strong>Account creation:</strong> 71.4% successfully found where to create a new account, but confusion remained
-              between labels like “Register,” “Sign Up,” and “Login.”
-            </li>
-            <li>
-              <strong>Pet accessories:</strong> 85.7% correctly navigated to pet leashes under Accessories with only minor detours.
-            </li>
-            <li>
-              <strong>Phone cases &amp; screen protectors:</strong> 100% success, suggesting this area of the IA was already
-              quite strong.
-            </li>
-            <li>
-              <strong>Holiday decor:</strong> 71.4% found home decor easily, but “Home Decor” vs. “Home Textiles” caused confusion
-              for the rest.
-            </li>
+            <li><strong>New account creation:</strong> 71.4% success. Most people found “Register” easily, but labels like “Sign Up” and “Login” still overlapped in meaning.</li>
+            <li><strong>Pet leash:</strong> 85.7% success. “Accessories” felt like the right category for almost everyone.</li>
+            <li><strong>Phone case & screen protector:</strong> 100% success. This area of the IA was already strong.</li>
+            <li><strong>Christmas home decor:</strong> 71.4% success, but confusion between “Home Decor” and “Home Textiles” pointed to a labeling problem, not a structural one.</li>
           </ul>
-          <p class="project-body-text">
-            Overall, the tree test confirmed that our structure was moving in the right direction, while highlighting
-            where label clarity and category differentiation still needed work. :contentReference[oaicite:2]{index=2}
-          </p>
+
+          <!-- Tree test image placeholder -->
+          <div class="mt-3">
+            <figure class="text-center">
+              <!-- Update src once you have a tree test screenshot -->
+              <img src="../images/shein-tree-test.png"
+                alt="Tree testing results visualized for four navigation tasks on SHEIN."
+                class="img-fluid rounded-4"
+                style="border: 1px solid rgba(148, 163, 184, 0.5);" />
+              <figcaption class="mt-2 small text-muted">
+                Placeholder for a tree testing results visual (success, direct vs indirect paths).
+              </figcaption>
+            </figure>
+          </div>
         </section>
 
-        <!-- Sitemap iterations -->
+        <!-- Sitemap Iterations (with space for sitemap images + Figma link) -->
         <section>
           <div class="project-section-title">Information architecture</div>
-          <h2 class="project-section-heading">From messy to intentional: sitemap iterations</h2>
+          <h2 class="project-section-heading">Three sitemap versions, one calmer navigation</h2>
           <p class="project-body-text">
-            We created three main sitemap versions, each informed by research:
+            We translated our research into three sitemap iterations. Version 1 mirrored the original site with only light
+            changes from the pilot card sort. Version 2 reorganized categories based on Card Sort 1, grouping related
+            items and merging scattered categories. Version 3 absorbed “Globe” into “Account,” gave “Family Outfits” its
+            own page, and clarified ambiguous areas highlighted by tree testing. :contentReference[oaicite:8]{index=8}
           </p>
-          <ul class="project-list">
-            <li>
-              <strong>Version 1:</strong> Initial structure based on the pilot card sort and current site, highlighting
-              redundancies and scattered categories.
-            </li>
-            <li>
-              <strong>Version 2:</strong> Reorganized categories to group related items, merged redundant sections, and created
-              clearer groupings (e.g., giving “Family Outfits” its own space).
-            </li>
-            <li>
-              <strong>Version 3 (Final):</strong> Removed “Globe” and folded its functions into “Account,” refined labels, and
-              clarified confusing areas revealed by card sort and tree test data.
-            </li>
-          </ul>
-          <p class="project-body-text">
-            Together, these iterations turned a scattered taxonomy into a more streamlined, user-aligned structure.
-            <br />
-            <strong>View sitemap board:</strong>
+
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">Version 1</span>
+                <h3>Baseline</h3>
+                <p class="project-body-text mb-1">
+                  Based on the pilot card sort, this version mostly exposed the problems: scattered categories, unclear
+                  grouping, and long, flat navigation.
+                </p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">Version 2</span>
+                <h3>First re-grouping</h3>
+                <p class="project-body-text mb-1">
+                  We categorized items more logically and merged redundant or overlapping categories, reducing clutter and
+                  making navigation feel less arbitrary.
+                </p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">Version 3</span>
+                <h3>Final structure</h3>
+                <p class="project-body-text mb-1">
+                  “Globe” disappeared into “Account,” “Family Outfits” became a dedicated page, and label clarity
+                  improved across high-traffic areas like Home and Accessories.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sitemap images placeholders -->
+          <div class="mt-3">
+            <div class="row g-3">
+              <div class="col-12 col-md-4">
+                <figure class="text-center">
+                  <img src="../images/shein-sitemap-v1.png"
+                    alt="Initial sitemap version for SHEIN based on pilot card sort."
+                    class="img-fluid rounded-4"
+                    style="border: 1px solid rgba(148,163,184,0.5);" />
+                  <figcaption class="mt-1 small text-muted">Placeholder – Sitemap Version 1.</figcaption>
+                </figure>
+              </div>
+              <div class="col-12 col-md-4">
+                <figure class="text-center">
+                  <img src="../images/shein-sitemap-v2.png"
+                    alt="Updated sitemap version 2 for SHEIN after Card Sort 1."
+                    class="img-fluid rounded-4"
+                    style="border: 1px solid rgba(148,163,184,0.5);" />
+                  <figcaption class="mt-1 small text-muted">Placeholder – Sitemap Version 2.</figcaption>
+                </figure>
+              </div>
+              <div class="col-12 col-md-4">
+                <figure class="text-center">
+                  <img src="../images/shein-sitemap-v3.png"
+                    alt="Final sitemap version 3 for SHEIN after Tree Testing."
+                    class="img-fluid rounded-4"
+                    style="border: 1px solid rgba(148,163,184,0.5);" />
+                  <figcaption class="mt-1 small text-muted">Placeholder – Sitemap Version 3 (final).</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <p class="project-body-text mt-2">
+            <strong>View the full sitemap board:</strong>
             <a href="https://www.figma.com/board/5Zx4G0E3Br73HEpnv4yfvw/SITEMAP-457?node-id=0-1"
               class="project-link" target="_blank" rel="noopener noreferrer">
-              Figma Sitemap – SHEIN
+              Figma – SHEIN Sitemap Board
             </a>
           </p>
         </section>
 
-        <!-- Heuristic analysis & recommendations -->
+        <!-- Heuristics & Wireframes (with prototype placeholders) -->
         <section>
-          <div class="project-section-title">Evaluation</div>
-          <h2 class="project-section-heading">Heuristic analysis &amp; content recommendations</h2>
+          <div class="project-section-title">Heuristics & design</div>
+          <h2 class="project-section-heading">From pain points to flows: wireframing key tasks</h2>
           <p class="project-body-text">
-            We performed heuristic evaluations on two core tasks: logging in / registering and making a purchase.
-            Both flows averaged around 3.1–3.4 out of 5 on usability and clarity, leaving clear room for improvement. :contentReference[oaicite:3]{index=3}
+            Our heuristic analysis of two core tasks – “Log in / Register” and “Make a purchase” – scored around 3.1–3.4
+            out of 5. The flows worked, but they weren’t smooth. Labels were inconsistent, promotions were distracting,
+            and filters felt overwhelming. :contentReference[oaicite:9]{index=9}
+          </p>
+          <p class="project-body-text">
+            We used those findings to inform wireframes for two redesigned flows:
           </p>
           <ul class="project-list">
-            <li><strong>Consistent labeling:</strong> Ensure product labels, categories, and navigation elements use consistent language across all pages.</li>
-            <li><strong>Decluttered interface:</strong> Introduce a “hide promotions” or focused mode to reduce banner fatigue during browsing.</li>
-            <li><strong>Simplified filters:</strong> Limit filter options to key attributes and add search within filters to reduce cognitive load.</li>
-            <li><strong>Enhanced verification:</strong> Implement email/SMS verification for critical actions to increase trust and prevent errors.</li>
-            <li><strong>Guest checkout:</strong> Make guest checkout more visible with clear benefits (speed, no account required).</li>
-            <li><strong>Recommended sections &amp; improved search:</strong> Add “Trending,” “Most Popular,” and smarter search with synonym handling and typo tolerance.</li>
+            <li><strong>Task 1 – Sign In / Register:</strong> A clearer path from “Account” to registration with email/phone,
+              a 6-digit verification code, and options to sign up via Google or Facebook.</li>
+            <li><strong>Task 2 – Make a purchase:</strong> A streamlined journey from product selection to checkout,
+              focusing on fewer required fields and clearer options for notifications, order tracking, and promo codes.</li>
           </ul>
+
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-md-6">
+              <div class="card-mm">
+                <span class="tag">Wireframe – Task 1</span>
+                <h3>Sign In / Register</h3>
+                <!-- Wireframe image placeholder -->
+                <figure class="text-center mb-2">
+                  <img src="../images/shein-wireframe-task1.png"
+                    alt="Low-fidelity wireframe for SHEIN sign-in and registration flow."
+                    class="img-fluid rounded-4"
+                    style="border: 1px solid rgba(148,163,184,0.5);" />
+                  <figcaption class="mt-1 small text-muted">
+                    Placeholder for the sign-in / register wireframe.
+                  </figcaption>
+                </figure>
+                <p class="project-body-text mb-1">
+                  We emphasized trust by adding verification and surfaced social sign-in options in a more
+                  predictable location under “Account.”
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card-mm">
+                <span class="tag">Wireframe – Task 2</span>
+                <h3>Making a purchase</h3>
+                <!-- Wireframe image placeholder -->
+                <figure class="text-center mb-2">
+                  <img src="../images/shein-wireframe-task2.png"
+                    alt="Low-fidelity wireframe for SHEIN purchase and checkout flow."
+                    class="img-fluid rounded-4"
+                    style="border: 1px solid rgba(148,163,184,0.5);" />
+                  <figcaption class="mt-1 small text-muted">
+                    Placeholder for the purchase / checkout wireframe.
+                  </figcaption>
+                </figure>
+                <p class="project-body-text mb-1">
+                  The checkout flow reduces friction by prioritizing key inputs first, with optional details, promo
+                  codes, and notification preferences handled progressively.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- Wireframes & Task Flows -->
+        <!-- Recommendations -->
         <section>
-          <div class="project-section-title">Design</div>
-          <h2 class="project-section-heading">Wireframes &amp; task flows</h2>
-          <p class="project-body-text">
-            Our wireframes were built directly from the final sitemap and heuristic recommendations, focusing on
-            two critical journeys:
+          <div class="project-section-title">Recommendations</div>
+          <h2 class="project-section-heading">What I would hand to a product team</h2>
+          <p class="project-body-text mb-2">
+            We translated our findings into concrete, prioritized recommendations that connect IA changes to UX
+            improvements. :contentReference[oaicite:10]{index=10}
           </p>
-          <ul class="project-list">
-            <li>
-              <strong>Task 1 – Sign in / Register:</strong> A clearer path to account creation via the Account button, with
-              options to sign in, register via email/phone, or use Google/Facebook. A 6-digit verification code was
-              introduced to reinforce security and build trust in the flow.
-            </li>
-            <li>
-              <strong>Task 2 – Make a purchase:</strong> A simplified product-to-checkout path, guiding users from product page
-              (size, color, quantity) to cart, and then through a reduced-field checkout with clearer payment, promo
-              code, and notification options.
-            </li>
-          </ul>
-          <p class="project-body-text">
-            The goal was not to redesign the entire UI visually, but to ensure workflows and content structure better
-            matched user expectations and reduced friction in core tasks.
-          </p>
+
+          <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">01</span>
+                <h3>Clarify and simplify labels</h3>
+                <p class="project-body-text mb-1">
+                  Distinguish clearly between “Sign Up,” “Register,” and “Login,” and refine ambiguous category names like
+                  “Home Decor” vs. “Home Textiles” to reduce guesswork.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">02</span>
+                <h3>Declutter the interface</h3>
+                <p class="project-body-text mb-1">
+                  Introduce a “hide promotions” or “focus mode” to give users like Emma and Dave a way to shop without
+                  constant banners and pop-ups stealing attention.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">03</span>
+                <h3>Refine filters & search</h3>
+                <p class="project-body-text mb-1">
+                  Limit filter options to key attributes, add search within filters, and enhance search to handle synonyms
+                  and spelling errors more gracefully.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">04</span>
+                <h3>Strengthen verification & trust</h3>
+                <p class="project-body-text mb-1">
+                  Add email/SMS verification for critical actions (account changes, payment info) to boost security and
+                  allow users to undo mistakes more safely.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">05</span>
+                <h3>Highlight guest checkout</h3>
+                <p class="project-body-text mb-1">
+                  Make guest checkout more discoverable and clearly communicate its benefits for new or hesitant users who
+                  don’t want to create an account yet.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">06</span>
+                <h3>Curated content & smart hierarchy</h3>
+                <p class="project-body-text mb-1">
+                  Introduce sections like “Trending,” “Most Popular,” and “Staff Picks” and apply a clearer content
+                  hierarchy so high-value items don’t compete with everything else.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- Outcomes & Reflection -->
+        <!-- Reflection / My role -->
         <section>
-          <div class="project-section-title">Outcomes &amp; reflection</div>
-          <h2 class="project-section-heading">What improved &amp; what I learned</h2>
+          <div class="project-section-title">My role & reflection</div>
+          <h2 class="project-section-heading">What I learned as a UX researcher & IA designer</h2>
           <p class="project-body-text">
-            By the end of the project, we had a validated IA, clearer labels, and wireframes that aligned navigation with
-            real user behavior. The work also changed how I think about content and systems:
+            On this project I:
           </p>
           <ul class="project-list">
-            <li><strong>Process thinking over interface thinking:</strong> Focusing on flows, labels, and structure before pixels leads to more sustainable decisions.</li>
-            <li><strong>Thinking beyond the current design:</strong> Instead of “fixing” small pieces, we stepped back to re-examine the whole taxonomy.</li>
-            <li><strong>Consistency matters:</strong> Once we committed to new structures and labels, applying them consistently across the system was key.</li>
-            <li><strong>Recruitment &amp; method tweaks:</strong> We refined how we recruited participants and adjusted our card sort approach to get more reliable data.</li>
+            <li>Helped plan and run card sorts, including refining instructions and categories between rounds.</li>
+            <li>Participated in tree test design and analysis, focusing on how we framed tasks and interpreted detours.</li>
+            <li>Contributed to drafting each sitemap version and stress-testing it against persona journeys.</li>
+            <li>Co-created wireframes that reflected not just “what looks good,” but what our research suggested users needed.</li>
+            <li>Co-authored the final recommendations and retrospective, articulating how our process could scale to other sites.</li>
           </ul>
           <p class="project-body-text">
-            This project strengthened my interest in content strategy and information architecture, and gave me a
-            repeatable process for restructuring complex navigation problems in future work.
+            This project pushed me to think in systems, not just screens. I came away with a stronger sense of how
+            content strategy, IA, and navigation decisions ripple through the entire user journey – and how research
+            methods like card sorting and tree testing can de-risk those decisions before design and engineering invest
+            heavily.
           </p>
-        </section>
 
-        <!-- Appendix / links -->
-        <section>
-          <div class="project-section-title">Appendix</div>
-          <p class="project-body-text mb-1">
-            Full project documentation, raw data, and appendices:
-          </p>
-          <ul class="project-list">
-            <li>
-              <a href="../portfoliodocs/HCI 457 Group 9 Final Presentation (2).pdf" class="project-link" target="_blank"
-                rel="noopener noreferrer">
-                HCI 457 – SHEIN Presentation (PDF)
-              </a>
-            </li>
-            <li>
-              <a href="https://docs.google.com/document/d/16FfoiJsJ65FAHvzE5gbWQnNa5DTn61htpITq4KTR-iw/edit"
-                class="project-link" target="_blank" rel="noopener noreferrer">
-                Google Doc – Appendix &amp; Contributions
-              </a>
-            </li>
-          </ul>
+          <div class="footer-cta">
+            <a href="#top" class="btn-mm-primary btn btn-sm">
+              Back to top
+            </a>
+            <a href="../portfoliodocs/HCI 457 Group 9 Final Presentation (2).pdf" class="btn-mm-ghost btn btn-sm"
+              target="_blank" rel="noopener noreferrer">
+              View project presentation (PDF)
+            </a>
+            <a href="https://docs.google.com/document/d/16FfoiJsJ65FAHvzE5gbWQnNa5DTn61htpITq4KTR-iw/edit"
+              class="btn-mm-ghost btn btn-sm"
+              target="_blank" rel="noopener noreferrer">
+              View appendix & contributions
+            </a>
+          </div>
         </section>
       </article>
     </div>
@@ -629,7 +936,7 @@
       <span class="d-flex gap-3">
         <a href="https://www.linkedin.com/in/hmehakm" target="_blank" rel="noopener noreferrer"
           class="text-decoration-none">LinkedIn</a>
-        <a href="mailto:Hmunir1@depaul.edu" class="text-decoration-none">Email</a>
+        <a href="mailto:hmunir1@depaul.edu" class="text-decoration-none">Email</a>
       </span>
     </div>
   </footer>
