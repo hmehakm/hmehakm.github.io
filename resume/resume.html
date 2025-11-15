@@ -45,7 +45,7 @@
 
     main {
       flex: 1;
-      padding: 2.5rem 0;
+      padding: 2.5rem 0 2.75rem;
     }
 
     @media (max-width: 767.98px) {
@@ -118,15 +118,15 @@
     .resume-wrapper {
       background: var(--mm-card-bg);
       border-radius: 1.5rem;
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
-      padding: 2rem;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      padding: 2rem 1.5rem;
       max-width: 1100px;
       margin: 0 auto;
     }
 
     @media (min-width: 992px) {
       .resume-wrapper {
-        padding: 3rem;
+        padding: 3rem 3rem 2.75rem;
       }
     }
 
@@ -170,7 +170,7 @@
     .resume-section-heading {
       font-size: 1.05rem;
       font-weight: 600;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.1rem;
     }
 
     .resume-summary {
@@ -196,17 +196,17 @@
 
     .resume-bullets li {
       font-size: 0.9rem;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.2rem;
     }
 
     .resume-pill {
       display: inline-flex;
       align-items: center;
-      padding: 0.22rem 0.7rem;
+      padding: 0.18rem 0.6rem;
       border-radius: 999px;
       border: 1px solid var(--mm-accent-soft);
       font-size: 0.78rem;
-      margin: 0.1rem;
+      margin: 0.08rem;
       background: #f9fafb;
     }
 
@@ -225,6 +225,18 @@
 
     .resume-list-compact li {
       margin-bottom: 0.15rem;
+    }
+
+    /* Add subtle column separation on desktop */
+    @media (min-width: 992px) {
+      .resume-left-col {
+        border-right: 1px solid rgba(148, 163, 184, 0.4);
+        padding-right: 1.5rem;
+      }
+
+      .resume-right-col {
+        padding-left: 1.75rem;
+      }
     }
 
     /* Footer */
@@ -260,7 +272,7 @@
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Home</a>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -268,13 +280,12 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <a class="dropdown-item" href="../portfoliodocs/uber.html" target="_blank">
+                <a class="dropdown-item" href="../accessibility/uber.html" target="_blank">
                   Accessibility
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="../portfoliodocs/shien.html"
-                  target="_blank">
+                <a class="dropdown-item" href="../contentstrategy/shien.html" target="_blank">
                   Content Strategy
                 </a>
               </li>
@@ -288,7 +299,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../portfoliodocs/resume.html">Resume</a>
+            <a class="nav-link active" aria-current="page" href="../resume/resume.html">Resume</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../contact/contact.html">Contact</a>
@@ -301,290 +312,289 @@
   <!-- /Navbar -->
 
   <main>
-    <div class="container-xxl">
-      <div class="resume-wrapper">
-        <!-- Header -->
-        <header class="mb-4">
-          <div class="row align-items-center g-3">
-            <div class="col-12 col-lg-7">
-              <h1 class="resume-header-name">Hafiza Mehak Munir</h1>
-              <p class="resume-tagline mb-0">
-                UX Researcher &amp; Designer &middot; Former E-commerce Professional
-              </p>
+    <!-- removed outside container-xxl -->
+    <div class="resume-wrapper">
+      <!-- Header -->
+      <header class="mb-4">
+        <div class="row align-items-center g-3">
+          <div class="col-12 col-lg-7">
+            <h1 class="resume-header-name">Hafiza Mehak Munir</h1>
+            <p class="resume-tagline mb-0">
+              UX Researcher &amp; Designer &middot; Former E-commerce Professional
+            </p>
+          </div>
+          <!-- Optional: keep contact compact + visible for recruiters -->
+          <div class="col-12 col-lg-5">
+            <div class="resume-contact text-lg-end small">
+              <div><a href="mailto:Hafizamehakmunir@gmail.com">Hafizamehakmunir@gmail.com</a></div>
+              <div>
+                <a href="https://www.linkedin.com/in/hmehakm" target="_blank" rel="noopener noreferrer">
+                  LinkedIn: hmehakm
+                </a>
+              </div>
+              <div>
+                <a href="https://hmehakm.github.io" target="_blank" rel="noopener noreferrer">
+                  Portfolio: hmehakm.github.io
+                </a>
+              </div>
             </div>
-            <!-- <div class="col-12 col-lg-5">
-              <div class="resume-contact text-lg-end small">
-                <div><a href="mailto:Hafizamehakmunir@gmail.com">Hafizamehakmunir@gmail.com</a></div>
-                <div>+1 (360) 930-9693</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="row g-4">
+        <!-- LEFT COLUMN -->
+        <div class="col-12 col-lg-4 resume-left-col">
+          <!-- Summary -->
+          <section class="mb-4">
+            <div class="resume-section-title">Profile</div>
+            <p class="resume-summary mb-0">
+              Transitioning from an e-commerce career to UX/UI design with a strong interest in project management.
+              Experienced in collaborating with cross-functional teams, presenting design rationale to both design
+              and non-design stakeholders, and aligning work with business and user goals. Known as an adaptable,
+              creative problem-solver and resilient team member ready to contribute to research and product teams.
+            </p>
+          </section>
+
+          <!-- Skills -->
+          <section class="mb-4">
+            <div class="resume-section-title">Skills</div>
+
+            <div class="resume-skill-subtitle">UX Research &amp; Testing</div>
+            <div>
+              <span class="resume-pill">Contextual Inquiry</span>
+              <span class="resume-pill">Surveys</span>
+              <span class="resume-pill">Interviews</span>
+              <span class="resume-pill">Usability Testing</span>
+              <span class="resume-pill">Tree Testing</span>
+              <span class="resume-pill">Card Sorting</span>
+              <span class="resume-pill">Heuristic Evaluation</span>
+              <span class="resume-pill">Cognitive Walkthroughs</span>
+              <span class="resume-pill">First-Click Testing</span>
+              <span class="resume-pill">AEIOU Framework</span>
+              <span class="resume-pill">Accessibility Evaluation</span>
+            </div>
+
+            <div class="resume-skill-subtitle mt-3">Design &amp; Prototyping</div>
+            <div>
+              <span class="resume-pill">Figma</span>
+              <span class="resume-pill">Balsamiq</span>
+              <span class="resume-pill">Axure RP</span>
+              <span class="resume-pill">Adobe XD</span>
+              <span class="resume-pill">Illustrator</span>
+              <span class="resume-pill">Photoshop</span>
+              <span class="resume-pill">Canva</span>
+              <span class="resume-pill">Wireframes</span>
+              <span class="resume-pill">Mockups</span>
+              <span class="resume-pill">Interactive Prototypes</span>
+            </div>
+
+            <div class="resume-skill-subtitle mt-3">Development &amp; Data</div>
+            <div>
+              <span class="resume-pill">HTML</span>
+              <span class="resume-pill">CSS</span>
+              <span class="resume-pill">JavaScript</span>
+              <span class="resume-pill">Google Analytics</span>
+              <span class="resume-pill">SPSS</span>
+              <span class="resume-pill">ATLAS.ti</span>
+            </div>
+
+            <div class="resume-skill-subtitle mt-3">Certifications</div>
+            <ul class="resume-list-compact">
+              <li>CITI IRB (Ethics in Research)</li>
+              <li>Google Analytics</li>
+              <li>Design Thinking – Data Intelligence</li>
+            </ul>
+          </section>
+
+          <!-- Education -->
+          <section class="mb-0">
+            <div class="resume-section-title">Education</div>
+
+            <div class="mb-3">
+              <div class="resume-section-heading">
+                Master of Science in Human-Computer Interaction
+              </div>
+              <div class="resume-subtitle-line">DePaul University &mdash; Chicago, IL</div>
+              <div class="resume-meta">Expected March 2026</div>
+              <div class="mt-1">
+                <span class="resume-pill">User-Centered Design</span>
+                <span class="resume-pill">Prototyping &amp; Implementation</span>
+                <span class="resume-pill">Usability Evaluation</span>
+                <span class="resume-pill">Accessibility Considerations</span>
+                <span class="resume-pill">User Research Methods</span>
+                <span class="resume-pill">Scripting for Interactive Systems</span>
+                <span class="resume-pill">IT Project Management</span>
+                <span class="resume-pill">Data Visualization</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="resume-section-heading">
+                Master of Philosophy
+              </div>
+              <div class="resume-subtitle-line">
+                Lahore School of Economics &mdash; Lahore, Pakistan
+              </div>
+              <div class="resume-meta">2020</div>
+              <div class="mt-1">
+                <span class="resume-pill">Gender Studies</span>
+                <span class="resume-pill">Development Studies</span>
+              </div>
+            </div>
+            <div>
+              <div class="resume-section-heading">
+                Bachelor of Science in Business Administration
+              </div>
+              <div class="resume-subtitle-line">
+                Forman Christian College &mdash; Lahore, Pakistan
+              </div>
+              <div class="resume-meta">2017</div>
+              <div class="mt-1">
+                <span class="resume-pill">New Product Development</span>
+                <span class="resume-pill">Qualitative &amp; Quantitative Research</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-12 col-lg-8 resume-right-col">
+          <!-- Professional Experience -->
+          <section class="mb-4">
+            <div class="resume-section-title">Professional Experience</div>
+
+            <article class="mb-3">
+              <div class="d-flex justify-content-between gap-3">
                 <div>
-                  <a href="https://www.linkedin.com/in/hmehakm" target="_blank" rel="noopener noreferrer">
-                    LinkedIn: hmehakm
-                  </a>
+                  <div class="resume-section-heading">Graduate Scholarship Assistant</div>
+                  <div class="resume-subtitle-line">Office of Financial Aid, DePaul University</div>
                 </div>
+                <div class="resume-meta text-end">
+                  Chicago, IL<br />
+                  Dec 2023 &ndash; Present
+                </div>
+              </div>
+              <ul class="resume-bullets">
+                <li>Administer DePaul’s award management system to support scholarship operations and student funding.</li>
+                <li>Produce instructional videos and documentation to support scholarship operations and partner training.</li>
+                <li>Propose and implement design and process enhancements based on user feedback, improving usability and efficiency.</li>
+                <li>Assist in planning and executing student-facing events that increase awareness of scholarships and financial aid.</li>
+              </ul>
+            </article>
+
+            <article class="mb-3">
+              <div class="d-flex justify-content-between gap-3">
                 <div>
-                  <a href="https://hmehakm.github.io" target="_blank" rel="noopener noreferrer">
-                    Portfolio: hmehakm.github.io
-                  </a>
+                  <div class="resume-section-heading">Assistant E-Commerce Manager</div>
+                  <div class="resume-subtitle-line">Cresset Technologies</div>
+                </div>
+                <div class="resume-meta text-end">
+                  Lahore, Pakistan<br />
+                  Mar 2021 &ndash; Jun 2023
                 </div>
               </div>
-            </div> -->
-          </div>
-        </header>
-
-        <div class="row g-4">
-          <!-- LEFT COLUMN -->
-          <div class="col-12 col-lg-4">
-            <!-- Summary -->
-            <section class="mb-4">
-              <div class="resume-section-title">Profile</div>
-              <p class="resume-summary mb-0">
-                Transitioning from an e-commerce career to UX/UI design with a strong interest in project management.
-                Experienced in collaborating with cross-functional teams, presenting design rationale to both design
-                and non-design stakeholders, and aligning work with business and user goals. Known as an adaptable,
-                creative problem-solver and resilient team member ready to contribute to research and product teams.
-              </p>
-            </section>
-
-            <!-- Skills -->
-            <section class="mb-4">
-              <div class="resume-section-title">Skills</div>
-
-              <div class="resume-skill-subtitle">UX Research &amp; Testing</div>
-              <div>
-                <span class="resume-pill">Contextual Inquiry</span>
-                <span class="resume-pill">Surveys</span>
-                <span class="resume-pill">Interviews</span>
-                <span class="resume-pill">Usability Testing</span>
-                <span class="resume-pill">Tree Testing</span>
-                <span class="resume-pill">Card Sorting</span>
-                <span class="resume-pill">Heuristic Evaluation</span>
-                <span class="resume-pill">Cognitive Walkthroughs</span>
-                <span class="resume-pill">First-Click Testing</span>
-                <span class="resume-pill">AEIOU Framework</span>
-                <span class="resume-pill">Accessibility Evaluation</span>
-              </div>
-
-              <div class="resume-skill-subtitle mt-3">Design &amp; Prototyping</div>
-              <div>
-                <span class="resume-pill">Figma</span>
-                <span class="resume-pill">Balsamiq</span>
-                <span class="resume-pill">Axure RP</span>
-                <span class="resume-pill">Adobe XD</span>
-                <span class="resume-pill">Illustrator</span>
-                <span class="resume-pill">Photoshop</span>
-                <span class="resume-pill">Canva</span>
-                <span class="resume-pill">Wireframes</span>
-                <span class="resume-pill">Mockups</span>
-                <span class="resume-pill">Interactive Prototypes</span>
-              </div>
-
-              <div class="resume-skill-subtitle mt-3">Development &amp; Data</div>
-              <div>
-                <span class="resume-pill">HTML</span>
-                <span class="resume-pill">CSS</span>
-                <span class="resume-pill">JavaScript</span>
-                <span class="resume-pill">Google Analytics</span>
-                <span class="resume-pill">SPSS</span>
-                <span class="resume-pill">ATLAS.ti</span>
-              </div>
-
-              <div class="resume-skill-subtitle mt-3">Certifications</div>
-              <ul class="resume-list-compact">
-                <li>CITI IRB (Ethics in Research)</li>
-                <li>Google Analytics</li>
-                <li>Design Thinking – Data Intelligence</li>
+              <ul class="resume-bullets">
+                <li>Coordinated cross-functional teams (marketing, logistics, sales, customer support, design) to streamline workflows and improve campaign execution.</li>
+                <li>Supported development of client marketing strategies, contributing to increased engagement and conversion rates.</li>
+                <li>Recommended and implemented website design changes informed by Google Analytics, improving user experience and retention.</li>
               </ul>
-            </section>
+            </article>
 
-            <!-- Education -->
-            <section class="mb-4">
-              <div class="resume-section-title">Education</div>
-
-              <div class="mb-3">
-                <div class="resume-section-heading">
-                  Master of Science in Human-Computer Interaction
+            <article class="mb-3">
+              <div class="d-flex justify-content-between gap-3">
+                <div>
+                  <div class="resume-section-heading">Senior Project Associate</div>
+                  <div class="resume-subtitle-line">Kincsem Consultancy</div>
                 </div>
-                <div class="resume-subtitle-line">DePaul University &mdash; Chicago, IL</div>
-                <div class="resume-meta">Expected March 2026</div>
-                <div class="mt-1">
-                  <span class="resume-pill">User-Centered Design</span>
-                  <span class="resume-pill">Prototyping &amp; Implementation</span>
-                  <span class="resume-pill">Usability Evaluation</span>
-                  <span class="resume-pill">Accessibility Considerations</span>
-                  <span class="resume-pill">User Research Methods</span>
-                  <span class="resume-pill">Scripting for Interactive Systems</span>
-                  <span class="resume-pill">IT Project Management</span>
-                  <span class="resume-pill">Data Visualization</span>
+                <div class="resume-meta text-end">
+                  Lahore, Pakistan<br />
+                  Dec 2017 &ndash; Dec 2019
                 </div>
               </div>
-              <div>
-                <div class="resume-section-heading">
-                  Master of Philosophy
-                </div>
-                <div class="resume-subtitle-line">
-                  Lahore School of Economics &mdash; Lahore, Pakistan
-                </div>
-                <div class="resume-meta">2020</div>
-                <div class="mt-1">
-                  <span class="resume-pill">Gender Studies</span>
-                  <span class="resume-pill">Development Studies</span>
-                </div>
+              <ul class="resume-bullets">
+                <li>Supported diverse projects in academic and professional sectors, contributing to research, coordination, and delivery.</li>
+                <li>Participated in content planning meetings, resulting in more coherent deliverables and higher project success rates.</li>
+              </ul>
+            </article>
+          </section>
+
+          <!-- Selected Projects -->
+          <section class="mb-4">
+            <div class="resume-section-title">Selected Projects</div>
+
+            <article class="mb-3">
+              <div class="resume-section-heading">Research Assistant</div>
+              <div class="resume-subtitle-line">
+                Jarvis School of Computing and Digital Media, DePaul University &mdash; Aug 2025 &ndash; Present
               </div>
-              <div>
-                <div class="resume-section-heading">
-                  Bachelor of Science in Business Administration
-                </div>
-                <div class="resume-subtitle-line">
-                  Forman Christian College &mdash; Lahore, Pakistan
-                </div>
-                <div class="resume-meta">2017</div>
-                <div class="mt-1">
-                  <span class="resume-pill">New Product Development</span>
-                  <span class="resume-pill">Qualitative &amp; Quantitative Research</span>
-                </div>
+              <ul class="resume-bullets">
+                <li>Gather data via surveys and manage responses using Qualtrics.</li>
+                <li>Create and analyze reports to support ongoing research projects and faculty initiatives.</li>
+              </ul>
+            </article>
+
+            <article class="mb-3">
+              <div class="resume-section-heading">Accessible Rideshare Design for Blind and Low Vision (BLV) Users</div>
+              <div class="resume-subtitle-line">Accessibility Considerations, DePaul University &mdash; 2025</div>
+              <ul class="resume-bullets">
+                <li>Interviewed blind Uber users to identify accessibility barriers in rideshare experiences.</li>
+                <li>Co-designed solutions including haptic feedback, en-route voice notifications, and driver accessibility training.</li>
+                <li>Delivered recommendations grounded in universal design principles to improve overall accessibility.</li>
+              </ul>
+            </article>
+
+            <article class="mb-3">
+              <div class="resume-section-heading">Hike IL &mdash; Smartwatch-Integrated Hiking App</div>
+              <div class="resume-subtitle-line">Prototyping &amp; Implementation, DePaul University &mdash; 2024</div>
+              <ul class="resume-bullets">
+                <li>Designed responsive mobile and smartwatch prototypes in Axure RP.</li>
+                <li>Conducted contextual inquiries and iterative usability tests to improve navigation and offline access.</li>
+                <li>Enhanced trail discovery and personalization based on user feedback and observed behavior.</li>
+              </ul>
+            </article>
+
+            <article class="mb-1">
+              <div class="resume-section-heading">SHEIN Redesign &mdash; Navigation &amp; Information Architecture</div>
+              <div class="resume-subtitle-line">
+                Information Architecture &amp; Content Strategy, DePaul University &mdash; 2024
               </div>
-            </section>
-          </div>
-
-          <!-- RIGHT COLUMN -->
-          <div class="col-12 col-lg-8">
-            <!-- Professional Experience -->
-            <section class="mb-4">
-              <div class="resume-section-title">Professional Experience</div>
-
-              <article class="mb-3">
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <div class="resume-section-heading">Graduate Scholarship Assistant</div>
-                    <div class="resume-subtitle-line">Office of Financial Aid, DePaul University</div>
-                  </div>
-                  <div class="resume-meta text-end">
-                    Chicago, IL<br />
-                    Dec 2023 &ndash; Present
-                  </div>
-                </div>
-                <ul class="resume-bullets">
-                  <li>Administer DePaul’s award management system to support scholarship operations and student funding.</li>
-                  <li>Produce instructional videos and documentation to support scholarship operations and partner training.</li>
-                  <li>Propose and implement design and process enhancements based on user feedback, improving usability and efficiency.</li>
-                  <li>Assist in planning and executing student-facing events that increase awareness of scholarships and financial aid.</li>
-                </ul>
-              </article>
-
-              <article class="mb-3">
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <div class="resume-section-heading">Assistant E-Commerce Manager</div>
-                    <div class="resume-subtitle-line">Cresset Technologies</div>
-                  </div>
-                  <div class="resume-meta text-end">
-                    Lahore, Pakistan<br />
-                    Mar 2021 &ndash; Jun 2023
-                  </div>
-                </div>
-                <ul class="resume-bullets">
-                  <li>Coordinated cross-functional teams (marketing, logistics, sales, customer support, design) to streamline workflows and improve campaign execution.</li>
-                  <li>Supported development of client marketing strategies, contributing to increased engagement and conversion rates.</li>
-                  <li>Recommended and implemented website design changes informed by Google Analytics, improving user experience and retention.</li>
-                </ul>
-              </article>
-
-              <article class="mb-3">
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <div class="resume-section-heading">Senior Project Associate</div>
-                    <div class="resume-subtitle-line">Kincsem Consultancy</div>
-                  </div>
-                  <div class="resume-meta text-end">
-                    Lahore, Pakistan<br />
-                    Dec 2017 &ndash; Dec 2019
-                  </div>
-                </div>
-                <ul class="resume-bullets">
-                  <li>Supported diverse projects in academic and professional sectors, contributing to research, coordination, and delivery.</li>
-                  <li>Participated in content planning meetings, resulting in more coherent deliverables and higher project success rates.</li>
-                </ul>
-              </article>
-            </section>
-
-            <!-- Selected Projects -->
-            <section class="mb-4">
-              <div class="resume-section-title">Selected Projects</div>
-
-              <article class="mb-3">
-                <div class="resume-section-heading">Research Assistant</div>
-                <div class="resume-subtitle-line">
-                  Jarvis School of Computing and Digital Media, DePaul University &mdash; Aug 2025 &ndash; Present
-                </div>
-                <ul class="resume-bullets">
-                  <li>Gather data via surveys and manage responses using Qualtrics.</li>
-                  <li>Create and analyze reports to support ongoing research projects and faculty initiatives.</li>
-                </ul>
-              </article>
-
-              <article class="mb-3">
-                <div class="resume-section-heading">Accessible Rideshare Design for Blind and Low Vision (BLV) Users</div>
-                <div class="resume-subtitle-line">Accessibility Considerations, DePaul University &mdash; 2025</div>
-                <ul class="resume-bullets">
-                  <li>Interviewed blind Uber users to identify accessibility barriers in rideshare experiences.</li>
-                  <li>Co-designed solutions including haptic feedback, en-route voice notifications, and driver accessibility training.</li>
-                  <li>Delivered recommendations grounded in universal design principles to improve overall accessibility.</li>
-                </ul>
-              </article>
-
-              <article class="mb-3">
-                <div class="resume-section-heading">Hike IL &mdash; Smartwatch-Integrated Hiking App</div>
-                <div class="resume-subtitle-line">Prototyping &amp; Implementation, DePaul University &mdash; 2024</div>
-                <ul class="resume-bullets">
-                  <li>Designed responsive mobile and smartwatch prototypes in Axure RP.</li>
-                  <li>Conducted contextual inquiries and iterative usability tests to improve navigation and offline access.</li>
-                  <li>Enhanced trail discovery and personalization based on user feedback and observed behavior.</li>
-                </ul>
-              </article>
-
-              <article class="mb-1">
-                <div class="resume-section-heading">SHEIN Redesign &mdash; Navigation &amp; Information Architecture</div>
-                <div class="resume-subtitle-line">
-                  Information Architecture &amp; Content Strategy, DePaul University &mdash; 2024
-                </div>
-                <ul class="resume-bullets">
-                  <li>Optimized site navigation through card sorting and tree testing with 15 participants.</li>
-                  <li>Redesigned the site map and reduced redundancy in category labels to clarify user paths.</li>
-                  <li>Validated information architecture changes via usability testing and task success metrics.</li>
-                </ul>
-              </article>
-            </section>
-
-            <!-- Publications & Early Experience -->
-            <section class="mb-4">
-              <div class="resume-section-title">Publications &amp; Research</div>
-              <ul class="resume-list-compact">
-                <li>Plant Assessment for MAKNIT Pvt Ltd, Productivity Enhancement (+8%) Program using PMBOK®, PMI USA</li>
-                <li>Psychological Empowerment of Employees at FCC</li>
-                <li>Quality Analysis of Emergency Procedures in FCC</li>
-                <li>Marketing Analysis of Cold Stone Creamery</li>
-                <li>Development of Dolphin Squad, PSCA</li>
-                <li>The Demise of Pakistan Steel Mills (Magazine: School of Management, FCC)</li>
+              <ul class="resume-bullets">
+                <li>Optimized site navigation through card sorting and tree testing with 15 participants.</li>
+                <li>Redesigned the site map and reduced redundancy in category labels to clarify user paths.</li>
+                <li>Validated information architecture changes via usability testing and task success metrics.</li>
               </ul>
-            </section>
+            </article>
+          </section>
 
-            <section>
-              <div class="resume-section-title">Internships &amp; Early Roles</div>
-              <ul class="resume-list-compact">
-                <li>Finja.pk, Pakistan &mdash; Project Intern (Jun 2017 &ndash; Aug 2017)</li>
-                <li>WWF, Pakistan &mdash; Management Intern (Mar 2016)</li>
-                <li>Nestlé, Pakistan &mdash; Sales Associate (Jul 2016 &ndash; Sep 2016)</li>
-                <li>Bank Alfalah Ltd., Pakistan &mdash; Intern (Jun 2015 &ndash; Aug 2015)</li>
-                <li>Forman Christian College, Pakistan &mdash; Academics Office Intern (Jun 2014 &ndash; Aug 2014)</li>
-              </ul>
+          <!-- Publications & Early Experience -->
+          <section class="mb-4">
+            <div class="resume-section-title">Publications &amp; Research</div>
+            <ul class="resume-list-compact">
+              <li>Plant Assessment for MAKNIT Pvt Ltd, Productivity Enhancement (+8%) Program using PMBOK®, PMI USA</li>
+              <li>Psychological Empowerment of Employees at FCC</li>
+              <li>Quality Analysis of Emergency Procedures in FCC</li>
+              <li>Marketing Analysis of Cold Stone Creamery</li>
+              <li>Development of Dolphin Squad, PSCA</li>
+              <li>The Demise of Pakistan Steel Mills (Magazine: School of Management, FCC)</li>
+            </ul>
+          </section>
 
-              <div class="resume-skill-subtitle mt-3">Additional Certifications &amp; Seminars</div>
-              <ul class="resume-list-compact">
-                <li>TEFL (Teaching English as a Foreign Language), Recknors Corporate Training &amp; Workshops</li>
-                <li>"LET’S GET MAD" by Tanzila Khan (Workshop on Marketing &amp; Sales and Self-Determination)</li>
-              </ul>
-            </section>
-          </div>
+          <section>
+            <div class="resume-section-title">Internships &amp; Early Roles</div>
+            <ul class="resume-list-compact">
+              <li>Finja.pk, Pakistan &mdash; Project Intern (Jun 2017 &ndash; Aug 2017)</li>
+              <li>WWF, Pakistan &mdash; Management Intern (Mar 2016)</li>
+              <li>Nestlé, Pakistan &mdash; Sales Associate (Jul 2016 &ndash; Sep 2016)</li>
+              <li>Bank Alfalah Ltd., Pakistan &mdash; Intern (Jun 2015 &ndash; Aug 2015)</li>
+              <li>Forman Christian College, Pakistan &mdash; Academics Office Intern (Jun 2014 &ndash; Aug 2014)</li>
+            </ul>
+
+            <div class="resume-skill-subtitle mt-3">Additional Certifications &amp; Seminars</div>
+            <ul class="resume-list-compact">
+              <li>TEFL (Teaching English as a Foreign Language), Recknors Corporate Training &amp; Workshops</li>
+              <li>"LET’S GET MAD" by Tanzila Khan (Workshop on Marketing &amp; Sales and Self-Determination)</li>
+            </ul>
+          </section>
         </div>
       </div>
     </div>
