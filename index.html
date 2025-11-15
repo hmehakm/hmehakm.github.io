@@ -46,7 +46,7 @@
     main {
       flex: 1;
       display: flex;
-      align-items: center; /* center hero vertically */
+      align-items: center;
       padding: 2.5rem 0;
     }
 
@@ -127,8 +127,8 @@
       border-radius: 1.5rem;
       box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
       padding: 2rem;
-      max-width: 1100px;       /* <-- wider card */
-      margin: 0 auto;          /* <-- center in page */
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     @media (min-width: 992px) {
@@ -218,6 +218,82 @@
       color: var(--mm-text-main);
     }
 
+    /* Project tiles under intro */
+    .project-tiles {
+      margin-top: 2.5rem;
+    }
+
+    .project-tiles-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      color: var(--mm-accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .project-tiles-heading {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .project-tile-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+    }
+
+    .project-tile {
+      background: #f9fafb;
+      border-radius: 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 0.9rem 1rem 1.1rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      height: 100%;
+    }
+
+    .project-tile:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
+      border-color: var(--mm-accent-soft);
+    }
+
+    /* BIG IMAGE IN TILE */
+    .project-tile-img {
+      width: 100%;
+      height: 170px;           /* adjust height if you want taller/shorter */
+      object-fit: cover;
+      border-radius: 0.9rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-tile-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-tile-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-tile-text {
+      font-size: 0.9rem;
+      color: var(--mm-text-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .project-tile-meta {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
     /* Footer */
     .footer-mm {
       background: #ffffffcc;
@@ -253,28 +329,26 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Projects
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item"
-                  href="../portfoliodocs/uber.html">Accessibility</a></li>
-              <li><a class="dropdown-item"
-                  href="../portfoliodocs/shien.html">Content Strategy</a>
-              </li>
+              <li><a class="dropdown-item" href="../portfoliodocs/uber.html">Accessibility</a></li>
+              <li><a class="dropdown-item" href="../portfoliodocs/shien.html">Content Strategy</a></li>
               <li><a class="dropdown-item"
                   href="../portfoliodocs/HCI 430 - A7 - Portfolio Piece - Group 7.pdf">Prototyping &
                   Implementation</a></li>
             </ul>
-            <li class="nav-item">
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" href="../portfoliodocs/resume.html">Resume</a>
           </li>
-            <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="../contact/contact.html">Contact</a>
-          </li>
           </li>
         </ul>
       </div>
@@ -301,11 +375,11 @@
               <h1 class="hero-heading">
                 Hi, I’m <span class="hero-highlight-name">Mehak</span>.
               </h1>
-                <p class="hero-text Intro">
-                    I’m a UX researcher and designer currently pursuing my MS in Human–Computer Interaction at DePaul University.
-                    I’m driven by understanding how people actually think, feel, and navigate digital experiences, then translating
-                    those insights into clear, actionable design decisions. I care deeply about inclusive, research-driven products
-                    and enjoy working at the intersection of user interviews, usability testing, and thoughtful interaction design.
+              <p class="hero-text Intro">
+                I’m a UX researcher and designer currently pursuing my MS in Human–Computer Interaction at DePaul University.
+                I’m driven by understanding how people actually think, feel, and navigate digital experiences, then translating
+                those insights into clear, actionable design decisions. I care deeply about inclusive, research-driven products
+                and enjoy working at the intersection of user interviews, usability testing, and thoughtful interaction design.
               </p>
 
               <div class="hero-badges mb-3 d-flex flex-wrap gap-2">
@@ -315,15 +389,76 @@
               </div>
 
               <div class="d-flex flex-wrap gap-2">
-                <!-- <a href="../websitenew/portfoliodocs/HCI 440_Group 1_ Assignment 4.pdf" class="btn btn-mm-primary">
-                  View Selected Work
-                </a> -->
                 <a href="../contact/contact.html" class="btn btn-mm-ghost">
                   Lets Chat
                 </a>
               </div>
             </div>
           </div>
+
+          <!-- Project tiles under intro -->
+          <section class="project-tiles">
+            <p class="project-tiles-title mb-1">Selected work</p>
+            <h2 class="project-tiles-heading">A snapshot of what I’m exploring right now</h2>
+
+            <div class="row g-3">
+              <!-- Tile 1 -->
+              <div class="col-12 col-md-4">
+                <a href="../portfoliodocs/uber.html" class="project-tile-link">
+                  <div class="project-tile">
+                    <img
+                      src="../images/uber-tile.jpg"
+                      alt="Illustration or screenshot representing BLV rideshare accessibility project"
+                      class="project-tile-img">
+                    <p class="project-tile-kicker">Accessibility</p>
+                    <h3 class="project-tile-title">Rideshares for blind & low-vision riders</h3>
+                    <p class="project-tile-text">
+                      Heuristic evaluation, interviews, and design recommendations to make Uber-style experiences safer and more independent.
+                    </p>
+                    <p class="project-tile-meta">Research · Accessibility · Service design</p>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Tile 2 -->
+              <div class="col-12 col-md-4">
+                <a href="../portfoliodocs/shien.html" class="project-tile-link">
+                  <div class="project-tile">
+                    <img
+                      src="../images/shein-tile.jpg"
+                      alt="Screenshot or visual representing SHEIN navigation and content structure"
+                      class="project-tile-img">
+                    <p class="project-tile-kicker">Content Strategy</p>
+                    <h3 class="project-tile-title">Untangling SHEIN’s navigation</h3>
+                    <p class="project-tile-text">
+                      Card sorting, tree testing, and IA redesign to help shoppers actually find what they came for in a complex catalogue.
+                    </p>
+                    <p class="project-tile-meta">IA · Content strategy · Usability</p>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Tile 3 -->
+              <div class="col-12 col-md-4">
+                <a href="../portfoliodocs/HCI 430 - A7 - Portfolio Piece - Group 7.pdf"
+                  class="project-tile-link" target="_blank" rel="noopener noreferrer">
+                  <div class="project-tile">
+                    <img
+                      src="../images/hikeil-tile.jpg"
+                      alt="Mockup of the Hike IL mobile app interface"
+                      class="project-tile-img">
+                    <p class="project-tile-kicker">Prototyping & Implementation</p>
+                    <h3 class="project-tile-title">Hike IL – finding the right trail</h3>
+                    <p class="project-tile-text">
+                      Designing and testing a mobile experience to help students discover hiking spots that match their needs and comfort level.
+                    </p>
+                    <p class="project-tile-meta">Prototyping · Interaction design</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </section>
+
         </div>
       </div>
     </section>
