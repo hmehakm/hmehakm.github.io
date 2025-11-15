@@ -132,20 +132,26 @@
       }
     }
 
-    /* Banner-style cover image */
-    .project-cover {
-      border-radius: 1.25rem;
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-      max-height: 260px; /* banner height */
-    }
+   /* Banner-style cover */
+.project-cover {
+  border-radius: 1.25rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
 
-    .project-cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+  /* fixed banner height so it crops instead of showing full image */
+  height: 220px;          /* tweak this up/down if you want taller/shorter */
+}
+
+/* Image inside the banner */
+.project-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* center the word SHEIN in the visible area */
+  object-position: 50% 50%;   /* try 50% 55% or 50% 45% if the text sits lower/higher */
+}
+
 
     .project-pill {
       display: inline-flex;
