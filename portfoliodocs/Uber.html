@@ -1,359 +1,883 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Improving the Rideshare Experience for Blind & Low‑Vision Users – UX Case Study</title>
-  <meta name="description" content="UX research and design case study by Mehak Munir and team: improving rideshare accessibility for blind and low‑vision users through interviews, thematic analysis, and co‑designed solutions." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+  <!-- Your shared site CSS -->
+  <link rel="stylesheet" href="../css/websitecss.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico" />
+
+  <title>Improving Rideshares for Blind & Low-Vision Users – Case Study | Mehak Munir</title>
+
   <style>
     :root {
-      --bg: #0f1115;
-      --panel: #151922;
-      --text: #e6e9ef;
-      --muted: #9aa3b2;
-      --brand: #7c8cff;
-      --brand-2: #8ee3c6;
-      --accent: #ffd166;
-      --border: #2a3140;
-      --success: #48c78e;
-      --danger: #ff6b6b;
-      --radius: 16px;
-      --shadow: 0 8px 30px rgba(0,0,0,.25);
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --mm-bg: #f4f4ff;
+      --mm-card-bg: #ffffff;
+      --mm-accent: #6b5bff;
+      --mm-accent-soft: #e3deff;
+      --mm-text-main: #222222;
+      --mm-text-soft: #4a4a4a;
+      --mm-accent-alt: #f9e2ff;
     }
 
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f6f7fb;
-        --panel: #ffffff;
-        --text: #10131a;
-        --muted: #515a6a;
-        --border: #e6e8ef;
-        --shadow: 0 10px 30px rgba(10, 15, 30, .08);
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, var(--mm-accent-soft) 0, var(--mm-bg) 40%, #ffffff 100%);
+      color: var(--mm-text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      padding: 2.5rem 0;
+    }
+
+    @media (max-width: 767.98px) {
+      main {
+        padding-top: 1.5rem;
       }
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: var(--font);
-      background: radial-gradient(1200px 800px at 10% -10%, rgba(124,140,255,.15), transparent 60%),
-                  radial-gradient(1000px 600px at 100% 0%, rgba(142,227,198,.18), transparent 55%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    /* Navbar – same style as other pages */
+    .navbar-mm {
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
     }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    .skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-    .skip-link:focus { position: fixed; left: 16px; top: 16px; width: auto; height: auto; padding: 8px 12px; background: var(--accent); color: #111; border-radius: 8px; z-index: 1000; }
+    .navbar-mm .navbar-brand span {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
 
-    header.hero {
+    .navbar-mm .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .navbar-mm .nav-link.active {
+      color: var(--mm-accent) !important;
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: none;
       position: relative;
-      padding: 64px 0 24px;
-    }
-    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(124,140,255,.12); color: var(--brand); border: 1px solid rgba(124,140,255,.35); font-weight: 600; font-size: 13px; letter-spacing: .3px; }
-    h1 { font-size: clamp(32px, 4vw, 56px); line-height: 1.1; margin: 16px 0 8px; }
-    .subtitle { font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); max-width: 800px; }
-
-    .meta {
-      margin-top: 18px;
-      display: grid; gap: 10px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    }
-    .chip { background: var(--panel); border: 1px solid var(--border); padding: 12px 14px; border-radius: 12px; box-shadow: var(--shadow); }
-    .chip strong { display:block; font-size: 12px; letter-spacing:.4px; color: var(--muted); text-transform: uppercase; }
-
-    nav.site-nav {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: saturate(140%) blur(8px);
-      background: color-mix(in srgb, var(--bg) 70%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .nav-inner { max-width: 1100px; margin: 0 auto; padding: 10px 24px; display:flex; flex-wrap: wrap; gap:10px; align-items: center; justify-content: space-between; }
-    .nav-links { display:flex; flex-wrap: wrap; gap: 12px; }
-    .nav-links a { text-decoration: none; color: var(--muted); padding: 8px 12px; border-radius: 10px; border:1px solid transparent; }
-    .nav-links a:hover, .nav-links a:focus { color: var(--text); border-color: var(--border); background: var(--panel); }
-
-    section { margin: 56px 0; }
-    .section-title { display:flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-    .section-title .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand-2); box-shadow: 0 0 0 6px rgba(142,227,198,.18); }
-    h2 { margin: 0; font-size: clamp(24px, 3vw, 34px); line-height: 1.2; }
-    p { margin: 0 0 14px; }
-
-    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
-    .grid { display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); }
-    .col-12 { grid-column: span 12; }
-    .col-6 { grid-column: span 6; }
-    .col-4 { grid-column: span 4; }
-    @media (max-width: 900px) { .col-6, .col-4 { grid-column: span 12; } }
-
-    figure { margin: 0; }
-    .placeholder {
-      border: 2px dashed var(--border);
-      border-radius: 14px; height: 220px;
-      display:grid; place-items:center; color: var(--muted);
-      background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255,255,255,.03) 12px, rgba(255,255,255,.03) 24px);
+      width: 1.5rem;
+      height: 1.5rem;
     }
 
-    .kpi { display:flex; gap: 14px; align-items:center; }
-    .kpi .num { font-weight: 800; font-size: 28px; color: var(--brand); }
-
-    table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--border); }
-    th { color: var(--muted); font-weight: 700; font-size: 13px; letter-spacing: .35px; text-transform: uppercase; }
-
-    .callout { border-left: 4px solid var(--brand); padding: 12px 16px; background: color-mix(in srgb, var(--panel) 80%, transparent); border-radius: 12px; }
-    blockquote { margin: 0; padding: 12px 16px; border-left: 4px solid var(--accent); background: rgba(255, 209, 102, .08); border-radius: 10px; }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px; padding: 18px; box-shadow: var(--shadow);
-      display:flex; flex-direction:column; gap: 10px;
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after,
+    .navbar-toggler-icon span {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      border-radius: 999px;
+      background-color: #111827;
     }
-    .tag { display:inline-block; padding: 6px 10px; border:1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 12px; }
 
-    .footer-cta { display:flex; flex-wrap: wrap; gap: 12px; }
-    .btn { display:inline-flex; align-items:center; gap:10px; padding: 12px 16px; border-radius: 12px; text-decoration:none; font-weight: 700; }
-    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0f16; }
-    .btn.ghost { border: 1px solid var(--border); color: var(--text); background: var(--panel); }
+    .navbar-toggler-icon::before {
+      top: 0.3rem;
+    }
 
-    footer { margin: 64px 0 24px; color: var(--muted); }
+    .navbar-toggler-icon::after {
+      bottom: 0.3rem;
+    }
 
-    /* Print-friendly */
-    @media print {
-      nav.site-nav, .footer-cta { display:none; }
-      body { background: #fff; }
-      .panel, .card { box-shadow:none; }
+    .navbar-toggler-icon span {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Case study layout */
+    .project-wrapper {
+      background: var(--mm-card-bg);
+      border-radius: 1.5rem;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+      padding: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 992px) {
+      .project-wrapper {
+        padding: 3rem;
+      }
+    }
+
+    .project-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(107, 91, 255, 0.06);
+      font-size: 0.78rem;
+      color: var(--mm-text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .project-title {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1.9rem;
+      margin-top: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 992px) {
+      .project-title {
+        font-size: 2.2rem;
+      }
+    }
+
+    .project-subtitle {
+      font-size: 0.98rem;
+      color: var(--mm-text-soft);
+    }
+
+    .project-meta-card {
+      border-radius: 1.2rem;
+      background: #f9fafb;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1.1rem 1.3rem;
+      font-size: 0.85rem;
+    }
+
+    .project-meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 0.1rem;
+    }
+
+    .project-meta-value {
+      font-weight: 500;
+    }
+
+    .project-section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      color: var(--mm-accent);
+      margin-bottom: 0.35rem;
+      margin-top: 1.8rem;
+    }
+
+    .project-section-heading {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-body-text {
+      font-size: 0.95rem;
+      color: var(--mm-text-soft);
+      line-height: 1.7;
+    }
+
+    .project-list {
+      font-size: 0.95rem;
+      color: var(--mm-text-soft);
+      padding-left: 1.1rem;
+    }
+
+    .project-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .project-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--mm-accent-soft);
+      font-size: 0.78rem;
+      margin: 0.1rem;
+      background: #ffffff;
+    }
+
+    .project-link {
+      color: var(--mm-accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(107, 91, 255, 0.3);
+      padding-bottom: 1px;
+    }
+
+    .project-link:hover {
+      border-bottom-color: var(--mm-accent);
+      text-decoration: none;
+    }
+
+    .card-mm {
+      background: #f9fafb;
+      border-radius: 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 1rem 1.1rem;
+      height: 100%;
+    }
+
+    .card-mm h3 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-mm .tag {
+      display: inline-block;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #eef2ff;
+      color: #4338ca;
+      margin-bottom: 0.35rem;
+    }
+
+    .table-responsive {
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      overflow: hidden;
+      background: #f9fafb;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th,
+    td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    th {
+      background: #eef2ff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #4b5563;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .callout {
+      border-left: 4px solid var(--mm-accent);
+      padding: 0.75rem 1rem;
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      background: #f5f3ff;
+      border-radius: 0.9rem;
+    }
+
+    blockquote {
+      font-size: 0.9rem;
+      margin: 0.4rem 0;
+      padding-left: 0.85rem;
+      border-left: 3px solid var(--mm-accent);
+      color: var(--mm-text-soft);
+      font-style: italic;
+    }
+
+    .footer-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn-mm-primary {
+      background: var(--mm-accent);
+      border: none;
+      color: #ffffff;
+      font-weight: 500;
+      border-radius: 999px;
+      padding-inline: 1.6rem;
+    }
+
+    .btn-mm-primary:hover {
+      background: #5745f0;
+      color: #ffffff;
+    }
+
+    .btn-mm-ghost {
+      border-radius: 999px;
+      border: 1px solid var(--mm-accent-soft);
+      color: var(--mm-text-main);
+      font-weight: 500;
+      background: #ffffff;
+    }
+
+    .btn-mm-ghost:hover {
+      background: var(--mm-accent-soft);
+      color: var(--mm-text-main);
+    }
+
+    /* Footer */
+    .footer-mm {
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      font-size: 0.85rem;
+      color: var(--mm-text-soft);
     }
   </style>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="site-nav" aria-label="Primary">
-    <div class="nav-inner">
-      <strong aria-label="Project name">BLV Rideshare Case Study</strong>
-      <div class="nav-links" role="navigation">
-        <a href="#overview">Overview</a>
-        <a href="#background">Background</a>
-        <a href="#methodology">Method</a>
-        <a href="#findings">Findings</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#impact">Impact</a>
-        <a href="#role">My Role</a>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-mm sticky-top">
+    <div class="container-lg">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+        <img src="../favicon/favicon-32x32.png" alt="Logo" width="30" height="30" />
+        <span>Mehak Munir</span>
+      </a>
+
+      <!-- Hamburger -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mmNavbar"
+        aria-controls="mmNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <span></span>
+        </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mmNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Projects
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="./blv-rideshare.html">BLV Rideshare Accessibility</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="./shein-case-study.html">SHEIN Navigation Redesign</a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                  href="../portfoliodocs/HCI 430 - A7 - Portfolio Piece - Group 7.pdf" target="_blank">
+                  Hike IL – Prototyping
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../resume/resume.html">Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact/contact.html">Contact</a>
+          </li>
+        </ul>
       </div>
+
     </div>
   </nav>
+  <!-- /Navbar -->
 
-  <header class="hero container" role="banner">
-    <span class="badge" aria-hidden="true">Accessibility • UX Research</span>
-    <h1>Improving the Rideshare Experience for Blind & Low‑Vision Users</h1>
-    <p class="subtitle">Designing accessible rideshare experiences that empower independence through co‑designed solutions, transparent communication, and inclusive app flows.</p>
-    <div class="meta">
-      <div class="chip"><strong>Timeline</strong> 10 weeks</div>
-      <div class="chip"><strong>Team</strong> Mehak Munir, Edric Delleola, Jordyn Smith, Ashwini Walavalkar</div>
-      <div class="chip"><strong>Role</strong> UX Researcher & Accessibility Analyst</div>
-      <div class="chip"><strong>Tools</strong> Zoom, FigJam, NotebookLM, Google Docs</div>
-    </div>
-  </header>
+  <main>
+    <div class="container-xxl">
+      <article class="project-wrapper">
+        <!-- Hero / Intro -->
+        <header class="mb-3">
+          <div class="row g-4 align-items-start">
+            <div class="col-12 col-lg-7">
+              <div class="project-pill">
+                <span>Accessibility · UX Research</span>
+              </div>
+              <h1 class="project-title">Improving the Rideshare Experience of Users Who Are Blind or Have Low Vision</h1>
+              <p class="project-subtitle mb-2">
+                A qualitative research project where I worked with blind Uber riders to understand how ridesharing really
+                feels when you can’t see the car coming – and co-designed ways to make each ride safer, clearer, and more
+                independent.
+              </p>
+              <div class="mt-2">
+                <span class="project-tag-pill">Accessibility</span>
+                <span class="project-tag-pill">Qualitative Research</span>
+                <span class="project-tag-pill">Inclusive Design</span>
+                <span class="project-tag-pill">Ridesharing</span>
+              </div>
+            </div>
+            <div class="col-12 col-lg-5">
+              <div class="project-meta-card">
+                <div class="row gy-2">
+                  <div class="col-6">
+                    <div class="project-meta-label">Course</div>
+                    <div class="project-meta-value">Accessibility Considerations (HCI 511)</div>
+                  </div>
+                  <div class="col-6">
+                    <div class="project-meta-label">Timeline</div>
+                    <div class="project-meta-value">10 weeks</div>
+                  </div>
+                  <div class="col-6">
+                    <div class="project-meta-label">Team</div>
+                    <div class="project-meta-value">Green Team (4 members)</div>
+                  </div>
+                  <div class="col-6">
+                    <div class="project-meta-label">My Role</div>
+                    <div class="project-meta-value">UX Researcher & Accessibility Analyst</div>
+                  </div>
+                  <div class="col-12 mt-2">
+                    <div class="project-meta-label">Methods & Tools</div>
+                    <div class="project-meta-value">
+                      Semi-structured interviews · Thematic analysis · Co-design<br />
+                      Zoom · Transcripts · NotebookLM · FigJam · Google Docs
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
 
-  <main id="main" class="container" role="main">
-    <!-- Overview -->
-    <section id="overview">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Overview</h2></div>
-      <div class="panel">
-        <p>We set out to understand how blind and low‑vision (BLV) users experience ridesharing and to design inclusive solutions that improve <strong>independence, safety, and trust</strong>. Through four in‑depth interviews and thematic analysis, we uncovered patterns of <em>communication breakdowns</em>, <em>pick‑up and drop‑off confusion</em>, and <em>driver bias</em>. Together with participants, we co‑designed haptic and audio features, transparent status updates, and driver training pathways.</p>
-        <div class="grid" aria-label="Project KPIs">
-          <div class="col-4 card kpi"><span class="num" aria-hidden="true">4</span><div><strong>BLV participants</strong><br/>Ages 39–74 across IL & TX</div></div>
-          <div class="col-4 card kpi"><span class="num" aria-hidden="true">3</span><div><strong>Core themes</strong><br/>Communication • Pick‑up/Drop‑off • Bias</div></div>
-          <div class="col-4 card kpi"><span class="num" aria-hidden="true">4</span><div><strong>Co‑designed ideas</strong><br/>Haptics • Audio • Transparency • Training</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Background -->
-    <section id="background">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Background & Motivation</h2></div>
-      <div class="grid">
-        <div class="col-6 panel">
-          <p>Ridesharing promises autonomy, yet BLV riders frequently face barriers: <strong>silent drivers</strong>, <strong>language mismatches</strong>, <strong>unclear arrival cues</strong>, and <strong>guide‑dog refusals</strong>. Existing literature often describes problems without prescribing tangible fixes. Our goal was to translate lived experiences into <strong>actionable, system‑level design improvements</strong>.</p>
-          <div class="callout" role="note"><strong>Design lens:</strong> Inclusive design with an emphasis on <em>trust, dignity, and autonomy</em>.</div>
-        </div>
-        <div class="col-6">
-          <figure class="placeholder" aria-label="Placeholder for uber image">
-            <img src="/images/uber.png" 
-                 alt="Uber image" 
-                 style="width:100%; height:auto; border-radius:14px;" />
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- Research Question -->
-    <section id="research-question">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Research Question</h2></div>
-      <div class="panel"><p><em>How might we redesign rideshare experiences so that users who are blind or have low vision can travel independently, confidently, and safely?</em></p></div>
-    </section>
-
-    <!-- Participants -->
-    <section id="participants">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Participants</h2></div>
-      <div class="panel">
-        <p>We interviewed four completely blind Uber users who regularly rely on ridesharing. Sessions were conducted remotely via Zoom.</p>
-        <div class="table-wrap" role="region" aria-label="Participant table">
-          <table>
-            <thead>
-              <tr><th>Participant</th><th>Gender</th><th>Assistive Tool</th><th>App</th><th>Notable Note</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>P1 (72)</td><td>Female</td><td>Cane</td><td>Uber</td><td>Frequently dropped at wrong location</td></tr>
-              <tr><td>P2 (39)</td><td>Male</td><td>Cane</td><td>Uber</td><td>Language barrier with drivers</td></tr>
-              <tr><td>P3 (61)</td><td>Female</td><td>Guide dog</td><td>Uber</td><td>Experienced discrimination</td></tr>
-              <tr><td>P4 (74)</td><td>Female</td><td>Guide dog</td><td>Uber</td><td>Concerns about service‑dog refusals</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Methodology -->
-    <section id="methodology">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Methodology</h2></div>
-      <div class="grid">
-        <div class="col-6 panel">
-          <h3 style="margin-top:0">Approach</h3>
-          <p>Semi‑structured, 60‑minute interviews via Zoom with two moderators (lead + note‑taker). We mapped end‑to‑end ride journeys, surfaced pain points, and invited participants to ideate solutions.</p>
-          <h3>Analysis</h3>
-          <p>Transcripts were coded through a <strong>hybrid strategy</strong>: AI‑assisted clustering (NotebookLM) followed by manual thematic synthesis in FigJam to preserve nuance and emotion.</p>
-        </div>
-        <div class="col-6">
-          <figure class="placeholder" aria-label="Placeholder for haptics mockup">
-            <img src="/images/affinity.png" 
-                 alt="Affinity Map" 
-                 style="width:100%; height:auto; border-radius:14px;" />
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- Findings -->
-    <section id="findings">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Key Findings</h2></div>
-      <div class="grid">
-        <div class="col-4 card">
-          <span class="tag">Theme 01</span>
-          <h3 style="margin:4px 0 0">Communication Breakdowns</h3>
-          <p>Silent or non‑English communication, limited updates, and inaccessible support eroded confidence mid‑journey.</p>
-          <blockquote>“He didn’t speak English… I got out of the car and didn’t even know where I was.” — P1</blockquote>
-        </div>
-        <div class="col-4 card">
-          <span class="tag">Theme 02</span>
-          <h3 style="margin:4px 0 0">Pick‑Up & Drop‑Off Confusion</h3>
-          <p>Generic arrival messages lacked directionality; drivers requested visual cues; GPS inaccuracies led to unsafe or wrong drop‑offs.</p>
-        </div>
-        <div class="col-4 card">
-          <span class="tag">Theme 03</span>
-          <h3 style="margin:4px 0 0">Driver Behavior & Bias</h3>
-          <p>Instances of rudeness, disputing locations, or guide‑dog refusals produced anxiety and reduced independence.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Solutions -->
-    <section id="solutions">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Co‑Designed Solutions</h2></div>
-      <div class="grid">
-        <div class="col-6 card">
-          <h3 style="margin:0">Haptic Feedback Alerts</h3>
-          <p>Phone vibrations intensify as the driver approaches to help locate vehicles without relying on sight or sound.</p>
-          <!-- <figure class="placeholder" aria-label="Placeholder for haptics mockup">Add low‑fi / flow for haptic arrival here</figure> -->
-        </div>
-        <div class="col-6 card">
-          <h3 style="margin:0">En‑Route Audio Updates</h3>
-          <p>Spoken cues for streets, turns, and landmarks provide continuous spatial awareness and reduce uncertainty.</p>
-          <!-- <figure class="placeholder" aria-label="Placeholder for audio updates flow">Add journey audio cue wireframe here</figure> -->
-        </div>
-        <div class="col-6 card">
-          <h3 style="margin:0">Pre‑Pick‑Up Transparency</h3>
-          <p>Frequent, contextual statuses (e.g., “stuck at rail crossing”, “2 min away”) set expectations and lower anxiety.</p>
-          <!-- <figure class="placeholder" aria-label="Placeholder for status UX">Add status microcopy/notifications examples here</figure> -->
-        </div>
-        <div class="col-6 card">
-          <h3 style="margin:0">Driver Accessibility Training</h3>
-          <p>Onboarding modules covering guide‑dog policy, pick‑up etiquette, and communication standards build empathy and consistency.</p>
-          <!-- <figure class="placeholder" aria-label="Placeholder for training outline">Add training outline or storyboard here</figure> -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Discussion / Impact -->
-    <section id="impact">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Discussion & Impact</h2></div>
-      <div class="panel">
-        <h3 style="margin-top:0">Three Recommendations</h3>
-        <ul>
-          <li><strong>Automated Communication:</strong> Adaptive, multilingual notifications and arrival cues build trust.</li>
-          <li><strong>Driver Support & Training:</strong> Standardize inclusive behaviors and reduce discrimination.</li>
-          <li><strong>Accessibility Audit:</strong> Address unlabeled controls and unclear screen‑reader flows within the app.</li>
-        </ul>
-        <div class="callout"><strong>Curb‑Cut Effect:</strong> These improvements benefit everyone — haptics help in noisy places, audio cues aid situational awareness, and transparency improves all rider–driver interactions.</div>
-      </div>
-    </section>
-
-    <!-- Future Work -->
-    <section id="future">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Future Directions</h2></div>
-      <div class="grid">
-        <div class="col-12 panel">
-          <ol>
-            <li>Compare Uber vs. Lyft accessibility policies and outcomes.</li>
-            <li>Prototype and usability‑test haptic and audio features with BLV riders.</li>
-            <li>Expand participant diversity across geography, age, and vision levels.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <!-- My Role -->
-    <section id="role">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>My Role</h2></div>
-      <div class="grid">
-        <div class="col-12 panel">
-          <h3 style="margin-top:0">Contributions</h3>
-          <ul>
-            <li>Led participant outreach and interview moderation.</li>
-            <li>Conducted thematic coding and synthesis in FigJam.</li>
-            <li>Mapped pain points to design opportunities.</li>
-            <li>Authored recommendations and final report narrative.</li>
+        <!-- Overview -->
+        <section>
+          <div class="project-section-title">Overview</div>
+          <h2 class="project-section-heading">When “your driver has arrived” isn’t enough</h2>
+          <p class="project-body-text">
+            This project started with a simple observation: ridesharing apps were designed assuming the rider can see the
+            car pull up. For riders who are blind or have low vision (BLV), that assumption falls apart quickly.
+          </p>
+          <p class="project-body-text">
+            In class, we had read research documenting how BLV riders are dropped at the wrong place, struggle to locate
+            their car, or have drivers cancel when they hear the word “guide dog.” But I wanted to go deeper: not just
+            collect more stories, but translate those stories into concrete design directions that a rideshare company
+            could realistically act on.
+          </p>
+          <p class="project-body-text mb-0">
+            Over 10 weeks, our team:
+          </p>
+          <ul class="project-list">
+            <li>Interviewed four blind Uber riders about their end-to-end experiences.</li>
+            <li>Synthesized their stories into themes using layered qualitative analysis and an affinity map.</li>
+            <li>Co-designed and prioritized solutions like haptic feedback, audio cues, and driver training.</li>
           </ul>
-        </div>
-        <!-- <div class="col-6">
-          <figure class="placeholder" aria-label="Placeholder for research photo or Zoom frame">Add research photo / Zoom screenshot here</figure>
-        </div> -->
-      </div>
-    </section>
+        </section>
 
-    <!-- Reflection -->
-    <section id="reflection">
-      <div class="section-title"><span class="dot" aria-hidden="true"></span><h2>Reflection</h2></div>
-      <div class="panel">
-        <p>Accessibility is not an add‑on; it’s the foundation of good design. This project deepened my practice of <strong>listening first</strong>, co‑creating with users, and translating emotion‑rich narratives into <strong>practical, testable solutions</strong>. Small interventions — a vibration, a voice cue, a clear status — can restore independence and dignity at scale.</p>
-      </div>
-      <div class="footer-cta" aria-label="Case study actions">
-        <a class="btn primary" href="#solutions">View Solutions</a>
-        <a class="btn ghost" href="#overview">Back to Top</a>
-      </div>
-    </section>
+        <!-- Problem & Research Question -->
+        <section>
+          <div class="project-section-title">Problem space</div>
+          <h2 class="project-section-heading">Design gap: from “this is hard” to “here’s what we could build”</h2>
+          <p class="project-body-text">
+            Existing research already told us that BLV riders face serious barriers, but much of the work stopped at
+            describing pain points. As a researcher, I wanted to push the project one step further: use those stories as
+            a starting point to imagine system-level improvements, not just isolated “nice-to-have” features.
+          </p>
+          <p class="project-body-text">
+            I framed our guiding question as:
+          </p>
+          <p class="project-body-text">
+            <em>How might we redesign rideshare experiences so that people who are blind or have low vision can ride
+              independently, confidently, and safely – without having to fight the system every time?</em>
+          </p>
+        </section>
+
+        <!-- Participants -->
+        <section>
+          <div class="project-section-title">Participants</div>
+          <h2 class="project-section-heading">Who I spoke with</h2>
+          <p class="project-body-text">
+            To keep the study focused and rich, we recruited four adults who are completely blind, regularly use Uber,
+            and had taken a rideshare in the last five months. Most lived in the Chicagoland area; one was based in
+            Houston, TX. All were independent travelers who rely on a cane or guide dog.
+          </p>
+          <div class="table-responsive mt-2">
+            <table>
+              <thead>
+                <tr>
+                  <th>Participant</th>
+                  <th>Age</th>
+                  <th>Location</th>
+                  <th>Assistive Tool</th>
+                  <th>Preferred App</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>P1 (she/her)</td>
+                  <td>72</td>
+                  <td>Chicago, IL</td>
+                  <td>Cane</td>
+                  <td>Uber</td>
+                </tr>
+                <tr>
+                  <td>P2 (he/him)</td>
+                  <td>39</td>
+                  <td>Houston, TX</td>
+                  <td>Cane</td>
+                  <td>Uber</td>
+                </tr>
+                <tr>
+                  <td>P3 (she/her)</td>
+                  <td>61</td>
+                  <td>Chicago, IL</td>
+                  <td>Guide dog</td>
+                  <td>Uber</td>
+                </tr>
+                <tr>
+                  <td>P4 (she/her)</td>
+                  <td>74</td>
+                  <td>River Forest, IL</td>
+                  <td>Guide dog</td>
+                  <td>Uber</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Methodology -->
+        <section>
+          <div class="project-section-title">Methodology</div>
+          <h2 class="project-section-heading">How I approached the research</h2>
+          <p class="project-body-text">
+            We ran one semi-structured interview with each participant over Zoom. I co-moderated sessions with another
+            teammate: one of us led the conversation, while the other monitored time, captured quotes, and watched for
+            moments to probe deeper.
+          </p>
+          <p class="project-body-text">
+            We asked participants to walk us through their typical ride step-by-step – from opening the app to arriving at
+            their destination – and then invited them to share specific stories that felt especially frustrating or
+            memorable. Towards the end of each session, we shifted into “what if” mode and started co-designing.
+          </p>
+          <p class="project-body-text mb-0">
+            After data collection, I helped run a layered analysis:
+          </p>
+          <ul class="project-list">
+            <li>We transcribed the interviews and used NotebookLM to quickly surface initial clusters and potential codes.</li>
+            <li>We then moved everything into FigJam, where we manually regrouped quotes and reorganized themes.</li>
+            <li>This became our affinity map – and the backbone for all findings and recommendations.</li>
+          </ul>
+
+          <!-- Affinity map goes here -->
+          <div class="mt-3">
+            <figure class="text-center">
+              <!-- Update this path to your actual affinity map image -->
+              <img
+                src="../images/blv-affinity-map.png"
+                alt="Affinity map clustering quotes from blind Uber riders into themes around communication, pick-up and drop-off, driver behavior, and app accessibility."
+                class="img-fluid rounded-4"
+                style="border: 1px solid rgba(148, 163, 184, 0.5);"
+              />
+              <figcaption class="mt-2 small text-muted">
+                Affinity map where I helped cluster raw interview quotes into themes that later became our three major
+                findings.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="callout">
+            <strong>My lens:</strong> I treated the analysis as translation work – moving from emotional, messy stories into
+            patterns that a product team could actually act on, without flattening participants’ lived experiences.
+          </div>
+        </section>
+
+        <!-- Findings -->
+        <section>
+          <div class="project-section-title">Findings</div>
+          <h2 class="project-section-heading">What I heard from riders, in their own words</h2>
+          <p class="project-body-text mb-2">
+            As we worked through the affinity map, three themes kept resurfacing, along with cross-cutting app
+            accessibility issues.
+          </p>
+
+          <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">Theme 01</span>
+                <h3>Communication breaks down fast</h3>
+                <p class="project-body-text mb-1">
+                  Riders often felt like they were “guessing” what was happening:
+                </p>
+                <ul class="project-list">
+                  <li>Drivers who didn’t share a language and relied on pointing at buildings.</li>
+                  <li>Silent rides with no confirmation of route or destination.</li>
+                  <li>Sudden cancellations with no context.</li>
+                </ul>
+                <blockquote>
+                  “He didn’t speak English… he let me off on the other side of the street and I had no idea where I
+                  was.”
+                </blockquote>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">Theme 02</span>
+                <h3>“Your driver has arrived” is meaningless if you can’t see the car</h3>
+                <p class="project-body-text mb-1">
+                  Pick-up and drop-off were some of the most stressful moments:
+                </p>
+                <ul class="project-list">
+                  <li>Generic arrival messages with no direction or landmark.</li>
+                  <li>Cars parked on the wrong side of the street or around the corner.</li>
+                  <li>Being dropped at “approximately the right place,” which for BLV riders often meant “not usable.”</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card-mm">
+                <span class="tag">Theme 03</span>
+                <h3>Bias and lack of disability awareness</h3>
+                <p class="project-body-text mb-1">
+                  Some of the most painful stories weren’t about the app at all – they were about people:
+                </p>
+                <ul class="project-list">
+                  <li>Drivers blaming riders for “not seeing” landmarks.</li>
+                  <li>Guide-dog refusals or hesitations, despite legal protections.</li>
+                  <li>Disbelief when riders described being dropped at the wrong location.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="card-mm">
+                <span class="tag">Cross-cutting issue</span>
+                <h3>The app doesn’t always speak screen reader language</h3>
+                <p class="project-body-text mb-1">
+                  Even when the driver was kind, the app itself got in the way:
+                </p>
+                <ul class="project-list">
+                  <li>Unlabeled buttons that VoiceOver announced as “button, button, button.”</li>
+                  <li>Critical actions like canceling a ride buried in visually obvious, but non-obvious, controls.</li>
+                  <li>A general sense that the interface hadn’t been thoroughly tested with BLV users.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Co-designed Solutions -->
+        <section>
+          <div class="project-section-title">Co-designed features</div>
+          <h2 class="project-section-heading">Design ideas that came directly from riders</h2>
+          <p class="project-body-text">
+            Rather than brainstorming in isolation, we asked participants, “If you could change the app tomorrow, what
+            would you add or fix?” Four ideas showed up in multiple interviews.
+          </p>
+
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-md-6">
+              <div class="card-mm">
+                <span class="tag">01</span>
+                <h3>Haptic feedback that “points” to the car</h3>
+                <p class="project-body-text mb-1">
+                  Riders wanted a way to feel the car’s arrival even in noisy environments. We proposed distinct vibration
+                  patterns that intensify as the vehicle gets closer, plus a clear “arrival” vibration.
+                </p>
+                <blockquote>
+                  “If I can’t hear my phone in the wind or traffic, vibration can tell me the ride is here.”
+                </blockquote>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card-mm">
+                <span class="tag">02</span>
+                <h3>Optional en-route audio updates</h3>
+                <p class="project-body-text mb-1">
+                  Instead of silently watching a map (which riders can’t see), participants asked for spoken cues: major
+                  intersections, turns, and confirmations like “Heading north on X, 5 minutes away.”
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card-mm">
+                <span class="tag">03</span>
+                <h3>More honest pre-pickup status updates</h3>
+                <p class="project-body-text mb-1">
+                  Riders didn’t mind waiting as much as they minded uncertainty. They suggested messages such as “Driver is
+                  delayed at a train crossing” or “Finishing previous drop-off,” instead of a time estimate that never
+                  changes.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card-mm">
+                <span class="tag">04</span>
+                <h3>Accessibility training built into the driver experience</h3>
+                <p class="project-body-text mb-1">
+                  Participants wanted drivers to be prepared <em>before</em> the ride, not educated during it. We proposed:
+                </p>
+                <ul class="project-list">
+                  <li>Short onboarding modules about working with BLV riders.</li>
+                  <li>Clear, scenario-based training on service animals and legal obligations.</li>
+                  <li>Simple behavioral guidelines for pick-up and drop-off with BLV riders.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recommendations -->
+        <section>
+          <div class="project-section-title">Recommendations</div>
+          <h2 class="project-section-heading">If I were advising a rideshare team, here’s where I’d start</h2>
+          <p class="project-body-text mb-2">
+            Based on the research and co-designed ideas, I translated our insights into three product-level directions a
+            rideshare company like Uber or Lyft could realistically act on.
+          </p>
+
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">01</span>
+                <h3>Build richer, automated communication</h3>
+                <p class="project-body-text mb-1">
+                  Combine push notifications, audio, and haptics to:
+                </p>
+                <ul class="project-list">
+                  <li>Explain delays and approach context clearly.</li>
+                  <li>Announce arrival in non-visual ways.</li>
+                  <li>Offer accessible, pre-written messages drivers can send to riders.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">02</span>
+                <h3>Invest in driver support and accountability</h3>
+                <p class="project-body-text mb-1">
+                  Make accessibility part of being a driver:
+                </p>
+                <ul class="project-list">
+                  <li>Integrate accessibility expectations into onboarding.</li>
+                  <li>Provide concrete examples of do’s and don’ts with BLV riders.</li>
+                  <li>Track and address repeated complaints around service-dog refusals.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="card-mm">
+                <span class="tag">03</span>
+                <h3>Run a formal accessibility audit of the app</h3>
+                <p class="project-body-text mb-0">
+                  Review core flows like booking, canceling, and finding the driver with BLV users, and fix:
+                </p>
+                <ul class="project-list">
+                  <li>Unlabeled controls and poor focus order.</li>
+                  <li>Critical actions only obvious visually.</li>
+                  <li>Inconsistent or incomplete screen reader support.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Impact & future work -->
+        <section>
+          <div class="project-section-title">Impact & future work</div>
+          <h2 class="project-section-heading">The curb-cut effect: designing for BLV helps everyone</h2>
+          <p class="project-body-text">
+            Although this project focused on BLV riders, the proposed changes have a classic “curb-cut effect.” Clearer
+            messaging, better arrival cues, and more predictable driver behavior would also help sighted riders in noisy
+            environments, in unfamiliar cities, or when traveling alone at night.
+          </p>
+          <p class="project-body-text">
+            Our biggest limitation was sample size and composition: four Uber riders, three of whom were older women in
+            the Chicagoland area. In a future iteration, I would:
+          </p>
+          <ul class="project-list">
+            <li>Recruit BLV riders across more cities and transit contexts.</li>
+            <li>Compare experiences between Uber and Lyft.</li>
+            <li>Prototype and usability-test haptic and audio concepts directly with BLV riders.</li>
+          </ul>
+        </section>
+
+        <!-- My role / reflection -->
+        <section>
+          <div class="project-section-title">My role & reflection</div>
+          <h2 class="project-section-heading">What I contributed – and what I took away as a researcher</h2>
+          <p class="project-body-text">
+            Across the project, I:
+          </p>
+          <ul class="project-list">
+            <li>Helped refine our screening criteria and recruit BLV participants who matched our research goals.</li>
+            <li>Co-moderated interviews, balancing structure with space for storytelling.</li>
+            <li>Led large portions of the affinity mapping and theme definition in FigJam.</li>
+            <li>Translated themes into design directions, constantly asking “How would a product team use this?”</li>
+            <li>Co-authored the final report and helped shape the narrative for our class presentation.</li>
+          </ul>
+          <p class="project-body-text">
+            Most importantly, this project shifted the way I think about accessibility work. It’s not a checklist at the
+            end of a project; it’s a way of designing from the perspective of people who are already doing the hard work
+            of adapting. My job as a researcher is to listen carefully, honor their expertise, and then help teams turn
+            those insights into responsible, tangible change.
+          </p>
+
+          <div class="footer-cta">
+            <a href="#top" class="btn-mm-primary btn btn-sm">
+              Back to top
+            </a>
+            <!-- Update the href to your actual PDF path if you want to link the full report -->
+            <a href="../portfoliodocs/Improving_Rideshares_BLV.pdf" class="btn-mm-ghost btn btn-sm" target="_blank"
+              rel="noopener noreferrer">
+              View full report (PDF)
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
   </main>
 
-  <footer class="container" role="contentinfo">
-    <p>© <span id="year"></span> Mehak Munir • Accessibility‑first UX Research & Design</p>
+  <!-- Footer -->
+  <footer class="footer-mm py-3 px-3">
+    <div class="container-lg d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span><small>&copy;</small> <time>2023</time> Hafiza Mehak Munir</span>
+      <span class="d-flex gap-3">
+        <a href="https://www.linkedin.com/in/hmehakm" target="_blank" rel="noopener noreferrer"
+          class="text-decoration-none">LinkedIn</a>
+        <a href="mailto:hmunir1@depaul.edu" class="text-decoration-none">Email</a>
+      </span>
+    </div>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
