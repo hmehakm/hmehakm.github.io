@@ -134,21 +134,20 @@
 
     /* Cover image at top */
     .project-cover {
-      margin: -1rem -1rem 1.5rem -1rem;
-    }
+  margin: 0 auto 1.75rem;
+  max-width: 1000px;          /* keeps it narrower than full page */
+}
 
-    @media (min-width: 992px) {
-      .project-cover {
-        margin: -1.5rem -1.5rem 2rem -1.5rem;
-      }
-    }
+.project-cover img {
+  width: 100%;
+  max-height: 230px;          /* controls banner height */
+  object-fit: cover;          /* crops nicely to keep it “banner-like” */
+  display: block;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
 
-    .project-cover img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 1.2rem 1.2rem 0.9rem 0.9rem;
-    }
 
     .project-pill {
       display: inline-flex;
@@ -418,7 +417,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../resume/resume.html">Resume</a>
+            <a class="nav-link" href="../portfoliodocs/resume.html">Resume</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../contact/contact.html">Contact</a>
@@ -450,7 +449,7 @@
                 <span>Accessibility · UX Research</span>
               </div>
               <h1 class="project-title">
-                Uber Case Study - Improving the Rideshare Experience of Users Who Are Blind or Have Low Vision
+                Improving the Rideshare Experience of Users Who Are Blind or Have Low Vision
               </h1>
               <p class="project-subtitle mb-2">
                 A qualitative research project where I worked with blind Uber riders to understand how ridesharing really
