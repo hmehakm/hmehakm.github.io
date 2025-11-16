@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Shared site CSS -->
+  <link rel="stylesheet" href="../css/websitecss.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico" />
+
+  <title>Usability Studies | Mehak Munir</title>
+
+  <style>
+    :root {
+      --mm-bg: #f4f4ff;
+      --mm-card-bg: #ffffff;
+      --mm-accent: #6b5bff;
+      --mm-accent-soft: #e3deff;
+      --mm-text-main: #222222;
+      --mm-text-soft: #4a4a4a;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, var(--mm-accent-soft) 0, var(--mm-bg) 40%, #ffffff 100%);
+      color: var(--mm-text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      padding: 2.5rem 0 3rem;
+    }
+
+    @media (max-width: 767.98px) {
+      main {
+        padding-top: 1.5rem;
+      }
+    }
+
+    /* Navbar – shared style */
+    .navbar-mm {
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    .navbar-mm .navbar-brand span {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .navbar-mm .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .navbar-mm .nav-link.active {
+      color: var(--mm-accent) !important;
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: none;
+      position: relative;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after,
+    .navbar-toggler-icon span {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      border-radius: 999px;
+      background-color: #111827;
+    }
+
+    .navbar-toggler-icon::before {
+      top: 0.3rem;
+    }
+
+    .navbar-toggler-icon::after {
+      bottom: 0.3rem;
+    }
+
+    .navbar-toggler-icon span {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Page layout */
+    .usability-wrapper {
+      background: var(--mm-card-bg);
+      border-radius: 1.5rem;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+      padding: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 992px) {
+      .usability-wrapper {
+        padding: 3rem;
+      }
+    }
+
+    .usability-eyebrow {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      color: var(--mm-accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .usability-title {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+      margin-bottom: 0.3rem;
+    }
+
+    .usability-subtitle {
+      font-size: 0.98rem;
+      color: var(--mm-text-soft);
+      max-width: 640px;
+    }
+
+    .usability-grid {
+      margin-top: 1.8rem;
+    }
+
+    .usability-card {
+      background: #f9fafb;
+      border-radius: 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+    }
+
+    .usability-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      border-color: rgba(107, 91, 255, 0.35);
+    }
+
+    .usability-thumb {
+      background: #e5e7eb;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .usability-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .usability-card-body {
+      padding: 1rem 1.1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      flex: 1;
+    }
+
+    .usability-card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+
+    .usability-card-meta {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+    }
+
+    .usability-card-text {
+      font-size: 0.9rem;
+      color: var(--mm-text-soft);
+      margin-bottom: 0.25rem;
+    }
+
+    .usability-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-top: 0.15rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .usability-tag {
+      font-size: 0.78rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: #ffffff;
+    }
+
+    .usability-card-footer {
+      margin-top: auto;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-mm-primary {
+      background: var(--mm-accent);
+      border: none;
+      color: #ffffff;
+      font-weight: 500;
+      border-radius: 999px;
+      padding-inline: 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    .btn-mm-primary:hover {
+      background: #5745f0;
+      color: #ffffff;
+    }
+
+    .btn-mm-ghost {
+      border-radius: 999px;
+      border: 1px solid var(--mm-accent-soft);
+      color: var(--mm-text-main);
+      font-weight: 500;
+      background: #ffffff;
+      font-size: 0.85rem;
+      padding-inline: 1rem;
+    }
+
+    .btn-mm-ghost:hover {
+      background: var(--mm-accent-soft);
+      color: var(--mm-text-main);
+    }
+
+    /* Footer */
+    .footer-mm {
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      font-size: 0.85rem;
+      color: var(--mm-text-soft);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-mm sticky-top">
+    <div class="container-lg">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+        <img src="../favicon/favicon-32x32.png" alt="Logo" width="30" height="30" />
+        <span>Mehak Munir</span>
+      </a>
+
+      <!-- Hamburger -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mmNavbar"
+        aria-controls="mmNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon">
+          <span></span>
+        </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mmNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle active"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Projects
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="../accessesibility/uber.html">
+                  Accessibility Conciderations
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="../contentstrategy/shien.html">
+                  Content Strategy &amp; IA
+                </a>
+              </li>
+              
+              <li>
+                <a class="dropdown-item" href="../prototypingandimplementation/usability-studies.html">
+                  Usability &amp; Evaluation
+                </a>
+              </li>
+              <!-- <li>
+                <a class="dropdown-item" href="../prototypingandimplementation/easelease.html">
+                  Prototyping &amp; Implementation
+                </a>
+              </li> -->
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../resume/resume.html">Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact/contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- /Navbar -->
+
+  <main>
+    <div class="container-xxl">
+      <section class="usability-wrapper">
+        <header>
+          <div class="usability-eyebrow">Usability &amp; Evaluation</div>
+          <h1 class="usability-title">Usability Studies & UX Evaluations</h1>
+          <p class="usability-subtitle">
+            A collection of hands-on usability work—from heuristic reviews to think-aloud testing—across different
+            products and contexts. Each tile links to a deeper case study.
+          </p>
+        </header>
+
+        <div class="usability-grid mt-4">
+          <div class="row g-3 g-md-4">
+            <!-- Tile 1 – Hike IL -->
+            <div class="col-12 col-md-6">
+              <article class="usability-card h-100">
+                <figure class="usability-thumb mb-0">
+                  <!-- Replace with your real thumbnail -->
+                  <img
+                    src="../images/hike-logo.jpeg"
+                    alt="Hike IL prototype showing trail cards and filters."
+                  />
+                </figure>
+                <div class="usability-card-body">
+                  <div class="usability-card-meta">Usability Study · Prototype</div>
+                  <h2 class="usability-card-title">Hike IL – Trail Discovery Prototype</h2>
+                  <p class="usability-card-text">
+                    Evaluated how easily hikers could discover and compare Illinois trails using a mobile prototype,
+                    focusing on wayfinding, filter clarity, and decision-making.
+                  </p>
+                  <div class="usability-tags">
+                    <span class="usability-tag">Think-aloud testing</span>
+                    <span class="usability-tag">Task flows</span>
+                    <span class="usability-tag">Recommendations</span>
+                  </div>
+                  <div class="usability-card-footer">
+                    <!-- <a
+                      href="../usability/hike-il.html"
+                      class="btn btn-sm btn-mm-primary"
+                    >
+                      View case study
+                    </a> -->
+                    <a
+                      href="../portfoliodocs/Hike IL.pdf"
+                      class="btn btn-sm btn-mm-ghost"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Case Study
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Tile 2 – Lease Ease -->
+            <div class="col-12 col-md-6">
+              <article class="usability-card h-100">
+                <figure class="usability-thumb mb-0">
+                  <!-- Replace with your real thumbnail -->
+                  <img
+                    src="../images/easelease-index.png"
+                    alt="Lease Ease interface mock showing apartment listing and lease details."
+                  />
+                </figure>
+                <div class="usability-card-body">
+                  <div class="usability-card-meta">Usability Study · Web App</div>
+                  <h2 class="usability-card-title">Lease Ease – Apartment Leasing Experience</h2>
+                  <p class="usability-card-text">
+                    Observed how renters explored listings, compared options, and understood lease details to uncover
+                    friction in trust, information density, and checkout steps.
+                  </p>
+                  <div class="usability-tags">
+                    <span class="usability-tag">Scenario-based tasks</span>
+                    <span class="usability-tag">Error analysis</span>
+                    <span class="usability-tag">Flow redesign</span>
+                  </div>
+                  <div class="usability-card-footer">
+                    <!-- <a
+                      href="../usability/lease-ease.html"
+                      class="btn btn-sm btn-mm-primary"
+                    >
+                      View case study
+                    </a> -->
+                    <a
+                      href="../portfoliodocs/Lease Ease.pdf"
+                      class="btn btn-sm btn-mm-ghost"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Case Study
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Tile 3 – Ling’s Cars -->
+            <div class="col-12 col-md-6">
+              <article class="usability-card h-100">
+                <figure class="usability-thumb mb-0">
+                  <!-- Replace with your real thumbnail -->
+                  <img
+                    src="../images/lings-logo.jpeg"
+                    alt="Ling's Cars website with dense content and colorful elements."
+                  />
+                </figure>
+                <div class="usability-card-body">
+                  <div class="usability-card-meta">Heuristic Review · Website</div>
+                  <h2 class="usability-card-title">Ling’s Cars – Heuristics & Usability Review</h2>
+                  <p class="usability-card-text">
+                    Applied heuristic evaluation and task-based walkthroughs to a notoriously busy car leasing site,
+                    highlighting issues in visual hierarchy, trust, and readability.
+                  </p>
+                  <div class="usability-tags">
+                    <span class="usability-tag">Heuristic evaluation</span>
+                    <span class="usability-tag">Content hierarchy</span>
+                    <span class="usability-tag">UI recommendations</span>
+                  </div>
+                  <div class="usability-card-footer">
+                    <!-- <a
+                      href="../usability/lings-cars.html"
+                      class="btn btn-sm btn-mm-primary"
+                    >
+                      View case study
+                    </a> -->
+                    <a
+                      href="../portfoliodocs/Lings cars.pdf"
+                      class="btn btn-sm btn-mm-ghost"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Case Study
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Tile 4 – Time Management -->
+            <div class="col-12 col-md-6">
+              <article class="usability-card h-100">
+                <figure class="usability-thumb mb-0">
+                  <!-- Replace with your real thumbnail -->
+                  <img
+                    src="../images/time-logo.jpg"
+                    alt="Time management dashboard showing calendar and task cards."
+                  />
+                </figure>
+                <div class="usability-card-body">
+                  <div class="usability-card-meta">Usability Study · Student Tool</div>
+                  <h2 class="usability-card-title">Time Management – Graduate Student Tool</h2>
+                  <p class="usability-card-text">
+                    Studied how graduate students planned, tracked, and reflected on tasks using a prototype tool aimed
+                    at reducing stress and cognitive load.
+                  </p>
+                  <div class="usability-tags">
+                    <span class="usability-tag">User goals</span>
+                    <span class="usability-tag">Task success</span>
+                    <span class="usability-tag">Design iterations</span>
+                  </div>
+                  <div class="usability-card-footer">
+                    <!-- <a
+                      href="../usability/time-management.html"
+                      class="btn btn-sm btn-mm-primary"
+                    >
+                      View case study
+                    </a> -->
+                    <a
+                      href="../portfoliodocs/Time Management.pdf"
+                      class="btn btn-sm btn-mm-ghost"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                     View Case Study
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-mm py-3 px-3">
+    <div class="container-lg d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span><small>&copy;</small> <time>2025</time> Hafiza Mehak Munir</span>
+      <span class="d-flex gap-3">
+        <a
+          href="https://www.linkedin.com/in/hmehakm"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-decoration-none"
+        >
+          LinkedIn
+        </a>
+        <a href="mailto:hafizamehakmunir@gmail.com" class="text-decoration-none">Email</a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+</body>
+
+</html>
