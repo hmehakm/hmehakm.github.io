@@ -1,486 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mehak's Portfolio</title>
+  <meta name="description" content="UX Researcher portfolio — crafting human-centered experiences through research, empathy, and design." />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- ═══════════════════════════════════════════════
+       FAVICON — drop your favicon.ico (and optionally
+       favicon-32x32.png / apple-touch-icon.png) into
+       the same folder as this HTML file.
+  ════════════════════════════════════════════════ -->
+  <link rel="icon"            type="image/x-icon"  href="./images/favicon.ico" />
+  <link rel="icon"            type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+  <link rel="apple-touch-icon"                     href="./images/apple-touch-icon.png" />
 
-  <!-- Your existing CSS -->
-  <link rel="stylesheet" href="../css/websitecss.css">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
-
-  <title>Mehak Munir – Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --mm-bg: #f4f4ff;
-      --mm-card-bg: #ffffff;
-      --mm-accent: #6b5bff;
-      --mm-accent-soft: #e3deff;
-      --mm-text-main: #222222;
-      --mm-text-soft: #4a4a4a;
+      --lilac-50:  #F7F0FF;
+      --lilac-100: #EDE0FB;
+      --lilac-200: #DCC5F7;
+      --lilac-300: #C8A8E9;
+      --lilac-400: #B48ED4;
+      --lilac-500: #9B72BE;
+      --lilac-600: #7D56A0;
+      --ink:       #1C1026;
+      --ink-light: #4A3860;
+      --white:     #FDFBFF;
+      --border:    rgba(180,142,212,0.25);
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Jost', sans-serif;
+      --max-w: 1160px;
+      --nav-h: 72px;
+      --gap: 120px;
     }
 
-    body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, var(--mm-accent-soft) 0, var(--mm-bg) 55%, #ffffff 100%);
-      color: var(--mm-text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-body); background: var(--white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    :focus-visible { outline: 3px solid var(--lilac-400); outline-offset: 3px; border-radius: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .container { width: 90%; max-width: var(--max-w); margin-inline: auto; }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.6;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      padding: 2.5rem 0;
-    }
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 900; background: rgba(253,251,255,0.85); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); display: flex; align-items: center; transition: box-shadow 0.3s; }
+    .nav.scrolled { box-shadow: 0 2px 32px rgba(155,114,190,0.08); }
+    .nav__inner { width: 90%; max-width: var(--max-w); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav__logo { display: flex; align-items: center; gap: 10px; font-family: var(--ff-display); font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+    .nav__logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 14px rgba(155,114,190,0.35); transition: transform 0.2s; }
+    .nav__logo:hover img { transform: rotate(-5deg) scale(1.06); }
+    .nav__links { display: flex; align-items: center; gap: 36px; }
+    .nav__links a { font-size: 0.875rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); position: relative; transition: color 0.2s; }
+    .nav__links a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--lilac-400); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.4,0,.2,1); }
+    .nav__links a:hover { color: var(--ink); }
+    .nav__links a:hover::after { transform: scaleX(1); }
+    .nav__burger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 32px; height: 32px; background: none; border: none; cursor: pointer; padding: 2px; }
+    .nav__burger span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.2s; }
+    .nav__burger span:nth-child(2) { width: 70%; }
+    .nav__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav__drawer { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(253,251,255,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 28px 10%; flex-direction: column; gap: 20px; z-index: 899; transform: translateY(-8px); opacity: 0; transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.25s; }
+    .nav__drawer.open { display: flex; transform: translateY(0); opacity: 1; }
+    .nav__drawer a { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 300; color: var(--ink); letter-spacing: 0.02em; padding: 6px 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
+    .nav__drawer a:hover { color: var(--lilac-600); padding-left: 8px; }
 
-    @media (max-width: 767.98px) {
-      main {
-        align-items: flex-start;
-        padding-top: 1.5rem;
-      }
-    }
+    /* HERO */
+    .hero { padding-top: calc(var(--nav-h) + 72px); padding-bottom: var(--gap); position: relative; overflow: hidden; }
+    .hero::before, .hero::after { content: ''; position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+    .hero::before { width: 520px; height: 520px; background: radial-gradient(circle, var(--lilac-200) 0%, transparent 70%); top: -80px; right: -120px; opacity: 0.55; }
+    .hero::after  { width: 340px; height: 340px; background: radial-gradient(circle, var(--lilac-300) 0%, transparent 70%); bottom: 0; left: -80px; opacity: 0.3; }
+    .hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero__text { position: relative; z-index: 2; }
+    .hero__eyebrow { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac-500); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .hero__eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--lilac-400); }
+    .hero__name { font-family: var(--ff-display); font-size: clamp(2.8rem, 5.5vw, 4.5rem); font-weight: 300; line-height: 1.08; margin-bottom: 12px; }
+    .hero__name em { font-style: italic; color: var(--lilac-500); }
+    .hero__title { font-family: var(--ff-display); font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 300; font-style: italic; color: var(--ink-light); margin-bottom: 28px; }
+    .hero__bio { font-size: 1rem; font-weight: 300; color: var(--ink-light); max-width: 460px; line-height: 1.8; margin-bottom: 40px; }
+    .hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero__cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--white); padding: 14px 32px; border-radius: 100px; font-size: 0.875rem; font-weight: 400; letter-spacing: 0.06em; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .hero__cta:hover { background: var(--lilac-600); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(125,86,160,0.3); }
+    .hero__cta--outline { background: transparent; color: var(--ink); border: 1px solid var(--border); }
+    .hero__cta--outline:hover { background: var(--lilac-50); border-color: var(--lilac-400); box-shadow: none; transform: translateY(-2px); }
+    .hero__cta svg { width: 16px; height: 16px; }
+    .hero__image-wrap { position: relative; z-index: 2; }
+    .hero__img-frame { position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 4/5; }
+    .hero__img-frame::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(155,114,190,0.18) 100%); z-index: 1; }
+    .hero__img-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .hero__img-frame:hover img { transform: scale(1.04); }
+    .hero__badge { position: absolute; bottom: -20px; left: -24px; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 16px 20px; box-shadow: 0 8px 32px rgba(155,114,190,0.12); font-size: 0.8rem; font-weight: 500; z-index: 3; min-width: 160px; }
+    .hero__badge strong { display: block; font-family: var(--ff-display); font-size: 1.6rem; font-weight: 600; color: var(--lilac-500); line-height: 1; margin-bottom: 4px; }
+    .hero__ring { position: absolute; top: -30px; right: -30px; width: 160px; height: 160px; border: 1.5px solid var(--lilac-200); border-radius: 50%; z-index: 0; }
+    .hero__ring::after { content: ''; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; border: 1px dashed var(--lilac-300); border-radius: 50%; }
 
-    /* Navbar */
-    .navbar-mm {
-      background-color: #ffffff;
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
-    }
+    /* SECTION HEADER */
+    .section-head { margin-bottom: 56px; }
+    .section-head__label { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--lilac-500); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .section-head__label::after { content: ''; flex: 1; max-width: 64px; height: 1px; background: var(--lilac-300); }
+    .section-head h2 { font-family: var(--ff-display); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.15; color: var(--ink); }
+    .section-head h2 em { font-style: italic; color: var(--lilac-500); }
+    .section-head p { margin-top: 16px; font-size: 1rem; font-weight: 300; color: var(--ink-light); max-width: 520px; line-height: 1.8; }
 
-    .navbar-mm .navbar-brand span {
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
+    /* TESTIMONIAL MARQUEE */
+    .feedback { padding-block: var(--gap); background: linear-gradient(180deg, var(--white) 0%, var(--lilac-50) 50%, var(--white) 100%); position: relative; overflow: hidden; }
+    .feedback::before { content: ''; position: absolute; top: -120px; right: -160px; width: 500px; height: 500px; background: radial-gradient(circle, var(--lilac-100) 0%, transparent 65%); opacity: 0.55; filter: blur(80px); pointer-events: none; }
+    .marquee-outer { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); }
+    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { display: flex; gap: 24px; width: max-content; animation: marquee-scroll 38s linear infinite; will-change: transform; }
+    .marquee-track:hover, .marquee-outer:hover .marquee-track { animation-play-state: paused; }
+    .t-card { flex-shrink: 0; width: 420px; background: white; border: 1px solid var(--border); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 4px 28px rgba(155,114,190,0.07); cursor: default; transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s; user-select: none; }
+    .t-card:hover { transform: translateY(-4px); box-shadow: 0 16px 44px rgba(155,114,190,0.14); }
+    .t-card__stars { display: flex; gap: 3px; }
+    .t-card__stars svg { width: 14px; height: 14px; fill: var(--lilac-400); }
+    .t-card__quote-mark { font-family: var(--ff-display); font-size: 3.5rem; line-height: 0.6; color: var(--lilac-200); font-weight: 300; display: block; margin-bottom: 4px; }
+    .t-card__text { font-family: var(--ff-display); font-size: 1rem; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.72; flex: 1; }
+    .t-card__author { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .t-card__avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--lilac-200); }
+    .t-card__name { font-size: 0.88rem; font-weight: 500; color: var(--ink); line-height: 1.3; }
+    .t-card__role { font-size: 0.72rem; font-weight: 300; color: var(--ink-light); }
+    .marquee-hint { text-align: center; margin-top: 20px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lilac-400); font-weight: 400; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .marquee-hint svg { width: 13px; height: 13px; }
 
-    .navbar-mm .nav-link {
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
+    /* PROJECTS */
+    .projects { padding-block: var(--gap); background: var(--lilac-50); }
+    .projects__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .project-card { border-radius: 20px; background: white; border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s; position: relative; }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--lilac-300), var(--lilac-500)); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(155,114,190,0.15); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card__thumb { aspect-ratio: 16/9; overflow: hidden; background: var(--lilac-100); }
+    .project-card__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .project-card:hover .project-card__thumb img { transform: scale(1.06); }
+    .project-card__body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+    .project-card__type { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--lilac-500); margin-bottom: 10px; }
+    .project-card__title { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 12px; line-height: 1.3; }
+    .project-card__desc { font-size: 0.9rem; font-weight: 300; color: var(--ink-light); line-height: 1.75; flex: 1; margin-bottom: 24px; }
+    .project-card__link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; color: var(--lilac-600); transition: gap 0.2s, color 0.2s; }
+    .project-card__link:hover { gap: 14px; color: var(--ink); }
+    .project-card__link svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .project-tag { font-size: 0.72rem; font-weight: 400; padding: 4px 10px; border-radius: 100px; background: var(--lilac-50); color: var(--lilac-600); border: 1px solid var(--border); }
 
-    .navbar-mm .nav-link.active {
-      color: var(--mm-accent) !important;
-    }
+    /* CONTACT */
+    .contact { padding-block: var(--gap); background: white; position: relative; overflow: hidden; }
+    .contact::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%); opacity: 0.4; pointer-events: none; filter: blur(80px); }
+    .contact__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact__form { display: flex; flex-direction: column; gap: 20px; }
+    .contact__field { display: flex; flex-direction: column; gap: 6px; }
+    .contact__field label { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); }
+    .contact__field input, .contact__field textarea { font-family: var(--ff-body); font-size: 0.95rem; font-weight: 300; color: var(--ink); background: var(--lilac-50); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; transition: border-color 0.2s, box-shadow 0.2s; resize: none; }
+    .contact__field input:focus, .contact__field textarea:focus { outline: none; border-color: var(--lilac-400); box-shadow: 0 0 0 3px rgba(200,168,233,0.22); background: white; }
+    .contact__field textarea { min-height: 140px; }
+    .contact__submit { align-self: flex-start; background: var(--ink); color: white; border: none; border-radius: 100px; padding: 14px 36px; font-family: var(--ff-body); font-size: 0.9rem; font-weight: 400; letter-spacing: 0.06em; cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .contact__submit:hover { background: var(--lilac-600); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(125,86,160,0.3); }
+    .contact__info { position: relative; z-index: 2; }
+    .contact__detail { display: flex; align-items: flex-start; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .contact__detail:first-child { border-top: 1px solid var(--border); }
+    .contact__icon { width: 40px; height: 40px; flex-shrink: 0; background: var(--lilac-50); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--lilac-500); }
+    .contact__icon svg { width: 18px; height: 18px; }
 
-    .navbar-toggler {
-      border: none;
+    /* Contact labels — plain + clickable (linked) variants */
+    .contact__detail-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--lilac-500); margin-bottom: 4px;
+      display: inline-block;
     }
-
-    .navbar-toggler:focus {
-      box-shadow: none;
-    }
-
-    .navbar-toggler-icon {
-      background-image: none;
-      position: relative;
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-
-    .navbar-toggler-icon::before,
-    .navbar-toggler-icon::after,
-    .navbar-toggler-icon span {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 2px;
-      border-radius: 999px;
-      background-color: #111827;
-    }
-
-    .navbar-toggler-icon::before {
-      top: 0.3rem;
-    }
-
-    .navbar-toggler-icon::after {
-      bottom: 0.3rem;
-    }
-
-    .navbar-toggler-icon span {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    /* Hero section */
-    .hero-section {
-      width: 100%;
-    }
-
-    .hero-wrapper {
-      background: var(--mm-card-bg);
-      border-radius: 1.5rem;
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
-      padding: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    @media (min-width: 992px) {
-      .hero-wrapper {
-        padding: 3rem;
-      }
-    }
-
-    .hero-image-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-image {
-      max-width: 320px;
-      width: 100%;
-      border-radius: 1.5rem;
-      object-fit: cover;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
-    }
-
-    .hero-heading {
-      font-family: "Montserrat", system-ui, sans-serif;
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    @media (min-width: 992px) {
-      .hero-heading {
-        font-size: 2.4rem;
-      }
-    }
-
-    .hero-subtitle {
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--mm-accent);
-    }
-
-    .hero-text {
-      font-size: 0.98rem;
-      color: var(--mm-text-soft);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-highlight-name {
-      color: var(--mm-accent);
-      font-style: normal;
-      font-weight: 600;
-    }
-
-    .hero-badges .badge {
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .btn-mm-primary {
-      background: var(--mm-accent);
-      border: none;
-      color: #ffffff;
-      font-weight: 500;
-      padding-inline: 1.5rem;
-      border-radius: 999px;
-    }
-
-     .btn-mm-primary:hover {
-      background: var(--mm-accent-soft);
-      color:var(--mm-text-main);
-    }
-
-  .btn-mm-ghost {
-      border-radius: 999px;
-      border: 1px solid var(--mm-accent-soft);
-      color: #ffffff;
-      font-weight: 500;
-      background: var(--mm-accent);
-    }
-
-    .btn-mm-ghost:hover {
-      background: var(--mm-accent-soft);
-      color: var(--mm-text-main);
-    }
-
-    /* Project tiles under intro */
-    .project-tiles {
-      margin-top: 2.5rem;
-    }
-
-    .project-tiles-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 600;
-      color: var(--mm-accent);
-      margin-bottom: 0.3rem;
-    }
-
-    .project-tiles-heading {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .project-tile-link {
+    a.contact__detail-label {
       text-decoration: none;
-      color: inherit;
-      display: block;
-      height: 100%;
+      cursor: pointer;
+      transition: color 0.2s, letter-spacing 0.2s;
     }
-
-    .project-tile {
-      background: #f9fafb;
-      border-radius: 1.1rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 0.9rem 1rem 1.1rem;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-      height: 100%;
+    a.contact__detail-label::after {
+      content: ' ↗';
+      font-size: 0.62rem;
+      opacity: 0.7;
+      vertical-align: middle;
     }
-
-    .project-tile:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
-      border-color: var(--mm-accent-soft);
+    a.contact__detail-label:hover {
+      color: var(--lilac-600);
+      letter-spacing: 0.17em;
     }
+    .contact__detail-value { font-size: 0.95rem; color: var(--ink); font-weight: 300; }
 
-    /* BIG IMAGE IN TILE */
-    .project-tile-img {
-      width: 100%;
-      height: 170px;           /* adjust height if you want taller/shorter */
-      object-fit: cover;
-      border-radius: 0.9rem;
-      margin-bottom: 0.7rem;
+    /* FOOTER */
+    .footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer__copy { font-size: 0.8rem; font-weight: 300; color: var(--ink-light); }
+    .footer__links { display: flex; gap: 24px; }
+    .footer__links a { font-size: 0.8rem; font-weight: 400; color: var(--ink-light); transition: color 0.2s; }
+    .footer__links a:hover { color: var(--lilac-600); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-in { opacity: 0; animation: fadeUp 0.65s cubic-bezier(.4,0,.2,1) forwards; }
+    .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.45s; } .delay-5 { animation-delay: 0.6s; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s cubic-bezier(.4,0,.2,1), transform 0.65s cubic-bezier(.4,0,.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) { .projects__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) {
+      :root { --gap: 80px; }
+      .nav__links { display: none; }
+      .nav__burger { display: flex; }
+      .hero__inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero__image-wrap { order: -1; max-width: 360px; margin-inline: auto; }
+      .hero__text { text-align: center; }
+      .hero__eyebrow { justify-content: center; }
+      .hero__bio { margin-inline: auto; }
+      .hero__ctas { justify-content: center; }
+      .contact__inner { grid-template-columns: 1fr; gap: 48px; }
+      .projects__grid { grid-template-columns: 1fr; }
     }
-
-    .project-tile-kicker {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #6b7280;
-      margin-bottom: 0.2rem;
-    }
-
-    .project-tile-title {
-      font-size: 0.98rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    .project-tile-text {
-      font-size: 0.9rem;
-      color: var(--mm-text-soft);
-      margin-bottom: 0.4rem;
-    }
-
-    .project-tile-meta {
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-
-    /* Footer */
-    .footer-mm {
-      background: #ffffffcc;
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(148, 163, 184, 0.2);
-      font-size: 0.85rem;
-      color: var(--mm-text-soft);
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-mm sticky-top">
-    <div class="container-lg">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="../websitenew/index.html">
-        <img src="../favicon/favicon-32x32.png" alt="Logo" width="30" height="30">
-        <span>Mehak Munir</span>
-      </a>
-
-      <!-- Hamburger button for mobile -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mmNavbar"
-        aria-controls="mmNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-          <span></span>
-        </span>
-      </button>
-
-      <!-- Navbar links -->
-      <div class="collapse navbar-collapse" id="mmNavbar">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Projects
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="../accessibility/uber.html">Accessibility Considerations</a></li>
-              <li><a class="dropdown-item" href="../contentstrategy/shien.html">Content Strategy & Information Architecture</a></li>
-              <li><a class="dropdown-item" href="../mixedmethods/mixedmethods.pdf">Mixed Methods Research</a></li>
-              <li><a class="dropdown-item" href="../prototypingandimplementation/usability-studies.html">Usability &amp; Evaluation</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="../resume/resume.html">Resume</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../contact/contact.html">Contact</a>
-          </li>
+  <header role="banner">
+    <nav class="nav" id="main-nav" aria-label="Main navigation">
+      <div class="nav__inner">
+        <a href="#home" class="nav__logo" aria-label="Home — Hafiza Mehak Munir">
+          <img src="../cportfolio/images/favicon-32x32.png" alt="Mehak Munir" />
+          <span>Hafiza Mehak Munir</span>
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="./about/about.html">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
+        <button class="nav__burger" id="nav-burger" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-
+    </nav>
+    <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
+      <a href="./index.html"      onclick="closeDrawer()">Home</a>
+      <a href="./about/about.html" onclick="closeDrawer()">About</a>
+      <a href="./index.html#projects"  onclick="closeDrawer()">Projects</a>
+      <a href="./index.html#contact"   onclick="closeDrawer()">Contact</a>
     </div>
-  </nav>
-  <!-- /Navbar -->
+  </header>
 
-  <!-- Main content -->
-  <main>
-    <section class="hero-section w-100">
-      <div class="container-xxl">
-        <div class="hero-wrapper">
-          <div class="row align-items-center g-5">
-            <!-- Profile image -->
-            <div class="col-12 col-lg-5 hero-image-wrapper">
-              <img src="../images/profile2.jpg" class="hero-image img-fluid"
-                alt="Profile picture of Mehak">
-            </div>
+  <main id="main-content">
 
-            <!-- Intro text -->
-            <div class="col-12 col-lg-7">
-              <p class="hero-subtitle mb-2">User Experience Researcher</p>
-              <h1 class="hero-heading">
-                Hi, I’m <span class="hero-highlight-name">Mehak</span>.
-              </h1>
-              <p class="hero-text Intro">
-                I’m a UX researcher and designer currently pursuing my MS in Human–Computer Interaction at DePaul University.
-                I’m driven by understanding how people actually think, feel, and navigate digital experiences, then translating
-                those insights into clear, actionable design decisions. I care deeply about inclusive, research-driven products
-                and enjoy working at the intersection of user interviews, usability testing, and thoughtful interaction design.
-              </p>
-
-              <div class="hero-badges mb-3 d-flex flex-wrap gap-2">
-                <span class="badge rounded-pill text-bg-light px-3 py-2">UX Research</span>
-                <span class="badge rounded-pill text-bg-light px-3 py-2">Accessibility</span>
-                <span class="badge rounded-pill text-bg-light px-3 py-2">HCI @ DePaul</span>
-              </div>
-
-              <div class="d-flex flex-wrap gap-2">
-                <a href="../contact/contact.html" class="btn btn-mm-ghost">
-                  Lets Chat
-                </a>
-              </div>
+    <!-- HERO -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero__inner">
+          <div class="hero__text">
+            <p class="hero__eyebrow animate-in delay-1">UX Researcher</p>
+            <h1 class="hero__name animate-in delay-2" id="hero-heading">Hello, I'm<br><em>Mehak.</em></h1>
+            <p class="hero__title animate-in delay-3">Making the invisible, visible.</p>
+            <p class="hero__bio animate-in delay-4">I research the spaces between people and products — uncovering what users need, feel, and do. I translate complexity into clarity that design teams can act on.</p>
+            <div class="hero__ctas animate-in delay-5">
+              <a href="#projects" class="hero__cta">
+                View My Work
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a href="./about/about.html#Cert" class="hero__cta hero__cta--outline">View Certifications</a>
             </div>
           </div>
-
-          <!-- Project tiles under intro -->
-          <section class="project-tiles">
-            <p class="project-tiles-title mb-1">Selected work</p>
-            <h2 class="project-tiles-heading">A snapshot of what I’m exploring right now</h2>
-
-            <div class="row g-3">
-              <!-- Tile 1 -->
-              <div class="col-12 col-md-4">
-                <a href="../accessibility/uber.html" class="project-tile-link">
-                  <div class="project-tile">
-                    <img
-                      src="../images/uber-index.png"
-                      alt="Illustration or screenshot representing BLV rideshare accessibility project"
-                      class="project-tile-img">
-                    <p class="project-tile-kicker">Accessibility</p>
-                    <h3 class="project-tile-title">Rideshares for blind & low-vision riders</h3>
-                    <p class="project-tile-text">
-                      Heuristic evaluation, interviews, and design recommendations to make Uber-style experiences safer and more independent.
-                    </p>
-                    <p class="project-tile-meta">Research · Accessibility · Service design</p>
-                  </div>
-                </a>
-              </div>
-
-              <!-- Tile 2 -->
-              <div class="col-12 col-md-4">
-                <a href="../contentstrategy/shien.html" class="project-tile-link">
-                  <div class="project-tile">
-                    <img
-                      src="../images/shien-index.jpeg"
-                      alt="Screenshot or visual representing SHEIN navigation and content structure"
-                      class="project-tile-img">
-                    <p class="project-tile-kicker">Content Strategy</p>
-                    <h3 class="project-tile-title">Untangling SHEIN’s navigation</h3>
-                    <p class="project-tile-text">
-                      Card sorting, tree testing, and IA redesign to help shoppers actually find what they came for in a complex catalogue.
-                    </p>
-                    <p class="project-tile-meta">IA · Content strategy · Usability</p>
-                  </div>
-                </a>
-              </div>
-
-              <!-- Tile 3 -->
-              <div class="col-12 col-md-4">
-                <a href="../portfoliodocs/Lease Ease.pdf"
-                  class="project-tile-link" target="_blank" rel="noopener noreferrer">
-                  <div class="project-tile">
-                    <img
-                      src="../images/easelease-index.png"
-                      alt="Mockup of the Lease Ease mobile app interface"
-                      class="project-tile-img">
-                    <p class="project-tile-kicker">Prototyping & Implementation</p>
-                    <h3 class="project-tile-title">Lease Ease – finding the right home</h3>
-                    <p class="project-tile-text">
-                      Designing and testing a mobile experience to help students discover living arrangements that match their needs and comfort level.
-                    </p>
-                    <p class="project-tile-meta">Prototyping · Interaction design</p>
-                  </div>
-                </a>
-              </div>
+          <div class="hero__image-wrap">
+            <div class="hero__ring" aria-hidden="true"></div>
+            <div class="hero__img-frame">
+              <img src="./images/hero.jpeg" alt="Portrait of Mehak Munir" width="600" loading="eager" />
             </div>
-          </section>
-
+            <div class="hero__badge" aria-label="2 years UX research experience">
+              <strong>2+</strong>Years in UX Research
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- TESTIMONIALS MARQUEE -->
+    <!-- <section class="feedback" id="feedback" aria-labelledby="feedback-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-head__label">Testimonials</p>
+          <h2 id="feedback-heading">Words from <em>colleagues</em></h2>
+          <p>A few kind things the people I've worked alongside have said about our time together.</p>
+        </div>
+        <div class="marquee-outer reveal reveal-delay-1" role="region" aria-label="Colleague testimonials">
+          <div class="marquee-track"> -->
+            <!-- SET 1 -->
+            <!-- <article class="t-card" aria-label="Testimonial from James Liu">
+              <div class="t-card__stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <span class="t-card__quote-mark" aria-hidden="true">"</span>
+              <blockquote class="t-card__text">Working with Mehak transformed how our entire product team thinks about users. She didn't just deliver findings — she changed how we ask questions. Her synthesis workshops became the most-anticipated ritual in our sprint calendar.</blockquote>
+              <div class="t-card__author"><img class="t-card__avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80" alt="Portrait of James Liu" loading="lazy" /><div><p class="t-card__name">James Liu</p><p class="t-card__role">Head of Product · Company Name</p></div></div>
+            </article>
+            <article class="t-card" aria-label="Testimonial from Priya Sharma">
+              <div class="t-card__stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <span class="t-card__quote-mark" aria-hidden="true">"</span>
+              <blockquote class="t-card__text">She has an exceptional skill for creating psychological safety during interviews. Participants always open up in ways they don't with other researchers, and the depth of insight is consistently unlike anything else I've encountered.</blockquote>
+              <div class="t-card__author"><img class="t-card__avatar" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="Portrait of Priya Sharma" loading="lazy" /><div><p class="t-card__name">Priya Sharma</p><p class="t-card__role">Lead Designer · Studio Name</p></div></div>
+            </article>
+            <article class="t-card" aria-label="Testimonial from Marcus Webb">
+              <div class="t-card__stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <span class="t-card__quote-mark" aria-hidden="true">"</span>
+              <blockquote class="t-card__text">Few researchers bring the balance of strategic thinking and genuine empathy that she does. Her research reports don't land in a Notion doc and get forgotten — they fundamentally shift roadmaps. I've seen it happen time and again.</blockquote>
+              <div class="t-card__author"><img class="t-card__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Portrait of Marcus Webb" loading="lazy" /><div><p class="t-card__name">Marcus Webb</p><p class="t-card__role">Product Manager · Agency Name</p></div></div>
+            </article>
+            <article class="t-card" aria-label="Testimonial from Aisha Okonkwo">
+              <div class="t-card__stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <span class="t-card__quote-mark" aria-hidden="true">"</span>
+              <blockquote class="t-card__text">The accessibility research she led was some of the most impactful work I've seen in my career. She approached participants with extraordinary care and translated their lived experiences into changes that actually shipped on time.</blockquote>
+              <div class="t-card__author"><img class="t-card__avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&q=80" alt="Portrait of Aisha Okonkwo" loading="lazy" /><div><p class="t-card__name">Aisha Okonkwo</p><p class="t-card__role">Engineering Lead · Company Name</p></div></div>
+            </article> -->
+            <!-- SET 2 — duplicate for seamless loop -->
+            <!-- <article class="t-card" aria-hidden="true"><div class="t-card__stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="t-card__quote-mark" aria-hidden="true">"</span><blockquote class="t-card__text">Working with Mehak transformed how our entire product team thinks about users. She didn't just deliver findings — she changed how we ask questions. Her synthesis workshops became the most-anticipated ritual in our sprint calendar.</blockquote><div class="t-card__author"><img class="t-card__avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80" alt="" loading="lazy" /><div><p class="t-card__name">James Liu</p><p class="t-card__role">Head of Product · Company Name</p></div></div></article>
+            <article class="t-card" aria-hidden="true"><div class="t-card__stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="t-card__quote-mark" aria-hidden="true">"</span><blockquote class="t-card__text">She has an exceptional skill for creating psychological safety during interviews. Participants always open up in ways they don't with other researchers, and the depth of insight is consistently unlike anything else I've encountered.</blockquote><div class="t-card__author"><img class="t-card__avatar" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="" loading="lazy" /><div><p class="t-card__name">Priya Sharma</p><p class="t-card__role">Lead Designer · Studio Name</p></div></div></article>
+            <article class="t-card" aria-hidden="true"><div class="t-card__stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="t-card__quote-mark" aria-hidden="true">"</span><blockquote class="t-card__text">Few researchers bring the balance of strategic thinking and genuine empathy that she does. Her research reports don't land in a Notion doc and get forgotten — they fundamentally shift roadmaps. I've seen it happen time and again.</blockquote><div class="t-card__author"><img class="t-card__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="" loading="lazy" /><div><p class="t-card__name">Marcus Webb</p><p class="t-card__role">Product Manager · Agency Name</p></div></div></article>
+            <article class="t-card" aria-hidden="true"><div class="t-card__stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><span class="t-card__quote-mark" aria-hidden="true">"</span><blockquote class="t-card__text">The accessibility research she led was some of the most impactful work I've seen in my career. She approached participants with extraordinary care and translated their lived experiences into changes that actually shipped on time.</blockquote><div class="t-card__author"><img class="t-card__avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&q=80" alt="" loading="lazy" /><div><p class="t-card__name">Aisha Okonkwo</p><p class="t-card__role">Engineering Lead · Company Name</p></div></div></article>
+          </div>
+        </div>
+        <p class="marquee-hint" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="4" height="18" rx="1"/><rect x="14" y="3" width="4" height="18" rx="1"/></svg>
+          Hover to pause
+        </p>
+      </div>
+    </section> -->
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-head__label">Selected Work</p>
+          <h2 id="projects-heading">Research <em>Projects</em></h2>
+          <p>Explorations into user behaviour, mental models, and systemic challenges — each shaped by curiosity and rigour.</p>
+        </div>
+        <div class="projects__grid">
+          <article class="project-card reveal reveal-delay-1">
+            <div class="project-card__thumb">
+              <img src="./images/uber-index.png" alt="Uber Logo" width="700" loading="lazy" />
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__type">Accessibility Research</p>
+              <h3 class="project-card__title">Improving the Rideshare Experience of Users Who Are Blind or Have Low Vision</h3>
+              <div class="project-tags" aria-label="Methods used">
+                <span class="project-tag">Usability Testing</span>
+                <span class="project-tag">Accessibility</span>
+                <span class="project-tag">Co-design</span>
+              </div>
+              <p class="project-card__desc">A qualitative study uncovering the accessibility barriers blind and low-vision riders face when using Uber.</p>
+              <a href="./uber/uber.html" class="project-card__link" aria-label="View Uber accessibility case study">View Case Study <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          <article class="project-card reveal reveal-delay-2">
+            <div class="project-card__thumb">
+              <img src="./images/momento-logo.png" alt="Momento logo" width="700" loading="lazy" />
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__type">End to End Research</p>
+              <h3 class="project-card__title">Momento - Meaningul Curation using AI</h3>
+              <div class="project-tags" aria-label="Methods used">
+                <span class="project-tag">Mixed-Method Research</span>
+                <span class="project-tag">Usability Testing</span>
+                <span class="project-tag">Interaction Design</span>
+                <span class="project-tag">Prototyping</span>
+                <span class="project-tag">Artificial Intellegence</span>
+              </div>
+              <p class="project-card__desc">An AI-powered photo-curation app that helps users keep what's meaningful, not just what fits.</p>
+              <a href="./momento/momento.html" class="project-card__link" aria-label="View Momento case study">View Case Study <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          <article class="project-card reveal reveal-delay-3">
+            <div class="project-card__thumb">
+              <img src="./images/shien-index.jpeg" alt="Shein navigation project" width="700" loading="lazy" />
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__type">Content Strategy</p>
+              <h3 class="project-card__title">Untangling Navigation</h3>
+              <div class="project-tags" aria-label="Methods used">
+                <span class="project-tag">Card Sorting</span>
+                <span class="project-tag">Tree Testing</span>
+                <span class="project-tag">Information Architecture</span>
+                <span class="project-tag">Content Strategy</span>
+              </div>
+              <p class="project-card__desc">Restructuring Shein's content strategy and navigation to turn browsing chaos into a clearer user journey.</p>
+              <a href="./shien/shien.html" class="project-card__link" aria-label="View navigation case study">View Case Study <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact__inner">
+          <div class="reveal">
+            <div class="section-head" style="margin-bottom:36px">
+              <p class="section-head__label">Get In Touch</p>
+              <h2 id="contact-heading">Let's <em>Connect</em></h2>
+              <p>Whether it's a collaboration, a speaking invite, or just a good conversation about research — I'd love to hear from you.</p>
+            </div>
+            <div>
+
+              <!-- Email: clicking the word "Email" opens the user's mail app -->
+              <div class="contact__detail">
+                <div class="contact__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </div>
+                <div>
+                  <a class="contact__detail-label"
+                     href="mailto:hafizamehakmunir@gmail.com"
+                     aria-label="Email Mehak — opens your mail app">Email</a>
+                  <p class="contact__detail-value">Click to send a message</p>
+                </div>
+              </div>
+
+              <!-- LinkedIn: clicking the word "LinkedIn" opens profile in a new tab -->
+              <div class="contact__detail">
+                <div class="contact__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </div>
+                <div>
+                  <a class="contact__detail-label"
+                     href="https://www.linkedin.com/in/hmehakm/"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     aria-label="Visit Mehak's LinkedIn profile — opens in a new tab">LinkedIn</a>
+                  <p class="contact__detail-value">View my profile</p>
+                </div>
+              </div>
+
+              <!-- Location: no link -->
+              <div class="contact__detail">
+                <div class="contact__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <p class="contact__detail-label">Based in</p>
+                  <p class="contact__detail-value">Chicago, USA</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="reveal reveal-delay-2">
+            <form class="contact__form" novalidate aria-label="Contact form">
+              <div class="contact__field">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+              </div>
+              <div class="contact__field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+              </div>
+              <div class="contact__field">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="What's this about?" />
+              </div>
+              <div class="contact__field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell me about your project or idea…" required></textarea>
+              </div>
+              <button type="submit" class="contact__submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Back to Top -->
+    <div><a href="index.html#home" class="btn btn--outline">Back to Top</a></div>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer-mm py-3 px-3">
-    <div class="container-lg d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <span><small>&copy;</small> <time>2025</time> Hafiza Mehak Munir</span>
-      <span class="d-flex gap-3">
-        <a href="https://www.linkedin.com/in/hmehakm" target="_blank" rel="noopener noreferrer"
-          class="text-decoration-none">LinkedIn</a>
-        <a href="mailto:hafizamehakmunir@gmail.com" class="text-decoration-none">Email</a>
-      </span>
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer">
+        <p class="footer__copy">&copy; <span id="year"></span> Hafiza Mehak Munir. Crafted with intention.</p>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="https://www.linkedin.com/in/hmehakm/">LinkedIn</a>
+          <a href="mailto:hafizamehakmunir@gmail.com">Email</a>
+          
+        </nav>
+      </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    const nav    = document.getElementById('main-nav');
+    const burger = document.getElementById('nav-burger');
+    const drawer = document.getElementById('nav-drawer');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+    }, { passive: true });
+
+    burger.addEventListener('click', () => {
+      const isOpen = drawer.classList.contains('open');
+      drawer.classList.toggle('open', !isOpen);
+      burger.setAttribute('aria-expanded', String(!isOpen));
+      burger.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+    });
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open navigation menu');
+    }
+
+    document.addEventListener('click', e => {
+      if (!nav.contains(e.target) && !drawer.contains(e.target)) closeDrawer();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    const revealObserver = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
 </body>
-
 </html>
