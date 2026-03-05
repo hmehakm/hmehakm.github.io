@@ -1,1 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Hafiza Mehak Munir</title>
+  <meta name="description" content="About Hafiza Mehak Munir — UX Researcher based in Chicago." />
 
+  <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --lilac-50:  #F7F0FF;
+      --lilac-100: #EDE0FB;
+      --lilac-200: #DCC5F7;
+      --lilac-300: #C8A8E9;
+      --lilac-400: #B48ED4;
+      --lilac-500: #9B72BE;
+      --lilac-600: #7D56A0;
+      --ink:       #1C1026;
+      --ink-light: #4A3860;
+      --white:     #FDFBFF;
+      --border:    rgba(180,142,212,0.25);
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Jost', sans-serif;
+      --max-w: 1160px;
+      --nav-h: 72px;
+      --gap: 72px;        /* reduced from 100px */
+      --strip-h: 400px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-body); background: var(--white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    :focus-visible { outline: 3px solid var(--lilac-400); outline-offset: 3px; border-radius: 4px; }
+    .container { width: 90%; max-width: var(--max-w); margin-inline: auto; }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 900; background: rgba(253,251,255,0.85); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); display: flex; align-items: center; transition: box-shadow 0.3s; }
+    .nav.scrolled { box-shadow: 0 2px 32px rgba(155,114,190,0.08); }
+    .nav__inner { width: 90%; max-width: var(--max-w); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav__logo { display: flex; align-items: center; gap: 10px; font-family: var(--ff-display); font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+    .nav__logo img { width: 38px; height: 38px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 14px rgba(155,114,190,0.35); transition: transform 0.2s; }
+    .nav__logo:hover img { transform: rotate(-5deg) scale(1.06); }
+    .nav__links { display: flex; align-items: center; gap: 36px; }
+    .nav__links a { font-size: 0.875rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); position: relative; transition: color 0.2s; }
+    .nav__links a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--lilac-400); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.4,0,.2,1); }
+    .nav__links a:hover, .nav__links a[aria-current="page"] { color: var(--ink); }
+    .nav__links a:hover::after, .nav__links a[aria-current="page"]::after { transform: scaleX(1); }
+    .nav__burger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 32px; height: 32px; background: none; border: none; cursor: pointer; padding: 2px; }
+    .nav__burger span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.2s; }
+    .nav__burger span:nth-child(2) { width: 70%; }
+    .nav__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav__drawer { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(253,251,255,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 28px 10%; flex-direction: column; gap: 20px; z-index: 899; transform: translateY(-8px); opacity: 0; transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.25s; }
+    .nav__drawer.open { display: flex; transform: translateY(0); opacity: 1; }
+    .nav__drawer a { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 300; color: var(--ink); letter-spacing: 0.02em; padding: 6px 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
+    .nav__drawer a:hover { color: var(--lilac-600); padding-left: 8px; }
+
+    /* ── PAGE HEADER ── */
+    .page-header { padding-top: calc(var(--nav-h) + 64px); padding-bottom: 56px; position: relative; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; width: 480px; height: 480px; background: radial-gradient(circle, var(--lilac-200) 0%, transparent 70%); top: -60px; right: -100px; opacity: 0.5; filter: blur(80px); pointer-events: none; }
+    .page-header__eyebrow { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac-500); display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .page-header__eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--lilac-400); }
+    .page-header h1 { font-family: var(--ff-display); font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 300; line-height: 1.1; max-width: 680px; }
+    .page-header h1 em { font-style: italic; color: var(--lilac-500); }
+    .page-header__sub { margin-top: 20px; font-size: 1.05rem; font-weight: 300; color: var(--ink-light); max-width: 520px; line-height: 1.8; }
+
+    /* ── SECTION LABEL ── */
+    .section-head { margin-bottom: 40px; }
+    .section-head__label { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--lilac-500); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .section-head__label::after { content: ''; flex: 1; max-width: 64px; height: 1px; background: var(--lilac-300); }
+    .section-head h2 { font-family: var(--ff-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.15; color: var(--ink); }
+    .section-head h2 em { font-style: italic; color: var(--lilac-500); }
+    .section-head p { margin-top: 14px; font-size: 1rem; font-weight: 300; color: var(--ink-light); max-width: 520px; line-height: 1.8; }
+
+    /* ── BIO ── */
+    .bio { padding-block: var(--gap); background: var(--white); position: relative; overflow: hidden; }
+    .bio::before { content: ''; position: absolute; top: -160px; right: -160px; width: 500px; height: 500px; background: radial-gradient(circle, var(--lilac-100) 0%, transparent 65%); opacity: 0.5; filter: blur(80px); pointer-events: none; }
+    .bio__inner { display: grid; grid-template-columns: 1fr 380px; gap: 80px; align-items: start; }
+    .bio__heading { font-family: var(--ff-display); font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 300; line-height: 1.18; color: var(--ink); margin-bottom: 28px; }
+    .bio__heading em { font-style: italic; color: var(--lilac-500); }
+    .bio__body { font-size: 1rem; font-weight: 300; color: var(--ink-light); line-height: 1.85; margin-bottom: 18px; }
+    .bio__body strong { font-weight: 500; color: var(--ink); }
+    .bio__body:last-of-type { margin-bottom: 32px; }
+    .bio__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bio__tag { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.06em; padding: 6px 14px; border-radius: 100px; background: var(--lilac-50); color: var(--lilac-600); border: 1px solid var(--border); }
+    .bio__aside { display: flex; flex-direction: column; gap: 16px; position: sticky; top: calc(var(--nav-h) + 24px); }
+    .bio__stat-card { background: white; border: 1px solid var(--border); border-radius: 18px; padding: 24px 26px; box-shadow: 0 4px 24px rgba(155,114,190,0.06); }
+    .bio__stat-card strong { display: block; font-family: var(--ff-display); font-size: 2rem; font-weight: 600; color: var(--lilac-500); line-height: 1; margin-bottom: 6px; }
+    .bio__stat-card span { display: block; font-size: 0.9rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+    .bio__stat-card em { font-style: normal; font-size: 0.78rem; font-weight: 300; color: var(--ink-light); }
+    @media (max-width: 900px) { .bio__inner { grid-template-columns: 1fr; gap: 40px; } .bio__aside { position: static; flex-direction: row; flex-wrap: wrap; } .bio__stat-card { flex: 1 1 200px; } }
+
+    /* ── CERTIFICATIONS ── */
+    .certifications {
+      padding-block: var(--gap);
+      background: linear-gradient(180deg, var(--white) 0%, var(--lilac-50) 50%, var(--white) 100%);
+      position: relative; overflow: hidden;
+    }
+    .certifications::before {
+      content: ''; position: absolute; bottom: -80px; right: -100px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%);
+      opacity: 0.4; filter: blur(70px); pointer-events: none;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .cert-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 24px;
+      box-shadow: 0 4px 20px rgba(155,114,190,0.05);
+      display: flex; flex-direction: column; gap: 10px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .cert-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--lilac-300), var(--lilac-500));
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(155,114,190,0.12); }
+    .cert-card:hover::before { opacity: 1; }
+
+    .cert-card__issuer {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--lilac-500);
+    }
+    .cert-card__name {
+      font-family: var(--ff-display); font-size: 1.05rem;
+      font-weight: 400; color: var(--ink); line-height: 1.3;
+    }
+    .cert-card__meta {
+      font-size: 0.78rem; font-weight: 300; color: var(--ink-light); line-height: 1.6;
+    }
+    .cert-card__tags {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px;
+    }
+    .cert-card__tag {
+      font-size: 0.62rem; font-weight: 400; letter-spacing: 0.06em;
+      padding: 3px 9px; border-radius: 100px;
+      background: var(--lilac-50); color: var(--lilac-600); border: 1px solid var(--border);
+    }
+
+    /* ── UPDATES — MARQUEE STRIP ── */
+    .updates {
+      padding-block: var(--gap);
+      background: linear-gradient(180deg, var(--white) 0%, var(--lilac-50) 55%, var(--white) 100%);
+      position: relative; overflow: hidden;
+    }
+    .updates::before {
+      content: ''; position: absolute; bottom: -80px; left: -120px;
+      width: 440px; height: 440px;
+      background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%);
+      opacity: 0.4; filter: blur(70px); pointer-events: none;
+    }
+
+    .strip-outer {
+      position: relative; overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      mask-image:         linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    }
+
+    @keyframes strip-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .strip-track {
+      display: flex; gap: 20px; width: max-content; align-items: flex-start;
+      animation: strip-scroll 10s linear infinite; will-change: transform;
+    }
+    .strip-track:hover, .strip-outer:hover .strip-track { animation-play-state: paused; }
+
+    .m-card { flex-shrink: 0; background: white; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: 0 4px 24px rgba(155,114,190,0.08); transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s; cursor: default; user-select: none; }
+    .m-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(155,114,190,0.18); }
+    .m-card__media { height: var(--strip-h); overflow: hidden; background: var(--lilac-100); position: relative; }
+    .m-card__media img { height: 100%; width: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .m-card:hover .m-card__media img { transform: scale(1.04); }
+    .m-card__media video { height: 100%; width: 100%; object-fit: cover; display: block; background: #000; }
+    .m-card__caption { padding: 16px 18px 18px; max-width: 280px; }
+    .m-card__caption-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lilac-500); margin-bottom: 5px; }
+    .m-card__caption-text { font-family: var(--ff-display); font-size: 0.98rem; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.5; }
+
+    .m-card--916  { width: 224px; } .m-card--916 .m-card__caption { max-width: 224px; }
+    .m-card--34   { width: 300px; } .m-card--34 .m-card__caption  { max-width: 300px; }
+    .m-card--43   { width: 533px; } .m-card--43 .m-card__caption  { max-width: 533px; }
+
+    .strip-hint { text-align: center; margin-top: 20px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lilac-400); font-weight: 400; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .strip-hint svg { width: 13px; height: 13px; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-in { opacity: 0; animation: fadeUp 0.65s cubic-bezier(.4,0,.2,1) forwards; }
+    .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.25s; } .delay-3 { animation-delay: 0.4s; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s cubic-bezier(.4,0,.2,1), transform 0.65s cubic-bezier(.4,0,.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* ── FOOTER ── */
+    .footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer__copy { font-size: 0.8rem; font-weight: 300; color: var(--ink-light); }
+    .footer__links { display: flex; gap: 24px; }
+    .footer__links a { font-size: 0.8rem; font-weight: 400; color: var(--ink-light); transition: color 0.2s; }
+    .footer__links a:hover { color: var(--lilac-600); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      :root { --gap: 56px; --strip-h: 300px; }
+      .nav__links { display: none; }
+      .nav__burger { display: flex; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .m-card--916 { width: 168px; } .m-card--34 { width: 225px; } .m-card--43 { width: 400px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  </style>
+</head>
+<body>
+
+  <header role="banner">
+    <nav class="nav" id="main-nav" aria-label="Main navigation">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="Back to homepage">
+          <img src="../images/favicon-32x32.png" alt="Mehak Munir" />
+          <span>Hafiza Mehak Munir</span>
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about/about.html" aria-current="page">About</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+        <button class="nav__burger" id="nav-burger" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
+      <a href="index.html"          onclick="closeDrawer()">Home</a>
+      <a href="about.html"          onclick="closeDrawer()">About</a>
+      <a href="index.html#projects" onclick="closeDrawer()">Projects</a>
+      <a href="index.html#contact"  onclick="closeDrawer()">Contact</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- PAGE HEADER -->
+    <section class="page-header" id="Top">
+      <div class="container">
+        <p class="page-header__eyebrow animate-in delay-1">About Me</p>
+        <h1 class="animate-in delay-2">Business mind.<br><em>Human-centred soul.</em></h1>
+        <p class="page-header__sub animate-in delay-3">
+          Researcher. Strategist. Perpetually curious — about people, systems, and the gaps in between.
+        </p>
+      </div>
+    </section>
+
+    <!-- BIO -->
+    <section class="bio" aria-labelledby="bio-heading">
+      <div class="container">
+        <div class="bio__inner">
+          <div class="bio__text reveal">
+            <p class="section-head__label" style="display:flex;align-items:center;gap:10px;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;color:var(--lilac-500);margin-bottom:16px;">Background</p>
+            <h2 class="bio__heading" id="bio-heading">Business roots.<br><em>Human-centred practice.</em></h2>
+            <p class="bio__body">My path into UX research started somewhere unexpected — in business. I spent years understanding how organisations think, how decisions get made, and what drives real outcomes. That foundation shaped the way I approach research today: not just as a method, but as a strategic lever.</p>
+            <p class="bio__body">I've completed my <strong>Master's in Human-Computer Interaction at DePaul University, Chicago</strong> — deepening a practice that sits at the intersection of people, systems, and design. It's given rigour to my instincts and language to what I was already doing intuitively.</p>
+            <p class="bio__body">What excites me most is the space I occupy: the <strong>cusp of UX research and product &amp; project management</strong>. I understand research as a product in itself — with timelines, stakeholders, and deliverables that need to move in step with the teams around them. I bring <strong>agile thinking</strong> into every project I work on, running research in sprints, aligning on scope early, and keeping findings actionable throughout the product lifecycle.</p>
+            <div class="bio__tags">
+              <span class="bio__tag">UX Research</span>
+              <span class="bio__tag">HCI — DePaul University</span>
+              <span class="bio__tag">Product Management</span>
+              <span class="bio__tag">UX Agile Methodologies</span>
+              <span class="bio__tag">Business Strategy</span>
+              <span class="bio__tag">Project Management</span>
+              <span class="bio__tag">Artificial Intelligence and UX</span>
+            </div>
+          </div>
+          <div class="bio__aside reveal reveal-delay-2">
+            <div class="bio__stat-card">
+              <strong>M.S.</strong>
+              <span>Human-Computer Interaction</span>
+              <em>DePaul University, Chicago</em>
+            </div>
+            <div class="bio__stat-card">
+              <strong>2+</strong>
+              <span>Years UX Research Experience</span>
+              <em>Across product, accessibility &amp; strategy</em>
+            </div>
+            <div class="bio__stat-card">
+              <strong>✦</strong>
+              <span>Agile-driven Research Practice</span>
+              <em>Sprint-based, stakeholder-aligned</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CERTIFICATIONS ── -->
+    <section class="certifications" aria-labelledby="certs-heading" id="Cert">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-head__label">Credentials</p>
+          <h2 id="certs-heading">Licenses &amp; <em>Certifications</em></h2>
+          <p>A record of continuous learning — across research methods, AI, data, and beyond.</p>
+        </div>
+
+        <div class="cert-grid reveal reveal-delay-1">
+
+          <!-- Agile UX Research -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">Project Management Institute</p>
+            <p class="cert-card__name">Agile UX Research</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">Agile Methodologies</span>
+              <span class="cert-card__tag">Agile UX Research</span>
+            </div>
+          </div>
+
+          <!-- Using AI for UX Design and Research -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">LinkedIn</p>
+            <p class="cert-card__name">Using AI for UX Design and Research</p>
+            <p class="cert-card__meta">Issued Feb 2026</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">AI for Design</span>
+              <span class="cert-card__tag">Artificial Intelligence</span>
+            </div>
+          </div>
+
+          <!-- CITI Program — 1 -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">CITI Program</p>
+            <p class="cert-card__name">Faculty / Staff / Outside Collaborators / Students</p>
+            <p class="cert-card__meta">Issued Feb 2025 · Expires Feb 2028<br>Credential ID 67675080</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">Research Ethics</span>
+              <span class="cert-card__tag">IRB</span>
+            </div>
+          </div>
+
+          <!-- CITI Program — 2 -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">CITI Program</p>
+            <p class="cert-card__name">Faculty / Staff / Outside Collaborators / Students</p>
+            <p class="cert-card__meta">Issued Feb 2025 · Expires Feb 2028<br>Credential ID 67761220</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">Research Ethics</span>
+              <span class="cert-card__tag">IRB</span>
+            </div>
+          </div>
+
+          <!-- International Student Connect -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">Soliya</p>
+            <p class="cert-card__name">International Student Connect Program</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">Cross-cultural Communication</span>
+            </div>
+          </div>
+
+          <!-- Google Analytics -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">Google Digital Academy (Skillshop)</p>
+            <p class="cert-card__name">Google Analytics Certification</p>
+            <p class="cert-card__meta">Issued Dec 2023 · Expired Dec 2024<br>Credential ID 90211150</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">Google Analytics</span>
+              <span class="cert-card__tag">Data Analysis</span>
+            </div>
+          </div>
+
+          <!-- Design Thinking: Data Intelligence -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">LinkedIn</p>
+            <p class="cert-card__name">Design Thinking: Data Intelligence</p>
+            <p class="cert-card__meta">Issued Oct 2023</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">Design Thinking</span>
+              <span class="cert-card__tag">Data Intelligence</span>
+            </div>
+          </div>
+
+          <!-- TEFL -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">Recknors Corporate Training &amp; Workshops</p>
+            <p class="cert-card__name">TEFL — Teaching English As A Foreign Language</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">Communication</span>
+              <span class="cert-card__tag">Teaching</span>
+            </div>
+          </div>
+
+          <!-- Import Export -->
+          <div class="cert-card">
+            <p class="cert-card__issuer">SMEDA</p>
+            <p class="cert-card__name">Import Export Documentation &amp; Procedures</p>
+            <div class="cert-card__tags">
+              <span class="cert-card__tag">Business Operations</span>
+              <span class="cert-card__tag">Trade Documentation</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT I'VE BEEN UP TO — infinite scroll strip -->
+    <section class="updates" aria-labelledby="updates-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-head__label">Recent</p>
+          <h2 id="updates-heading">What I've been <em>up to</em></h2>
+          <p>A collection of moments, adventures, and things worth remembering.</p>
+        </div>
+      </div>
+
+      <div class="strip-outer reveal reveal-delay-1" role="region" aria-label="Photo and video highlights">
+        <div class="strip-track">
+
+          <!-- ── SET 1 ── -->
+          <article class="m-card m-card--916" aria-label="Photo: Leo the cat">
+            <div class="m-card__media"><img src="../images/petcat.png" alt="Mehak cuddling Leo, her late cat" loading="lazy" /></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">The one &amp; only</p><p class="m-card__caption-text">My first ever pet. His name is Leo. He is no more but I miss him very much.</p></div>
+          </article>
+
+          <article class="m-card m-card--43" aria-label="Photo: Microsoft campus visit">
+            <div class="m-card__media"><img src="../images/microsoft.jpeg" alt="Mehak at the Microsoft sign in Redmond, Washington" loading="lazy" /></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Redmond, WA</p><p class="m-card__caption-text">The time I visited Microsoft HQ in Redmond, Washington.</p></div>
+          </article>
+
+          <article class="m-card m-card--916" aria-label="Video: Modeling">
+            <div class="m-card__media"><video src="../images/modeling.mp4" controls playsinline preload="metadata" aria-label="Short modeling clip"></video></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Side quest</p><p class="m-card__caption-text">A small snippet of my short-lived modelling hobby.</p></div>
+          </article>
+
+          <article class="m-card m-card--916" aria-label="Photo: DePaul Blue Demon welcome">
+            <div class="m-card__media"><img src="../images/bluedemon.jpeg" alt="Mehak at DePaul University Blue Demon Welcome 2023 event" loading="lazy" /></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">DePaul University · 2023</p><p class="m-card__caption-text">Blue Demon through and through. Welcome 2023!</p></div>
+          </article>
+
+          <article class="m-card m-card--916" aria-label="Photo: Basque cheesecake">
+            <div class="m-card__media"><img src="../images/baking.jpeg" alt="Freshly baked burnt basque cheesecake in parchment paper" loading="lazy" /></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Stress baking</p><p class="m-card__caption-text">What do I do when stressed? I bake. First try at burnt basque cheesecake — turned out pretty good.</p></div>
+          </article>
+
+          <article class="m-card m-card--34" aria-label="Photo: Go-karting">
+            <div class="m-card__media"><img src="../images/car.jpeg" alt="Mehak posing with a go-kart and helmet at a race track" loading="lazy" /></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Need for speed</p><p class="m-card__caption-text">Some things that excite me — speed being very much one of them.</p></div>
+          </article>
+
+          <article class="m-card m-card--34" aria-label="Photo: Chicago Bean">
+            <div class="m-card__media"><img src="../images/chicago-bean.jpeg" alt="Mehak waving in front of the Cloud Gate sculpture in Chicago" loading="lazy" /></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Chicago, IL</p><p class="m-card__caption-text">Dora the Explorer? Chicago spirit in full bloom.</p></div>
+          </article>
+
+          <!-- ── SET 2 — exact duplicate for seamless loop ── -->
+          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><img src="../images/petcat.png" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">The one &amp; only</p><p class="m-card__caption-text">My first ever pet. His name is Leo. He is no more but I miss him very much.</p></div></article>
+          <article class="m-card m-card--43"  aria-hidden="true"><div class="m-card__media"><img src="../images/microsoft.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Redmond, WA</p><p class="m-card__caption-text">The time I visited Microsoft HQ in Redmond, Washington.</p></div></article>
+          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><video src="../images/modeling.mp4" controls playsinline preload="metadata"></video></div><div class="m-card__caption"><p class="m-card__caption-label">Side quest</p><p class="m-card__caption-text">A small snippet of my short-lived modelling hobby.</p></div></article>
+          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><img src="../images/bluedemon.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">DePaul University · 2023</p><p class="m-card__caption-text">Blue Demon through and through. Welcome 2023!</p></div></article>
+          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><img src="../images/baking.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Stress baking</p><p class="m-card__caption-text">What do I do when stressed? I bake. First try at burnt basque cheesecake — turned out pretty good.</p></div></article>
+          <article class="m-card m-card--34"  aria-hidden="true"><div class="m-card__media"><img src="../images/car.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Need for speed</p><p class="m-card__caption-text">Some things that excite me — speed being very much one of them.</p></div></article>
+          <article class="m-card m-card--34"  aria-hidden="true"><div class="m-card__media"><img src="../images/chicago-bean.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Chicago, IL</p><p class="m-card__caption-text">Dora the Explorer? Chicago spirit in full bloom.</p></div></article>
+
+        </div>
+      </div>
+
+      <div class="container">
+        <p class="strip-hint" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="4" height="18" rx="1"/><rect x="14" y="3" width="4" height="18" rx="1"/></svg>
+          Hover to pause
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer">
+        <p class="footer__copy">&copy; <span id="year"></span> Hafiza Mehak Munir. Crafted with intention.</p>
+        <nav class="footer__links" aria-label="Footer navigation">
+          <a href="https://www.linkedin.com/in/hmehakm/">LinkedIn</a>
+          <a href="mailto:hafizamehakmunir@gmail.com">Email</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const nav    = document.getElementById('main-nav');
+    const burger = document.getElementById('nav-burger');
+    const drawer = document.getElementById('nav-drawer');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+    }, { passive: true });
+
+    burger.addEventListener('click', () => {
+      const isOpen = drawer.classList.contains('open');
+      drawer.classList.toggle('open', !isOpen);
+      burger.setAttribute('aria-expanded', String(!isOpen));
+      burger.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+    });
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open navigation menu');
+    }
+    document.addEventListener('click', e => { if (!nav.contains(e.target) && !drawer.contains(e.target)) closeDrawer(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+    const revealObserver = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+      }),
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    document.querySelectorAll('.strip-track video').forEach(v => {
+      v.addEventListener('play', () => {
+        document.querySelectorAll('.strip-track video').forEach(other => {
+          if (other !== v) other.pause();
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
