@@ -66,10 +66,74 @@
     .nav__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── DESKTOP DROPDOWN ── */
+    .nav__dropdown { position: relative; }
+    .nav__dropdown-btn {
+      font-size: 0.875rem; font-weight: 400; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-light);
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; gap: 5px;
+      padding: 0; position: relative; transition: color 0.2s;
+      font-family: var(--ff-body);
+    }
+    .nav__dropdown-btn::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--lilac-400);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .nav__dropdown-btn:hover,
+    .nav__dropdown[data-open="true"] .nav__dropdown-btn { color: var(--ink); }
+    .nav__dropdown-btn:hover::after,
+    .nav__dropdown[data-open="true"] .nav__dropdown-btn::after { transform: scaleX(1); }
+    .nav__dropdown-btn svg {
+      width: 11px; height: 11px; stroke: currentColor;
+      transition: transform 0.25s cubic-bezier(.4,0,.2,1); flex-shrink: 0;
+    }
+    .nav__dropdown[data-open="true"] .nav__dropdown-btn svg { transform: rotate(180deg); }
+    .nav__dropdown-menu {
+      position: absolute; top: calc(100% + 18px); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: rgba(253,251,255,0.98);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 8px;
+      min-width: 268px;
+      box-shadow: 0 8px 32px rgba(28,16,38,0.10);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s cubic-bezier(.4,0,.2,1), transform 0.2s cubic-bezier(.4,0,.2,1);
+      z-index: 950;
+    }
+    .nav__dropdown[data-open="true"] .nav__dropdown-menu {
+      opacity: 1; pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav__dropdown-menu a {
+      display: block; padding: 9px 14px; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 400; letter-spacing: 0.03em;
+      color: var(--ink-light); transition: background 0.18s, color 0.18s;
+      white-space: nowrap;
+    }
+    .nav__dropdown-menu a:hover { background: var(--lilac-50); color: var(--lilac-600); }
+    .nav__dropdown-menu a::after { display: none; }
+
+    /* ── MOBILE DRAWER ── */
     .nav__drawer { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(253,251,255,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 28px 10%; flex-direction: column; gap: 20px; z-index: 899; transform: translateY(-8px); opacity: 0; transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.25s; }
     .nav__drawer.open { display: flex; transform: translateY(0); opacity: 1; }
     .nav__drawer a { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 300; color: var(--ink); letter-spacing: 0.02em; padding: 6px 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
     .nav__drawer a:hover { color: var(--lilac-600); padding-left: 8px; }
+    .nav__drawer-group { display: flex; flex-direction: column; gap: 0; border-bottom: 1px solid var(--border); }
+    .nav__drawer-trigger { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 300; color: var(--ink); letter-spacing: 0.02em; padding: 6px 0; border: none; background: none; cursor: pointer; width: 100%; text-align: left; display: flex; align-items: center; justify-content: space-between; transition: color 0.2s; }
+    .nav__drawer-trigger:hover { color: var(--lilac-600); }
+    .nav__drawer-trigger svg { width: 18px; height: 18px; stroke: currentColor; transition: transform 0.3s; flex-shrink: 0; }
+    .nav__drawer-group.open .nav__drawer-trigger svg { transform: rotate(180deg); }
+    .nav__drawer-sub { display: none; flex-direction: column; padding-left: 12px; padding-bottom: 10px; gap: 0; }
+    .nav__drawer-group.open .nav__drawer-sub { display: flex; }
+    .nav__drawer-sub a { font-family: var(--ff-body); font-size: 0.9rem; font-weight: 300; color: var(--ink-light); letter-spacing: 0.03em; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .nav__drawer-sub a:last-child { border-bottom: none; }
+    .nav__drawer-sub a:hover { color: var(--lilac-600); padding-left: 6px; }
 
     /* ── BIO ── */
     .bio {
@@ -106,130 +170,48 @@
 
     /* ── CTA BUTTONS ── */
     .bio__cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 48px;
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px;
     }
-
     .bio__cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 22px;
-      border-radius: 100px;
-      border: 1.5px solid var(--lilac-300);
-      background: transparent;
-      color: var(--lilac-600);
-      font-family: var(--ff-body);
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px; border-radius: 100px;
+      border: 1.5px solid var(--lilac-300); background: transparent;
+      color: var(--lilac-600); font-family: var(--ff-body);
+      font-size: 0.75rem; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; text-decoration: none;
       transition: background 0.22s, color 0.22s, border-color 0.22s;
     }
-    .bio__cta-btn:hover {
-      background: var(--lilac-500);
-      border-color: var(--lilac-500);
-      color: var(--white);
-    }
+    .bio__cta-btn:hover { background: var(--lilac-500); border-color: var(--lilac-500); color: var(--white); }
 
-    /* horizontal rule */
-    .bio__divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin-bottom: 36px;
-    }
+    .bio__divider { border: none; border-top: 1px solid var(--border); margin-bottom: 36px; }
 
-    /* three text columns */
-    .bio__cols {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-left: 1px solid var(--border);
-      margin-bottom: 36px;
-    }
-    .bio__col {
-      padding: 0 28px 0 24px;
-      border-right: 1px solid var(--border);
-    }
-    .bio__col-label {
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--lilac-500); margin-bottom: 12px;
-    }
-    .bio__col-text {
-      font-size: 0.92rem; font-weight: 300;
-      color: var(--ink-light); line-height: 1.85;
-    }
+    .bio__cols { display: grid; grid-template-columns: repeat(3, 1fr); border-left: 1px solid var(--border); margin-bottom: 36px; }
+    .bio__col { padding: 0 28px 0 24px; border-right: 1px solid var(--border); }
+    .bio__col-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac-500); margin-bottom: 12px; }
+    .bio__col-text { font-size: 0.92rem; font-weight: 300; color: var(--ink-light); line-height: 1.85; }
     .bio__col-text strong { font-weight: 500; color: var(--ink); }
 
-    /* skill tags */
-    .bio__tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-    .bio__tag {
-      font-size: 0.75rem; font-weight: 400; letter-spacing: 0.06em;
-      padding: 6px 14px; border-radius: 100px;
-      background: var(--lilac-100); color: var(--lilac-600);
-      border: 1px solid var(--lilac-300);
-    }
+    .bio__tags { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .bio__tag { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.06em; padding: 6px 14px; border-radius: 100px; background: var(--lilac-100); color: var(--lilac-600); border: 1px solid var(--lilac-300); }
 
-    /* meta strip */
-    .bio__meta {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--border);
-      margin-top: 32px;
-    }
-    .bio__meta-cell {
-      padding: 20px 0;
-      border-right: 1px solid var(--border);
-      padding-right: 24px;
-    }
+    .bio__meta { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); margin-top: 32px; }
+    .bio__meta-cell { padding: 20px 0; border-right: 1px solid var(--border); padding-right: 24px; }
     .bio__meta-cell:last-child { border-right: none; }
     .bio__meta-cell + .bio__meta-cell { padding-left: 24px; padding-right: 24px; }
-    .bio__meta-label {
-      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--lilac-400);
-      margin-bottom: 6px;
-    }
-    .bio__meta-value {
-      font-size: 0.85rem; font-weight: 300; color: var(--ink);
-      line-height: 1.55;
-    }
+    .bio__meta-label { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lilac-400); margin-bottom: 6px; }
+    .bio__meta-value { font-size: 0.85rem; font-weight: 300; color: var(--ink); line-height: 1.55; }
     .bio__avail { display: flex; align-items: center; gap: 7px; }
     .bio__avail-dot { width: 7px; height: 7px; border-radius: 50%; background: #6dbf82; flex-shrink: 0; }
 
-    /* section heads */
     .section-head { margin-bottom: 32px; }
-    .section-head h2 {
-      font-family: var(--ff-display); font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 300; line-height: 1.12; color: var(--ink);
-      margin-top: 10px;
-    }
+    .section-head h2 { font-family: var(--ff-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.12; color: var(--ink); margin-top: 10px; }
     .section-head h2 em { font-style: italic; color: var(--lilac-500); }
 
     /* ── CERTIFICATIONS ── */
-    .certifications {
-      padding-block: var(--gap);
-      background: linear-gradient(180deg, var(--white) 0%, var(--lilac-50) 50%, var(--white) 100%);
-      position: relative; overflow: hidden;
-    }
-    .certifications::before {
-      content: ''; position: absolute; bottom: -80px; right: -100px;
-      width: 420px; height: 420px;
-      background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%);
-      opacity: 0.35; filter: blur(70px); pointer-events: none;
-    }
+    .certifications { padding-block: var(--gap); background: linear-gradient(180deg, var(--white) 0%, var(--lilac-50) 50%, var(--white) 100%); position: relative; overflow: hidden; }
+    .certifications::before { content: ''; position: absolute; bottom: -80px; right: -100px; width: 420px; height: 420px; background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%); opacity: 0.35; filter: blur(70px); pointer-events: none; }
     .cert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .cert-card {
-      background: white; border: 1px solid var(--border);
-      border-radius: 14px; padding: 16px 18px;
-      display: flex; flex-direction: column; gap: 7px;
-    }
+    .cert-card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 7px; }
     .cert-card__issuer { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lilac-500); }
     .cert-card__name { font-family: var(--ff-display); font-size: 0.92rem; font-weight: 400; color: var(--ink); line-height: 1.3; }
     .cert-card__meta { font-size: 0.7rem; font-weight: 300; color: var(--ink-light); line-height: 1.5; }
@@ -239,22 +221,9 @@
     @media (max-width: 500px)  { .cert-grid { grid-template-columns: 1fr; } }
 
     /* ── PHOTO STRIP ── */
-    .updates {
-      padding-block: var(--gap);
-      background: var(--white);
-      position: relative; overflow: hidden;
-    }
-    .updates::before {
-      content: ''; position: absolute; bottom: -80px; left: -120px;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%);
-      opacity: 0.4; filter: blur(70px); pointer-events: none;
-    }
-    .strip-outer {
-      position: relative; overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-    }
+    .updates { padding-block: var(--gap); background: var(--white); position: relative; overflow: hidden; }
+    .updates::before { content: ''; position: absolute; bottom: -80px; left: -120px; width: 300px; height: 300px; background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%); opacity: 0.4; filter: blur(70px); pointer-events: none; }
+    .strip-outer { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); }
     @keyframes strip-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .strip-track { display: flex; gap: 14px; width: max-content; align-items: flex-start; animation: strip-scroll 18s linear infinite; will-change: transform; }
     .strip-outer:hover .strip-track { animation-play-state: paused; }
@@ -273,27 +242,9 @@
 
     /* ── BACK TO TOP ── */
     .back-to-top-wrap { display: flex; justify-content: center; padding: 48px 0 16px; }
-    .back-to-top {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 13px 30px; border-radius: 100px;
-      background: transparent;
-      border: 1.5px solid var(--lilac-300);
-      color: var(--lilac-600);
-      font-family: var(--ff-body); font-size: 0.75rem;
-      font-weight: 400; letter-spacing: 0.12em;
-      text-transform: uppercase; cursor: pointer;
-      transition: background 0.22s, color 0.22s, border-color 0.22s;
-    }
-    .back-to-top:hover {
-      background: var(--lilac-500);
-      border-color: var(--lilac-500);
-      color: var(--white);
-    }
-    .back-to-top__arrow {
-      font-size: 1rem;
-      line-height: 1;
-      font-family: var(--ff-body);
-    }
+    .back-to-top { display: inline-flex; align-items: center; gap: 10px; padding: 13px 30px; border-radius: 100px; background: transparent; border: 1.5px solid var(--lilac-300); color: var(--lilac-600); font-family: var(--ff-body); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.22s, color 0.22s, border-color 0.22s; }
+    .back-to-top:hover { background: var(--lilac-500); border-color: var(--lilac-500); color: var(--white); }
+    .back-to-top__arrow { font-size: 1rem; line-height: 1; font-family: var(--ff-body); }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
@@ -347,7 +298,24 @@
         <ul class="nav__links" role="list">
           <li><a href="../index.html">Home</a></li>
           <li><a href="./about.html" aria-current="page">About</a></li>
-          <li><a href="../index.html#projects">Projects</a></li>
+          <li class="nav__dropdown" id="projects-dropdown" data-open="false">
+            <button
+              class="nav__dropdown-btn"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="projects-menu"
+              id="projects-btn"
+            >
+              Projects
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav__dropdown-menu" id="projects-menu" role="menu" aria-labelledby="projects-btn">
+              <a href="../pages/uber.html"    role="menuitem">Accessibility Considerations</a>
+              <a href="../pages/ai.html"      role="menuitem">Artificial Intelligence</a>
+              <a href="../pages/shein.html"   role="menuitem">Content Strategy and IA</a>
+              <a href="../pages/memento.html" role="menuitem">Prototyping and Usability Evaluation</a>
+            </div>
+          </li>
           <li><a href="../index.html#contact">Contact</a></li>
         </ul>
         <button class="nav__burger" id="nav-burger" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open navigation menu">
@@ -355,11 +323,23 @@
         </button>
       </div>
     </nav>
+
     <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
-      <a href="../index.html"          onclick="closeDrawer()">Home</a>
-      <a href="./about.html"           onclick="closeDrawer()">About</a>
-      <a href="../index.html#projects" onclick="closeDrawer()">Projects</a>
-      <a href="../index.html#contact"  onclick="closeDrawer()">Contact</a>
+      <a href="../index.html" onclick="closeDrawer()">Home</a>
+      <a href="./about.html"  onclick="closeDrawer()">About</a>
+      <div class="nav__drawer-group" id="drawer-projects-group">
+        <button class="nav__drawer-trigger" aria-expanded="false" aria-controls="drawer-projects-sub" onclick="toggleDrawerGroup(this)">
+          Projects
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__drawer-sub" id="drawer-projects-sub">
+          <a href="../pages/uber.html"    onclick="closeDrawer()">Accessibility Considerations</a>
+          <a href="../pages/ai.html"      onclick="closeDrawer()">Artificial Intelligence</a>
+          <a href="../pages/shein.html"   onclick="closeDrawer()">Content Strategy and IA</a>
+          <a href="../pages/memento.html" onclick="closeDrawer()">Prototyping and Usability Evaluation</a>
+        </div>
+      </div>
+      <a href="../index.html#contact" onclick="closeDrawer()">Contact</a>
     </div>
   </header>
 
@@ -379,16 +359,15 @@
         <!-- CTA buttons -->
         <nav class="bio__cta-row reveal" aria-label="Quick navigation">
           <a href="../index.html#projects" class="bio__cta-btn">View My Work</a>
-          <a href="../index.html#contact" class="bio__cta-btn">Get In Touch</a>
-                    <!-- <a href="#Cert" class="bio__cta-btn">Credentials</a> -->
+          <a href="../index.html#contact"  class="bio__cta-btn">Get In Touch</a>
         </nav>
+
         <hr class="bio__divider" />
 
         <div class="bio__cols reveal">
           <div class="bio__col">
             <p class="bio__col-label">Background</p>
-            <p class="bio__col-text">I work across UX research, product strategy, and business decision making, with more than 8 years of experience in business and product environments. This background helps me understand how teams actually make decisions and how research can influence what gets prioritized and built.
-</p>
+            <p class="bio__col-text">I work across UX research, product strategy, and business decision making, with more than 8 years of experience in business and product environments. This background helps me understand how teams actually make decisions and how research can influence what gets prioritized and built.</p>
           </div>
           <div class="bio__col">
             <p class="bio__col-label">Approach</p>
@@ -420,9 +399,9 @@
               </span>
             </p>
           </div>
-           <div class="bio__meta-cell">
+          <div class="bio__meta-cell">
             <p class="bio__meta-label">Focus</p>
-            <p class="bio__meta-value"> UX Research in Agile product teams </p>
+            <p class="bio__meta-value">UX Research in Agile product teams</p>
           </div>
           <div class="bio__meta-cell">
             <p class="bio__meta-label">Education</p>
@@ -432,8 +411,6 @@
             <p class="bio__meta-label">Location</p>
             <p class="bio__meta-value">Illinois and Remote</p>
           </div>
-          
-         
         </div>
 
       </div>
@@ -475,7 +452,7 @@
             </div>
           </div>
 
-         <div class="cert-card">
+          <div class="cert-card">
             <p class="cert-card__issuer">LinkedIn</p>
             <p class="cert-card__name">Design Thinking: Data Intelligence</p>
             <p class="cert-card__meta">Issued Oct 2023</p>
@@ -484,7 +461,7 @@
               <span class="cert-card__tag">Data Intelligence</span>
             </div>
           </div>
-          
+
           <div class="cert-card">
             <p class="cert-card__issuer">CITI Program</p>
             <p class="cert-card__name">Social and Behavioral Research</p>
@@ -505,7 +482,7 @@
             </div>
           </div>
 
-         <div class="cert-card">
+          <div class="cert-card">
             <p class="cert-card__issuer">Google Digital Academy</p>
             <p class="cert-card__name">Google Analytics Certification</p>
             <p class="cert-card__meta">Issued Dec 2023 · Expired Dec 2024<br>Credential ID 90211150</p>
@@ -515,7 +492,6 @@
             </div>
           </div>
 
-          
           <div class="cert-card">
             <p class="cert-card__issuer">Soliya</p>
             <p class="cert-card__name">International Student Connect Program</p>
@@ -658,6 +634,34 @@
     });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
+    /* ── DESKTOP DROPDOWN ── */
+    const projectsDropdown = document.getElementById('projects-dropdown');
+    const projectsBtn      = document.getElementById('projects-btn');
+
+    function openDropdown()  { projectsDropdown.dataset.open = 'true';  projectsBtn.setAttribute('aria-expanded', 'true');  }
+    function closeDropdown() { projectsDropdown.dataset.open = 'false'; projectsBtn.setAttribute('aria-expanded', 'false'); }
+
+    projectsBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      projectsDropdown.dataset.open === 'true' ? closeDropdown() : openDropdown();
+    });
+    document.addEventListener('click', e => { if (!projectsDropdown.contains(e.target)) closeDropdown(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeDropdown();
+      if (e.key === 'Tab' && projectsDropdown.dataset.open === 'true') {
+        setTimeout(() => { if (!projectsDropdown.contains(document.activeElement)) closeDropdown(); }, 0);
+      }
+    });
+
+    /* ── MOBILE DRAWER PROJECTS TOGGLE ── */
+    function toggleDrawerGroup(btn) {
+      const group  = btn.closest('.nav__drawer-group');
+      const isOpen = group.classList.contains('open');
+      group.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    }
+
+    /* ── REVEAL ON SCROLL ── */
     const revealObserver = new IntersectionObserver(
       entries => entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
