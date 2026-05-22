@@ -5,20 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Hafiza Mehak Munir</title>
   <meta name="description" content="About Hafiza Mehak Munir — UX Researcher based in Chicago." />
-  <!-- ═══════════════════════════════════════════════
-       FAVICON — drop your favicon.ico (and optionally
-       favicon-32x32.png / apple-touch-icon.png) into
-       the same folder as this HTML file.
-  ════════════════════════════════════════════════ -->
-  <link rel="icon"            type="image/x-icon"  href="./favicon.ico"/>
-  <link rel="icon"            type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
-  <link rel="apple-touch-icon"                     href="./images/apple-touch-icon.png" />
-
-
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-
 
   <style>
     :root {
@@ -37,8 +29,8 @@
       --ff-body:    'Jost', sans-serif;
       --max-w: 1160px;
       --nav-h: 72px;
-      --gap: 72px;        /* reduced from 100px */
-      --strip-h: 400px;
+      --gap: 48px;
+      --strip-h: 240px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -79,40 +71,146 @@
     .nav__drawer a { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 300; color: var(--ink); letter-spacing: 0.02em; padding: 6px 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
     .nav__drawer a:hover { color: var(--lilac-600); padding-left: 8px; }
 
-    /* ── PAGE HEADER ── */
-    .page-header { padding-top: calc(var(--nav-h) + 64px); padding-bottom: 56px; position: relative; overflow: hidden; }
-    .page-header::before { content: ''; position: absolute; width: 480px; height: 480px; background: radial-gradient(circle, var(--lilac-200) 0%, transparent 70%); top: -60px; right: -100px; opacity: 0.5; filter: blur(80px); pointer-events: none; }
-    .page-header__eyebrow { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac-500); display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-    .page-header__eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--lilac-400); }
-    .page-header h1 { font-family: var(--ff-display); font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 300; line-height: 1.1; max-width: 680px; }
-    .page-header h1 em { font-style: italic; color: var(--lilac-500); }
-    .page-header__sub { margin-top: 20px; font-size: 1.05rem; font-weight: 300; color: var(--ink-light); max-width: 520px; line-height: 1.8; }
-
-    /* ── SECTION LABEL ── */
-    .section-head { margin-bottom: 40px; }
-    .section-head__label { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--lilac-500); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-    .section-head__label::after { content: ''; flex: 1; max-width: 64px; height: 1px; background: var(--lilac-300); }
-    .section-head h2 { font-family: var(--ff-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.15; color: var(--ink); }
-    .section-head h2 em { font-style: italic; color: var(--lilac-500); }
-    .section-head p { margin-top: 14px; font-size: 1rem; font-weight: 300; color: var(--ink-light); max-width: 520px; line-height: 1.8; }
-
     /* ── BIO ── */
-    .bio { padding-block: var(--gap); background: var(--white); position: relative; overflow: hidden; }
-    .bio::before { content: ''; position: absolute; top: -160px; right: -160px; width: 500px; height: 500px; background: radial-gradient(circle, var(--lilac-100) 0%, transparent 65%); opacity: 0.5; filter: blur(80px); pointer-events: none; }
-    .bio__inner { display: grid; grid-template-columns: 1fr 380px; gap: 80px; align-items: start; }
-    .bio__heading { font-family: var(--ff-display); font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 300; line-height: 1.18; color: var(--ink); margin-bottom: 28px; }
+    .bio {
+      padding-top: calc(var(--nav-h) + 56px);
+      padding-bottom: var(--gap);
+      position: relative; overflow: hidden;
+    }
+    .bio::before {
+      content: ''; position: absolute;
+      width: 560px; height: 560px;
+      background: radial-gradient(circle, var(--lilac-100) 0%, transparent 70%);
+      top: -80px; right: -140px; opacity: 0.45; filter: blur(90px);
+      pointer-events: none;
+    }
+
+    .bio__heading {
+      font-family: var(--ff-display);
+      font-size: clamp(3.2rem, 6vw, 5.2rem);
+      font-weight: 300;
+      line-height: 1.06;
+      color: var(--ink);
+      max-width: 860px;
+      margin-bottom: 36px;
+    }
     .bio__heading em { font-style: italic; color: var(--lilac-500); }
-    .bio__body { font-size: 1rem; font-weight: 300; color: var(--ink-light); line-height: 1.85; margin-bottom: 18px; }
-    .bio__body strong { font-weight: 500; color: var(--ink); }
-    .bio__body:last-of-type { margin-bottom: 32px; }
-    .bio__tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .bio__tag { font-size: 0.75rem; font-weight: 400; letter-spacing: 0.06em; padding: 6px 14px; border-radius: 100px; background: var(--lilac-50); color: var(--lilac-600); border: 1px solid var(--border); }
-    .bio__aside { display: flex; flex-direction: column; gap: 16px; position: sticky; top: calc(var(--nav-h) + 24px); }
-    .bio__stat-card { background: white; border: 1px solid var(--border); border-radius: 18px; padding: 24px 26px; box-shadow: 0 4px 24px rgba(155,114,190,0.06); }
-    .bio__stat-card strong { display: block; font-family: var(--ff-display); font-size: 2rem; font-weight: 600; color: var(--lilac-500); line-height: 1; margin-bottom: 6px; }
-    .bio__stat-card span { display: block; font-size: 0.9rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
-    .bio__stat-card em { font-style: normal; font-size: 0.78rem; font-weight: 300; color: var(--ink-light); }
-    @media (max-width: 900px) { .bio__inner { grid-template-columns: 1fr; gap: 40px; } .bio__aside { position: static; flex-direction: row; flex-wrap: wrap; } .bio__stat-card { flex: 1 1 200px; } }
+
+    .bio__eyebrow {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--lilac-500);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .bio__eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--lilac-400); }
+
+    /* ── CTA BUTTONS ── */
+    .bio__cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .bio__cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 100px;
+      border: 1.5px solid var(--lilac-300);
+      background: transparent;
+      color: var(--lilac-600);
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.22s, color 0.22s, border-color 0.22s;
+    }
+    .bio__cta-btn:hover {
+      background: var(--lilac-500);
+      border-color: var(--lilac-500);
+      color: var(--white);
+    }
+
+    /* horizontal rule */
+    .bio__divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 36px;
+    }
+
+    /* three text columns */
+    .bio__cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid var(--border);
+      margin-bottom: 36px;
+    }
+    .bio__col {
+      padding: 0 28px 0 24px;
+      border-right: 1px solid var(--border);
+    }
+    .bio__col-label {
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--lilac-500); margin-bottom: 12px;
+    }
+    .bio__col-text {
+      font-size: 0.92rem; font-weight: 300;
+      color: var(--ink-light); line-height: 1.85;
+    }
+    .bio__col-text strong { font-weight: 500; color: var(--ink); }
+
+    /* skill tags */
+    .bio__tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .bio__tag {
+      font-size: 0.75rem; font-weight: 400; letter-spacing: 0.06em;
+      padding: 6px 14px; border-radius: 100px;
+      background: var(--lilac-100); color: var(--lilac-600);
+      border: 1px solid var(--lilac-300);
+    }
+
+    /* meta strip */
+    .bio__meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+    }
+    .bio__meta-cell {
+      padding: 20px 0;
+      border-right: 1px solid var(--border);
+      padding-right: 24px;
+    }
+    .bio__meta-cell:last-child { border-right: none; }
+    .bio__meta-cell + .bio__meta-cell { padding-left: 24px; padding-right: 24px; }
+    .bio__meta-label {
+      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--lilac-400);
+      margin-bottom: 6px;
+    }
+    .bio__meta-value {
+      font-size: 0.85rem; font-weight: 300; color: var(--ink);
+      line-height: 1.55;
+    }
+    .bio__avail { display: flex; align-items: center; gap: 7px; }
+    .bio__avail-dot { width: 7px; height: 7px; border-radius: 50%; background: #6dbf82; flex-shrink: 0; }
+
+    /* section heads */
+    .section-head { margin-bottom: 32px; }
+    .section-head h2 {
+      font-family: var(--ff-display); font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300; line-height: 1.12; color: var(--ink);
+      margin-top: 10px;
+    }
+    .section-head h2 em { font-style: italic; color: var(--lilac-500); }
 
     /* ── CERTIFICATIONS ── */
     .certifications {
@@ -124,57 +222,26 @@
       content: ''; position: absolute; bottom: -80px; right: -100px;
       width: 420px; height: 420px;
       background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%);
-      opacity: 0.4; filter: blur(70px); pointer-events: none;
+      opacity: 0.35; filter: blur(70px); pointer-events: none;
     }
-
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
+    .cert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .cert-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px 24px;
-      box-shadow: 0 4px 20px rgba(155,114,190,0.05);
-      display: flex; flex-direction: column; gap: 10px;
-      transition: transform 0.25s, box-shadow 0.25s;
-      position: relative; overflow: hidden;
+      background: white; border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 18px;
+      display: flex; flex-direction: column; gap: 7px;
     }
-    .cert-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--lilac-300), var(--lilac-500));
-      opacity: 0; transition: opacity 0.25s;
-    }
-    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(155,114,190,0.12); }
-    .cert-card:hover::before { opacity: 1; }
+    .cert-card__issuer { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lilac-500); }
+    .cert-card__name { font-family: var(--ff-display); font-size: 0.92rem; font-weight: 400; color: var(--ink); line-height: 1.3; }
+    .cert-card__meta { font-size: 0.7rem; font-weight: 300; color: var(--ink-light); line-height: 1.5; }
+    .cert-card__tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+    .cert-card__tag { font-size: 0.58rem; font-weight: 400; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 100px; background: var(--lilac-50); color: var(--lilac-600); border: 1px solid var(--border); }
+    @media (max-width: 900px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px)  { .cert-grid { grid-template-columns: 1fr; } }
 
-    .cert-card__issuer {
-      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--lilac-500);
-    }
-    .cert-card__name {
-      font-family: var(--ff-display); font-size: 1.05rem;
-      font-weight: 400; color: var(--ink); line-height: 1.3;
-    }
-    .cert-card__meta {
-      font-size: 0.78rem; font-weight: 300; color: var(--ink-light); line-height: 1.6;
-    }
-    .cert-card__tags {
-      display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px;
-    }
-    .cert-card__tag {
-      font-size: 0.62rem; font-weight: 400; letter-spacing: 0.06em;
-      padding: 3px 9px; border-radius: 100px;
-      background: var(--lilac-50); color: var(--lilac-600); border: 1px solid var(--border);
-    }
-
-    /* ── UPDATES — MARQUEE STRIP ── */
+    /* ── PHOTO STRIP ── */
     .updates {
       padding-block: var(--gap);
-      background: linear-gradient(180deg, var(--white) 0%, var(--lilac-50) 55%, var(--white) 100%);
+      background: var(--white);
       position: relative; overflow: hidden;
     }
     .updates::before {
@@ -183,47 +250,59 @@
       background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%);
       opacity: 0.4; filter: blur(70px); pointer-events: none;
     }
-
     .strip-outer {
       position: relative; overflow: hidden;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-      mask-image:         linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
     }
-
-    @keyframes strip-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .strip-track {
-      display: flex; gap: 20px; width: max-content; align-items: flex-start;
-      animation: strip-scroll 10s linear infinite; will-change: transform;
-    }
-    .strip-track:hover, .strip-outer:hover .strip-track { animation-play-state: paused; }
-
-    .m-card { flex-shrink: 0; background: white; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: 0 4px 24px rgba(155,114,190,0.08); transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s; cursor: default; user-select: none; }
-    .m-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(155,114,190,0.18); }
-    .m-card__media { height: var(--strip-h); overflow: hidden; background: var(--lilac-100); position: relative; }
-    .m-card__media img { height: 100%; width: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-    .m-card:hover .m-card__media img { transform: scale(1.04); }
+    @keyframes strip-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .strip-track { display: flex; gap: 14px; width: max-content; align-items: flex-start; animation: strip-scroll 18s linear infinite; will-change: transform; }
+    .strip-outer:hover .strip-track { animation-play-state: paused; }
+    .m-card { flex-shrink: 0; background: white; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; cursor: default; user-select: none; }
+    .m-card__media { height: var(--strip-h); overflow: hidden; background: var(--lilac-100); }
+    .m-card__media img { height: 100%; width: 100%; object-fit: cover; display: block; }
     .m-card__media video { height: 100%; width: 100%; object-fit: cover; display: block; background: #000; }
-    .m-card__caption { padding: 16px 18px 18px; max-width: 280px; }
-    .m-card__caption-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lilac-500); margin-bottom: 5px; }
-    .m-card__caption-text { font-family: var(--ff-display); font-size: 0.98rem; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.5; }
+    .m-card__caption { padding: 12px 14px 14px; }
+    .m-card__caption-label { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lilac-500); margin-bottom: 4px; }
+    .m-card__caption-text { font-family: var(--ff-display); font-size: 0.9rem; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.45; }
+    .m-card--916  { width: 170px; } .m-card--916 .m-card__caption { max-width: 170px; }
+    .m-card--34   { width: 225px; } .m-card--34 .m-card__caption  { max-width: 225px; }
+    .m-card--43   { width: 320px; } .m-card--43 .m-card__caption  { max-width: 320px; }
+    .strip-hint { text-align: center; margin-top: 16px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lilac-400); font-weight: 400; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .strip-hint svg { width: 12px; height: 12px; }
 
-    .m-card--916  { width: 224px; } .m-card--916 .m-card__caption { max-width: 224px; }
-    .m-card--34   { width: 300px; } .m-card--34 .m-card__caption  { max-width: 300px; }
-    .m-card--43   { width: 533px; } .m-card--43 .m-card__caption  { max-width: 533px; }
-
-    .strip-hint { text-align: center; margin-top: 20px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lilac-400); font-weight: 400; display: flex; align-items: center; justify-content: center; gap: 6px; }
-    .strip-hint svg { width: 13px; height: 13px; }
+    /* ── BACK TO TOP ── */
+    .back-to-top-wrap { display: flex; justify-content: center; padding: 48px 0 16px; }
+    .back-to-top {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 30px; border-radius: 100px;
+      background: transparent;
+      border: 1.5px solid var(--lilac-300);
+      color: var(--lilac-600);
+      font-family: var(--ff-body); font-size: 0.75rem;
+      font-weight: 400; letter-spacing: 0.12em;
+      text-transform: uppercase; cursor: pointer;
+      transition: background 0.22s, color 0.22s, border-color 0.22s;
+    }
+    .back-to-top:hover {
+      background: var(--lilac-500);
+      border-color: var(--lilac-500);
+      color: var(--white);
+    }
+    .back-to-top__arrow {
+      font-size: 1rem;
+      line-height: 1;
+      font-family: var(--ff-body);
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     .animate-in { opacity: 0; animation: fadeUp 0.65s cubic-bezier(.4,0,.2,1) forwards; }
-    .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.25s; } .delay-3 { animation-delay: 0.4s; }
+    .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.22s; } .delay-3 { animation-delay: 0.34s; } .delay-4 { animation-delay: 0.46s; }
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s cubic-bezier(.4,0,.2,1), transform 0.65s cubic-bezier(.4,0,.2,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
 
     /* ── FOOTER ── */
     .footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
@@ -234,16 +313,26 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+      .bio__cols { grid-template-columns: 1fr; border-left: none; }
+      .bio__col { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
+      .bio__col:last-child { border-bottom: none; }
+      .bio__meta { grid-template-columns: 1fr 1fr; }
+      .bio__meta-cell:nth-child(2) { border-right: none; }
+      .bio__meta-cell:nth-child(3) { padding-left: 0; }
     }
     @media (max-width: 768px) {
-      :root { --gap: 56px; --strip-h: 300px; }
+      :root { --gap: 36px; --strip-h: 190px; }
       .nav__links { display: none; }
       .nav__burger { display: flex; }
-      .cert-grid { grid-template-columns: 1fr; }
-      .m-card--916 { width: 168px; } .m-card--34 { width: 225px; } .m-card--43 { width: 400px; }
+      .bio__heading { font-size: clamp(2.4rem, 8vw, 3.2rem); }
+      .bio__meta { grid-template-columns: 1fr; }
+      .bio__meta-cell { border-right: none; border-bottom: 1px solid var(--border); padding-left: 0 !important; }
+      .bio__meta-cell:last-child { border-bottom: none; }
+      .m-card--916 { width: 130px; } .m-card--34 { width: 175px; } .m-card--43 { width: 250px; }
     }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
@@ -251,13 +340,13 @@
   <header role="banner">
     <nav class="nav" id="main-nav" aria-label="Main navigation">
       <div class="nav__inner">
-        <a href="index.html" class="nav__logo" aria-label="Back to homepage">
+        <a href="../index.html" class="nav__logo" aria-label="Back to homepage">
           <img src="../images/favicon-32x32.png" alt="Mehak Munir" />
           <span>Hafiza Mehak Munir</span>
         </a>
         <ul class="nav__links" role="list">
           <li><a href="../index.html">Home</a></li>
-          <li><a href="../about/about.html" aria-current="page">About</a></li>
+          <li><a href="./about.html" aria-current="page">About</a></li>
           <li><a href="../index.html#projects">Projects</a></li>
           <li><a href="../index.html#contact">Contact</a></li>
         </ul>
@@ -267,8 +356,8 @@
       </div>
     </nav>
     <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Navigation menu">
-     <a href="../index.html"          onclick="closeDrawer()">Home</a>
-      <a href="./about.html"          onclick="closeDrawer()">About</a>
+      <a href="../index.html"          onclick="closeDrawer()">Home</a>
+      <a href="./about.html"           onclick="closeDrawer()">About</a>
       <a href="../index.html#projects" onclick="closeDrawer()">Projects</a>
       <a href="../index.html#contact"  onclick="closeDrawer()">Contact</a>
     </div>
@@ -276,91 +365,103 @@
 
   <main id="main-content">
 
-    <!-- PAGE HEADER -->
-    <section class="page-header" id="Top">
-      <div class="container">
-        <p class="page-header__eyebrow animate-in delay-1">About Me</p>
-        <h1 class="animate-in delay-2">Business mind.<br><em>Human-centred soul.</em></h1>
-        <p class="page-header__sub animate-in delay-3">
-          Researcher. Strategist. Perpetually curious — about people, systems, and the gaps in between.
-        </p>
-      </div>
-    </section>
-
     <!-- BIO -->
-    <section class="bio" aria-labelledby="bio-heading">
+    <section class="bio" id="Top" aria-labelledby="bio-heading">
       <div class="container">
-        <div class="bio__inner">
-          <div class="bio__text reveal">
-            <p class="section-head__label" style="display:flex;align-items:center;gap:10px;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;color:var(--lilac-500);margin-bottom:16px;">Background</p>
-            <h2 class="bio__heading" id="bio-heading">Business roots.<br><em>Human-centred practice.</em></h2>
-            <p class="bio__body">My path into UX research started somewhere unexpected — in business. I spent years understanding how organisations think, how decisions get made, and what drives real outcomes. That foundation shaped the way I approach research today: not just as a method, but as a strategic lever.</p>
-            <p class="bio__body">I've completed my <strong>Master's in Human-Computer Interaction at DePaul University, Chicago</strong> — deepening a practice that sits at the intersection of people, systems, and design. It's given rigour to my instincts and language to what I was already doing intuitively.</p>
-            <p class="bio__body">What excites me most is the space I occupy: the <strong>cusp of UX research and product &amp; project management</strong>. I understand research as a product in itself — with timelines, stakeholders, and deliverables that need to move in step with the teams around them. I bring <strong>agile thinking</strong> into every project I work on, running research in sprints, aligning on scope early, and keeping findings actionable throughout the product lifecycle.</p>
-            <div class="bio__tags">
-              <span class="bio__tag">UX Research</span>
-              <span class="bio__tag">HCI — DePaul University</span>
-              <span class="bio__tag">Product Management</span>
-              <span class="bio__tag">UX Agile Methodologies</span>
-              <span class="bio__tag">Business Strategy</span>
-              <span class="bio__tag">Project Management</span>
-              <span class="bio__tag">Artificial Intelligence and UX</span>
-            </div>
+
+        <div class="bio__hero animate-in delay-1">
+          <p class="bio__eyebrow">About Me</p>
+          <h1 class="bio__heading" id="bio-heading">
+            Researcher. Strategist.<br><em>Human-centred at every step.</em>
+          </h1>
+        </div>
+
+        <!-- CTA buttons -->
+        <nav class="bio__cta-row reveal" aria-label="Quick navigation">
+          <a href="../index.html#projects" class="bio__cta-btn">View My Work</a>
+          <a href="#Cert" class="bio__cta-btn">Credentials</a>
+          <a href="../index.html#contact" class="bio__cta-btn">Get In Touch</a>
+        </nav>
+        <hr class="bio__divider" />
+
+        <div class="bio__cols reveal">
+          <div class="bio__col">
+            <p class="bio__col-label">Background</p>
+            <p class="bio__col-text">Business strategy, product management, and <strong>Human-Computer Interaction</strong> — a combination that is not accidental. It shapes how I frame problems, how I design research, and how I make sure findings actually move things forward.</p>
           </div>
-          <div class="bio__aside reveal reveal-delay-2">
-            <div class="bio__stat-card">
-              <strong>M.S.</strong>
-              <span>Human-Computer Interaction</span>
-              <em>DePaul University, Chicago</em>
-            </div>
-            <div class="bio__stat-card">
-              <strong>2+</strong>
-              <span>Years UX Research Experience</span>
-              <em>Across product, accessibility &amp; strategy</em>
-            </div>
-            <div class="bio__stat-card">
-              <strong>✦</strong>
-              <span>Agile-driven Research Practice</span>
-              <em>Sprint-based, stakeholder-aligned</em>
-            </div>
+          <div class="bio__col">
+            <p class="bio__col-label">Practice</p>
+            <p class="bio__col-text">My work centres on <strong>mixed-methods research, accessibility, and information architecture</strong>. Rigorous inquiry with a direct line to better products and more equitable experiences. M.S. in HCI from DePaul University, Chicago.</p>
+          </div>
+          <div class="bio__col">
+            <p class="bio__col-label">Approach</p>
+            <p class="bio__col-text">I treat research as <strong>a product in itself</strong> — with scope, stakeholders, and a lifecycle that stays in sync with the teams building around it. Sprint-based, stakeholder-aligned, and always actionable.</p>
           </div>
         </div>
+
+        <div class="bio__tags reveal reveal-delay-1">
+          <span class="bio__tag">Mixed-Methods Research</span>
+          <span class="bio__tag">Accessibility Strategy</span>
+          <span class="bio__tag">Information Architecture</span>
+          <span class="bio__tag">Product Management</span>
+          <span class="bio__tag">Agile Research Practice</span>
+          <span class="bio__tag">Business Strategy</span>
+          <span class="bio__tag">AI and UX</span>
+        </div>
+
+        <div class="bio__meta reveal reveal-delay-2" aria-label="At a glance">
+          <div class="bio__meta-cell">
+            <p class="bio__meta-label">Status</p>
+            <p class="bio__meta-value">
+              <span class="bio__avail">
+                <span class="bio__avail-dot" aria-hidden="true"></span>
+                Open to opportunities
+              </span>
+            </p>
+          </div>
+          <div class="bio__meta-cell">
+            <p class="bio__meta-label">Based in</p>
+            <p class="bio__meta-value">Chicago, Illinois</p>
+          </div>
+          <div class="bio__meta-cell">
+            <p class="bio__meta-label">Education</p>
+            <p class="bio__meta-value">M.S. Human-Computer Interaction<br>DePaul University</p>
+          </div>
+          <div class="bio__meta-cell">
+            <p class="bio__meta-label">Tools</p>
+            <p class="bio__meta-value">Figma · FigJam · Maze<br>Optimal Workshop · SPSS</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- ── CERTIFICATIONS ── -->
+    <!-- CERTIFICATIONS -->
     <section class="certifications" aria-labelledby="certs-heading" id="Cert">
       <div class="container">
         <div class="section-head reveal">
-          <p class="section-head__label">Credentials</p>
+          <p class="bio__eyebrow">Credentials</p>
           <h2 id="certs-heading">Licenses &amp; <em>Certifications</em></h2>
-          <p>A record of continuous learning — across research methods, AI, data, and beyond.</p>
         </div>
-
         <div class="cert-grid reveal reveal-delay-1">
 
-          <!-- Agile UX Research -->
           <div class="cert-card">
             <p class="cert-card__issuer">Project Management Institute</p>
             <p class="cert-card__name">Agile UX Research</p>
             <div class="cert-card__tags">
-              <span class="cert-card__tag">Agile Methodologies</span>
-              <span class="cert-card__tag">Agile UX Research</span>
+              <span class="cert-card__tag">Agile</span>
+              <span class="cert-card__tag">UX Research</span>
             </div>
           </div>
 
-           <!-- Figma Essential Training -->
           <div class="cert-card">
             <p class="cert-card__issuer">LinkedIn Learning</p>
             <p class="cert-card__name">Figma Essential Training</p>
             <div class="cert-card__tags">
               <span class="cert-card__tag">Figma</span>
-              <!-- <span class="cert-card__tag">Agile UX Research</span> -->
             </div>
           </div>
 
-
-          <!-- Using AI for UX Design and Research -->
           <div class="cert-card">
             <p class="cert-card__issuer">LinkedIn</p>
             <p class="cert-card__name">Using AI for UX Design and Research</p>
@@ -371,10 +472,9 @@
             </div>
           </div>
 
-          <!-- CITI Program — 1 -->
           <div class="cert-card">
             <p class="cert-card__issuer">CITI Program</p>
-            <p class="cert-card__name">Faculty / Staff / Outside Collaborators / Students</p>
+            <p class="cert-card__name">Social and Behavioral Research</p>
             <p class="cert-card__meta">Issued Feb 2025 · Expires Feb 2028<br>Credential ID 67675080</p>
             <div class="cert-card__tags">
               <span class="cert-card__tag">Research Ethics</span>
@@ -382,10 +482,9 @@
             </div>
           </div>
 
-          <!-- CITI Program — 2 -->
           <div class="cert-card">
             <p class="cert-card__issuer">CITI Program</p>
-            <p class="cert-card__name">Faculty / Staff / Outside Collaborators / Students</p>
+            <p class="cert-card__name">Human Subjects Research</p>
             <p class="cert-card__meta">Issued Feb 2025 · Expires Feb 2028<br>Credential ID 67761220</p>
             <div class="cert-card__tags">
               <span class="cert-card__tag">Research Ethics</span>
@@ -393,7 +492,6 @@
             </div>
           </div>
 
-          <!-- International Student Connect -->
           <div class="cert-card">
             <p class="cert-card__issuer">Soliya</p>
             <p class="cert-card__name">International Student Connect Program</p>
@@ -402,7 +500,6 @@
             </div>
           </div>
 
-          <!-- Google Analytics -->
           <div class="cert-card">
             <p class="cert-card__issuer">Google Digital Academy (Skillshop)</p>
             <p class="cert-card__name">Google Analytics Certification</p>
@@ -413,7 +510,6 @@
             </div>
           </div>
 
-          <!-- Design Thinking: Data Intelligence -->
           <div class="cert-card">
             <p class="cert-card__issuer">LinkedIn</p>
             <p class="cert-card__name">Design Thinking: Data Intelligence</p>
@@ -424,17 +520,15 @@
             </div>
           </div>
 
-          <!-- TEFL -->
           <div class="cert-card">
             <p class="cert-card__issuer">Recknors Corporate Training &amp; Workshops</p>
-            <p class="cert-card__name">TEFL — Teaching English As A Foreign Language</p>
+            <p class="cert-card__name">TEFL: Teaching English As A Foreign Language</p>
             <div class="cert-card__tags">
               <span class="cert-card__tag">Communication</span>
               <span class="cert-card__tag">Teaching</span>
             </div>
           </div>
 
-          <!-- Import Export -->
           <div class="cert-card">
             <p class="cert-card__issuer">SMEDA</p>
             <p class="cert-card__name">Import Export Documentation &amp; Procedures</p>
@@ -448,64 +542,53 @@
       </div>
     </section>
 
-    <!-- WHAT I'VE BEEN UP TO — infinite scroll strip -->
+    <!-- BEYOND THE WORK -->
     <section class="updates" aria-labelledby="updates-heading">
       <div class="container">
         <div class="section-head reveal">
-          <p class="section-head__label">Recent</p>
+          <p class="bio__eyebrow">Beyond the Work</p>
           <h2 id="updates-heading">What I've been <em>up to</em></h2>
-          <p>A collection of moments, adventures, and things worth remembering.</p>
         </div>
       </div>
 
       <div class="strip-outer reveal reveal-delay-1" role="region" aria-label="Photo and video highlights">
         <div class="strip-track">
-
-          <!-- ── SET 1 ── -->
           <article class="m-card m-card--916" aria-label="Photo: Leo the cat">
             <div class="m-card__media"><img src="../images/petcat.png" alt="Mehak cuddling Leo, her late cat" loading="lazy" /></div>
             <div class="m-card__caption"><p class="m-card__caption-label">The one &amp; only</p><p class="m-card__caption-text">My first ever pet. His name is Leo. He is no more but I miss him very much.</p></div>
           </article>
-
           <article class="m-card m-card--43" aria-label="Photo: Microsoft campus visit">
             <div class="m-card__media"><img src="../images/microsoft.jpeg" alt="Mehak at the Microsoft sign in Redmond, Washington" loading="lazy" /></div>
-            <div class="m-card__caption"><p class="m-card__caption-label">Redmond, WA</p><p class="m-card__caption-text">The time I visited Microsoft HQ in Redmond, Washington.</p></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Redmond, WA</p><p class="m-card__caption-text">Visited Microsoft HQ in Redmond, Washington.</p></div>
           </article>
-
           <article class="m-card m-card--916" aria-label="Video: Modeling">
             <div class="m-card__media"><video src="../images/modeling.mp4" controls playsinline preload="metadata" aria-label="Short modeling clip"></video></div>
-            <div class="m-card__caption"><p class="m-card__caption-label">Side quest</p><p class="m-card__caption-text">A small snippet of my short-lived modelling hobby.</p></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Side quest</p><p class="m-card__caption-text">A short-lived modelling hobby.</p></div>
           </article>
-
           <article class="m-card m-card--916" aria-label="Photo: DePaul Blue Demon welcome">
             <div class="m-card__media"><img src="../images/bluedemon.jpeg" alt="Mehak at DePaul University Blue Demon Welcome 2023 event" loading="lazy" /></div>
-            <div class="m-card__caption"><p class="m-card__caption-label">DePaul University · 2023</p><p class="m-card__caption-text">Blue Demon through and through. Welcome 2023!</p></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">DePaul University 2023</p><p class="m-card__caption-text">Blue Demon through and through.</p></div>
           </article>
-
           <article class="m-card m-card--916" aria-label="Photo: Basque cheesecake">
             <div class="m-card__media"><img src="../images/baking.jpeg" alt="Freshly baked burnt basque cheesecake in parchment paper" loading="lazy" /></div>
-            <div class="m-card__caption"><p class="m-card__caption-label">Stress baking</p><p class="m-card__caption-text">What do I do when stressed? I bake. First try at burnt basque cheesecake — turned out pretty good.</p></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Stress baking</p><p class="m-card__caption-text">First try at burnt basque cheesecake. Turned out pretty good.</p></div>
           </article>
-
           <article class="m-card m-card--34" aria-label="Photo: Go-karting">
             <div class="m-card__media"><img src="../images/car.jpeg" alt="Mehak posing with a go-kart and helmet at a race track" loading="lazy" /></div>
-            <div class="m-card__caption"><p class="m-card__caption-label">Need for speed</p><p class="m-card__caption-text">Some things that excite me — speed being very much one of them.</p></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Need for speed</p><p class="m-card__caption-text">Speed is very much one of my things.</p></div>
           </article>
-
           <article class="m-card m-card--34" aria-label="Photo: Chicago Bean">
             <div class="m-card__media"><img src="../images/chicago-bean.jpeg" alt="Mehak waving in front of the Cloud Gate sculpture in Chicago" loading="lazy" /></div>
-            <div class="m-card__caption"><p class="m-card__caption-label">Chicago, IL</p><p class="m-card__caption-text">Dora the Explorer? Chicago spirit in full bloom.</p></div>
+            <div class="m-card__caption"><p class="m-card__caption-label">Chicago, IL</p><p class="m-card__caption-text">Chicago spirit in full bloom.</p></div>
           </article>
-
-          <!-- ── SET 2 — exact duplicate for seamless loop ── -->
+          <!-- duplicate set for seamless loop -->
           <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><img src="../images/petcat.png" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">The one &amp; only</p><p class="m-card__caption-text">My first ever pet. His name is Leo. He is no more but I miss him very much.</p></div></article>
-          <article class="m-card m-card--43"  aria-hidden="true"><div class="m-card__media"><img src="../images/microsoft.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Redmond, WA</p><p class="m-card__caption-text">The time I visited Microsoft HQ in Redmond, Washington.</p></div></article>
-          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><video src="../images/modeling.mp4" controls playsinline preload="metadata"></video></div><div class="m-card__caption"><p class="m-card__caption-label">Side quest</p><p class="m-card__caption-text">A small snippet of my short-lived modelling hobby.</p></div></article>
-          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><img src="../images/bluedemon.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">DePaul University · 2023</p><p class="m-card__caption-text">Blue Demon through and through. Welcome 2023!</p></div></article>
-          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><img src="../images/baking.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Stress baking</p><p class="m-card__caption-text">What do I do when stressed? I bake. First try at burnt basque cheesecake — turned out pretty good.</p></div></article>
-          <article class="m-card m-card--34"  aria-hidden="true"><div class="m-card__media"><img src="../images/car.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Need for speed</p><p class="m-card__caption-text">Some things that excite me — speed being very much one of them.</p></div></article>
-          <article class="m-card m-card--34"  aria-hidden="true"><div class="m-card__media"><img src="../images/chicago-bean.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Chicago, IL</p><p class="m-card__caption-text">Dora the Explorer? Chicago spirit in full bloom.</p></div></article>
-
+          <article class="m-card m-card--43"  aria-hidden="true"><div class="m-card__media"><img src="../images/microsoft.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Redmond, WA</p><p class="m-card__caption-text">Visited Microsoft HQ in Redmond, Washington.</p></div></article>
+          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><video src="../images/modeling.mp4" controls playsinline preload="metadata"></video></div><div class="m-card__caption"><p class="m-card__caption-label">Side quest</p><p class="m-card__caption-text">A short-lived modelling hobby.</p></div></article>
+          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><img src="../images/bluedemon.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">DePaul University 2023</p><p class="m-card__caption-text">Blue Demon through and through.</p></div></article>
+          <article class="m-card m-card--916" aria-hidden="true"><div class="m-card__media"><img src="../images/baking.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Stress baking</p><p class="m-card__caption-text">First try at burnt basque cheesecake. Turned out pretty good.</p></div></article>
+          <article class="m-card m-card--34"  aria-hidden="true"><div class="m-card__media"><img src="../images/car.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Need for speed</p><p class="m-card__caption-text">Speed is very much one of my things.</p></div></article>
+          <article class="m-card m-card--34"  aria-hidden="true"><div class="m-card__media"><img src="../images/chicago-bean.jpeg" alt="" loading="lazy" /></div><div class="m-card__caption"><p class="m-card__caption-label">Chicago, IL</p><p class="m-card__caption-text">Chicago spirit in full bloom.</p></div></article>
         </div>
       </div>
 
@@ -518,6 +601,14 @@
     </section>
 
   </main>
+
+  <!-- BACK TO TOP -->
+  <div class="back-to-top-wrap">
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top of page">
+      <span class="back-to-top__arrow" aria-hidden="true">&#8593;</span>
+      Back to Top
+    </button>
+  </div>
 
   <footer role="contentinfo">
     <div class="container">
@@ -542,6 +633,10 @@
       nav.classList.toggle('scrolled', window.scrollY > 24);
     }, { passive: true });
 
+    document.getElementById('back-to-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     burger.addEventListener('click', () => {
       const isOpen = drawer.classList.contains('open');
       drawer.classList.toggle('open', !isOpen);
@@ -554,7 +649,9 @@
       burger.setAttribute('aria-expanded', 'false');
       burger.setAttribute('aria-label', 'Open navigation menu');
     }
-    document.addEventListener('click', e => { if (!nav.contains(e.target) && !drawer.contains(e.target)) closeDrawer(); });
+    document.addEventListener('click', e => {
+      if (!nav.contains(e.target) && !drawer.contains(e.target)) closeDrawer();
+    });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
     const revealObserver = new IntersectionObserver(
