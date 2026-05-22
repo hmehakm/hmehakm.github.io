@@ -149,209 +149,217 @@
       margin-top: 56px;
     }
 
-    /* GRID */
+    /* PROJECTS SECTION */
     .projects-section {
       padding-bottom: var(--gap);
       background: var(--white);
     }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+
+    /* CATEGORY BLOCK */
+    .category-block {
+      padding-top: 64px;
+      border-top: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .category-block:last-child { margin-bottom: 0; }
+
+    .category-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
     }
 
-    /* TILE */
-    .project-tile {
+    .category-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .category-title em { font-style: italic; color: var(--lilac-500); }
+    .category-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      min-width: 40px;
+    }
+
+    /* PROJECT CARDS GRID */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* PROJECT CARD */
+    .project-card {
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       background: var(--lilac-50);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
-      padding: 40px 40px 36px;
-      min-height: 400px;
       text-decoration: none;
       color: inherit;
       transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
     }
-    .project-tile:hover {
+    .project-card:hover {
       border-color: var(--lilac-300);
-      box-shadow: 0 12px 48px rgba(155,114,190,0.13);
-      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(155,114,190,0.12);
+      transform: translateY(-3px);
     }
-    .project-tile:focus-visible {
+    .project-card:focus-visible {
       outline: 3px solid var(--lilac-400);
       outline-offset: 3px;
     }
-
-    /* Accent bar */
-    .project-tile::before {
+    .project-card::before {
       content: '';
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 3px;
       background: linear-gradient(180deg, var(--lilac-400), var(--lilac-200));
-      border-radius: 20px 0 0 20px;
+      border-radius: 16px 0 0 16px;
       transform: scaleY(0);
       transform-origin: top;
-      transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+      z-index: 1;
     }
-    .project-tile:hover::before { transform: scaleY(1); }
+    .project-card:hover::before { transform: scaleY(1); }
 
-    /* Tile top row */
-    .tile__top {
+    /* Card thumbnail */
+    .card__thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--lilac-100);
+      flex-shrink: 0;
+    }
+    .card__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+    }
+    .project-card:hover .card__thumb img { transform: scale(1.04); }
+
+    /* Placeholder thumb for coming soon */
+    .card__thumb--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--lilac-100);
+    }
+    .card__thumb--placeholder svg {
+      width: 32px; height: 32px;
+      color: var(--lilac-300);
+      opacity: 0.6;
+    }
+
+    /* Card body wrapper (below the image) */
+    .card__body {
+      padding: 24px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /* Coming soon state */
+    .project-card--soon {
+      opacity: 0.6;
+      cursor: default;
+      pointer-events: none;
+    }
+    .project-card--soon:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+    .soon-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--lilac-400);
+      background: var(--lilac-100);
+      border: 1px solid var(--lilac-200);
+      padding: 3px 9px;
+      border-radius: 100px;
+      align-self: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .card__top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 32px;
+      margin-bottom: 10px;
     }
-
-    .tile__arrow {
-      width: 38px; height: 38px;
+    .card__arrow {
+      width: 32px; height: 32px;
       border: 1px solid var(--border);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       color: var(--lilac-500); flex-shrink: 0;
       transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.3s;
     }
-    .project-tile:hover .tile__arrow {
+    .project-card:hover .card__arrow {
       background: var(--lilac-500);
       border-color: var(--lilac-500);
       color: var(--white);
       transform: rotate(45deg);
     }
-
-    /* Tile body */
-    .tile__body { flex: 1; }
-    .tile__category {
-      font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--lilac-500);
-      margin-bottom: 10px; display: block;
-    }
-    .tile__title {
+    .card__title {
       font-family: var(--ff-display);
-      font-size: clamp(1.7rem, 2.4vw, 2.4rem);
-      font-weight: 300;
-      line-height: 1.1;
+      font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+      font-weight: 400;
+      line-height: 1.15;
       color: var(--ink);
+      flex: 1;
     }
-    .tile__title em { font-style: italic; color: var(--lilac-500); }
-    .tile__desc {
+    .card__desc {
+      font-size: 0.85rem; font-weight: 300;
+      color: var(--ink-light); line-height: 1.72;
+      margin-top: 10px;
+      flex: 1;
+    }
+    .card__footer {
       margin-top: 16px;
-      font-size: 0.9rem; font-weight: 300;
-      color: var(--ink-light); line-height: 1.78;
-      max-width: 38ch;
-    }
-
-    /* Tile footer */
-    .tile__footer {
-      margin-top: 36px;
-      padding-top: 22px;
+      padding-top: 14px;
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
     }
-    .tile__tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tile__tag {
-      font-size: 0.68rem; font-weight: 400;
+    .card__tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .card__tag {
+      font-size: 0.62rem; font-weight: 400;
       letter-spacing: 0.06em; text-transform: uppercase;
       color: var(--lilac-600);
       background: white;
       border: 1px solid var(--border);
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 100px;
     }
-    .tile__cta {
-      font-size: 0.72rem; font-weight: 500;
+    .card__cta {
+      font-size: 0.68rem; font-weight: 500;
       letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--lilac-500);
       white-space: nowrap;
       transition: color 0.2s;
-    }
-    .project-tile:hover .tile__cta { color: var(--lilac-600); }
-
-    /* BOTTOM STRIP */
-    .bottom-strip {
-      margin-top: 72px;
-      padding: 48px 56px;
-      background: var(--ink);
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .bottom-strip::before {
-      content: '';
-      position: absolute;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(155,114,190,0.22) 0%, transparent 65%);
-      top: -120px; right: -80px;
-      pointer-events: none;
-    }
-    .bottom-strip__text {
-      position: relative; z-index: 2;
-    }
-    .bottom-strip__label {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--lilac-300);
-      margin-bottom: 10px; display: block;
-    }
-    .bottom-strip__headline {
-      font-family: var(--ff-display);
-      font-size: clamp(1.6rem, 2.8vw, 2.5rem);
-      font-weight: 300; line-height: 1.15;
-      color: var(--white);
-    }
-    .bottom-strip__headline em {
-      font-style: italic; color: var(--lilac-300);
-    }
-    .bottom-strip__actions {
-      display: flex; gap: 12px; flex-wrap: wrap;
-      position: relative; z-index: 2;
       flex-shrink: 0;
     }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--lilac-600); color: var(--white);
-      padding: 10px 22px; border-radius: 100px;
-      font-family: var(--ff-body); font-size: 0.8rem;
-      font-weight: 400; letter-spacing: 0.06em;
-      border: 1px solid var(--lilac-600); cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-    }
-    .btn-primary:hover {
-      background: var(--lilac-500); border-color: var(--lilac-500);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(125,86,160,0.3);
-    }
-    .btn-primary svg { width: 13px; height: 13px; }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: rgba(253,251,255,0.6);
-      border: 1px solid rgba(180,142,212,0.3);
-      padding: 10px 22px; border-radius: 100px;
-      font-family: var(--ff-body); font-size: 0.8rem;
-      font-weight: 400; letter-spacing: 0.06em; cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
-      text-decoration: none;
-    }
-    .btn-ghost:hover {
-      background: rgba(155,114,190,0.15);
-      border-color: var(--lilac-400); color: var(--white);
-      transform: translateY(-2px);
-    }
+    .project-card:hover .card__cta { color: var(--lilac-600); }
 
     /* FOOTER — identical to index */
     .site-footer { background: var(--ink); color: var(--white); position: relative; overflow: hidden; margin-top: var(--gap); }
@@ -382,15 +390,14 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      .projects-grid { grid-template-columns: 1fr; gap: 32px; }
-      .bottom-strip { flex-direction: column; align-items: flex-start; padding: 40px 36px; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       :root { --gap: 72px; }
       .nav__links { display: none; }
       .nav__burger { display: flex; }
       .page-header__inner { flex-direction: column; align-items: flex-start; gap: 24px; }
-      .project-tile { padding: 32px 28px 28px; min-height: 340px; }
+      .cards-grid { grid-template-columns: 1fr; }
       .footer__top { grid-template-columns: 1fr; gap: 48px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -453,144 +460,219 @@
       </div>
     </section>
 
-    <!-- TILES -->
+    <!-- PROJECTS -->
     <section class="projects-section" aria-labelledby="projects-heading">
       <div class="container">
         <h2 id="projects-heading" class="sr-only">Project categories</h2>
 
-        <div class="projects-grid" role="list">
+        <!-- ── CATEGORY 1: Accessibility Considerations ── -->
+        <div class="category-block reveal">
+          <div class="category-header">
 
-          <!-- 01 Accessibility -->
-          <a
-            class="project-tile reveal reveal-delay-1"
-            href="./uber/uber.html"
-            role="listitem"
-            aria-label="View project: Accessibility Considerations, 01 of 04"
-          >
-            <div>
-              <div class="tile__top">
+            <h3 class="category-title">Accessibility Considerations</h3>
+            <div class="category-rule" aria-hidden="true"></div>
+          </div>
+          <div class="cards-grid cards-grid">
 
-                <div class="tile__arrow" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+            <a class="project-card reveal reveal-delay-1" href="./uber/uber.html" aria-label="View Uber accessibility case study">
+              <div class="card__thumb">
+                <img src="./images/uber-index.png" alt="Uber accessibility case study cover" width="700" loading="lazy" />
+              </div>
+              <div class="card__body">
+                <div>
+                  <div class="card__top">
+                    <h4 class="card__title">Uber — Rideshare Accessibility for Blind and Low Vision Users</h4>
+                    <div class="card__arrow" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+                  <p class="card__desc">A mixed methods study examining the barriers blind and low vision riders face when using Uber, with findings translated into actionable design recommendations.</p>
+                </div>
+                <div class="card__footer">
+                  <div class="card__tags" aria-label="Methods used">
+                    <span class="card__tag">Screen reader testing</span>
+                    <span class="card__tag">Interviews</span>
+                    <span class="card__tag">WCAG audit</span>
+                  </div>
+                  <span class="card__cta" aria-hidden="true">View case study</span>
                 </div>
               </div>
-              <div class="tile__body">
-                <span class="tile__category">Research Focus</span>
-                <h3 class="tile__title">Accessibility<br />Considerations</h3>
-                <p class="tile__desc">A mixed methods study examining how blind and low vision riders experience ridesharing services, translated into actionable design recommendations.</p>
-              </div>
-            </div>
-            <div class="tile__footer">
-              <div class="tile__tags" aria-label="Methods used">
-                <span class="tile__tag">Screen reader testing</span>
-                <span class="tile__tag">Interviews</span>
-                <span class="tile__tag">WCAG audit</span>
-              </div>
-              <span class="tile__cta" aria-hidden="true">View project</span>
-            </div>
-          </a>
+            </a>
 
-          <!-- 02 Artificial Intelligence -->
-          <a
-            class="project-tile reveal reveal-delay-2"
-            href="./pages/ai.html"
-            role="listitem"
-            aria-label="View project: Artificial Intelligence, 02 of 04"
-          >
-            <div>
-              <div class="tile__top">
-
-                <div class="tile__arrow" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-              <div class="tile__body">
-                <span class="tile__category">Research Focus</span>
-                <h3 class="tile__title">Artificial<br />Intelligence</h3>
-                <p class="tile__desc">Exploring how AI systems shape user behavior, trust, and decision making, with research grounded in observed patterns rather than assumed ones.</p>
-              </div>
-            </div>
-            <div class="tile__footer">
-              <div class="tile__tags" aria-label="Methods used">
-                <span class="tile__tag">Behavioral research</span>
-                <span class="tile__tag">Trust frameworks</span>
-                <span class="tile__tag">AI evaluation</span>
-              </div>
-              <span class="tile__cta" aria-hidden="true">View project</span>
-            </div>
-          </a>
-
-          <!-- 03 Content Strategy and IA -->
-          <a
-            class="project-tile reveal reveal-delay-3"
-            href="./shien/shien.html"
-            role="listitem"
-            aria-label="View project: Content Strategy and Information Architecture, 03 of 04"
-          >
-            <div>
-              <div class="tile__top">
-
-                <div class="tile__arrow" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-              <div class="tile__body">
-                <span class="tile__category">Research Focus</span>
-                <h3 class="tile__title">Content Strategy <em>and</em><br />Information Architecture</h3>
-                <p class="tile__desc">A comprehensive IA redesign using card sorting, tree testing, and heuristic evaluation to restructure a complex e-commerce navigation system.</p>
-              </div>
-            </div>
-            <div class="tile__footer">
-              <div class="tile__tags" aria-label="Methods used">
-                <span class="tile__tag">Card sorting</span>
-                <span class="tile__tag">Tree testing</span>
-                <span class="tile__tag">Heuristic evaluation</span>
-              </div>
-              <span class="tile__cta" aria-hidden="true">View project</span>
-            </div>
-          </a>
-
-          <!-- 04 Prototyping and Usability -->
-          <a
-            class="project-tile reveal reveal-delay-4"
-            href="./momento/momento.html"
-            role="listitem"
-            aria-label="View project: Prototyping and Usability Evaluation, 04 of 04"
-          >
-            <div>
-              <div class="tile__top">
-
-                <div class="tile__arrow" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-              <div class="tile__body">
-                <span class="tile__category">Research Focus</span>
-                <h3 class="tile__title">Prototyping <em>and</em><br />Usability Evaluation</h3>
-                <p class="tile__desc">Iterative design and RITE method testing of a photo curation application, from low fidelity concepts through to high fidelity validated prototypes.</p>
-              </div>
-            </div>
-            <div class="tile__footer">
-              <div class="tile__tags" aria-label="Methods used">
-                <span class="tile__tag">RITE method</span>
-                <span class="tile__tag">Usability testing</span>
-                <span class="tile__tag">Figma prototyping</span>
-              </div>
-              <span class="tile__cta" aria-hidden="true">View project</span>
-            </div>
-          </a>
-
+          </div>
         </div>
 
+        <!-- ── CATEGORY 2: Artificial Intelligence ── -->
+        <div class="category-block reveal">
+          <div class="category-header">
 
+            <h3 class="category-title">Artificial Intelligence</h3>
+            <div class="category-rule" aria-hidden="true"></div>
+          </div>
+          <div class="cards-grid cards-grid">
+
+            <a class="project-card reveal reveal-delay-1" href="./momento/momento.html" aria-label="View Memento AI case study">
+              <div class="card__thumb">
+                <img src="./images/momento-logo.png" alt="Memento photo curation app case study cover" width="700" loading="lazy" />
+              </div>
+              <div class="card__body">
+                <div>
+                  <div class="card__top">
+                    <h4 class="card__title">Memento — Meaningful Photo Curation Using AI</h4>
+                    <div class="card__arrow" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+                  <p class="card__desc">An AI-powered photo curation app designed to help users keep what is meaningful. Research spanned the full project lifecycle from formative studies through iterative prototype testing.</p>
+                </div>
+                <div class="card__footer">
+                  <div class="card__tags" aria-label="Methods used">
+                    <span class="card__tag">Mixed methods</span>
+                    <span class="card__tag">AI integration</span>
+                    <span class="card__tag">Usability testing</span>
+                    <span class="card__tag">Prototyping</span>
+                  </div>
+                  <span class="card__cta" aria-hidden="true">View case study</span>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- ── CATEGORY 3: Content Strategy and IA ── -->
+        <div class="category-block reveal">
+          <div class="category-header">
+
+            <h3 class="category-title">Content Strategy <em>and</em> Information Architecture</h3>
+            <div class="category-rule" aria-hidden="true"></div>
+          </div>
+          <div class="cards-grid cards-grid">
+
+            <a class="project-card reveal reveal-delay-1" href="./shien/shien.html" aria-label="View SHEIN IA redesign case study">
+              <div class="card__thumb">
+                <img src="./images/shien-index.jpeg" alt="SHEIN navigation redesign case study cover" width="700" loading="lazy" />
+              </div>
+              <div class="card__body">
+                <div>
+                  <div class="card__top">
+                    <h4 class="card__title">SHEIN — Navigation and IA Redesign</h4>
+                    <div class="card__arrow" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+                  <p class="card__desc">Restructuring SHEIN's content strategy and navigation using card sorting, tree testing, and heuristic evaluation to produce a clearer, more findable user journey.</p>
+                </div>
+                <div class="card__footer">
+                  <div class="card__tags" aria-label="Methods used">
+                    <span class="card__tag">Card sorting</span>
+                    <span class="card__tag">Tree testing</span>
+                    <span class="card__tag">Heuristic evaluation</span>
+                  </div>
+                  <span class="card__cta" aria-hidden="true">View case study</span>
+                </div>
+              </div>
+            </a>
+
+            <div class="project-card project-card--soon" aria-label="Lings — coming soon">
+              <div class="card__thumb card__thumb--placeholder" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div class="card__body">
+                <div>
+                  <span class="soon-badge">Coming soon</span>
+                  <div class="card__top">
+                    <h4 class="card__title">Lings — Content Strategy Redesign</h4>
+                  </div>
+                  <p class="card__desc">Content audit and restructuring work focused on improving discoverability and reducing cognitive load across a complex multilingual platform.</p>
+                </div>
+                <div class="card__footer">
+                  <div class="card__tags" aria-label="Methods used">
+                    <span class="card__tag">Content audit</span>
+                    <span class="card__tag">IA mapping</span>
+                    <span class="card__tag">User flows</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── CATEGORY 4: Prototyping and Usability Evaluation ── -->
+        <div class="category-block reveal">
+          <div class="category-header">
+
+            <h3 class="category-title">Prototyping <em>and</em> Usability Evaluation</h3>
+            <div class="category-rule" aria-hidden="true"></div>
+          </div>
+          <div class="cards-grid cards-grid">
+
+            <div class="project-card project-card--soon" aria-label="HikeIL — coming soon">
+              <div class="card__thumb card__thumb--placeholder" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 5 3-3 4 6"/><circle cx="19" cy="5" r="2"/></svg>
+              </div>
+              <div class="card__body">
+                <div>
+                  <span class="soon-badge">Coming soon</span>
+                  <div class="card__top">
+                    <h4 class="card__title">HikeIL — Trail Discovery App</h4>
+                  </div>
+                  <p class="card__desc">Prototype development and usability evaluation for a hiking trail discovery application, focused on route planning and accessibility features.</p>
+                </div>
+                <div class="card__footer">
+                  <div class="card__tags" aria-label="Methods used">
+                    <span class="card__tag">Usability testing</span>
+                    <span class="card__tag">Figma prototyping</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card project-card--soon" aria-label="Lease Ease — coming soon">
+              <div class="card__thumb card__thumb--placeholder" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div class="card__body">
+                <div>
+                  <span class="soon-badge">Coming soon</span>
+                  <div class="card__top">
+                    <h4 class="card__title">Lease Ease — Rental Platform</h4>
+                  </div>
+                  <p class="card__desc">End to end prototype design and iterative usability evaluation for a rental management platform, reducing friction in the lease application process.</p>
+                </div>
+                <div class="card__footer">
+                  <div class="card__tags" aria-label="Methods used">
+                    <span class="card__tag">Think-aloud testing</span>
+                    <span class="card__tag">Wireframing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-card project-card--soon" aria-label="Time Management — coming soon">
+              <div class="card__thumb card__thumb--placeholder" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+              </div>
+              <div class="card__body">
+                <div>
+                  <span class="soon-badge">Coming soon</span>
+                  <div class="card__top">
+                    <h4 class="card__title">Time Management — Productivity Tool</h4>
+                  </div>
+                  <p class="card__desc">Prototype and usability study for a task and time management tool, examining how users plan, prioritize, and reflect on their daily workload.</p>
+                </div>
+                <div class="card__footer">
+                  <div class="card__tags" aria-label="Methods used">
+                    <span class="card__tag">Diary study</span>
+                    <span class="card__tag">RITE method</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div>
     </section>
