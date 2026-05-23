@@ -48,7 +48,7 @@
       pointer-events: none; z-index: 1000; opacity: 0.6;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 900; background: rgba(253,251,255,0.85); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); display: flex; align-items: center; transition: box-shadow 0.3s; }
     .nav.scrolled { box-shadow: 0 2px 32px rgba(155,114,190,0.08); }
     .nav__inner { width: 90%; max-width: var(--max-w); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; }
@@ -67,12 +67,13 @@
     .nav__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* ── MOBILE DRAWER ── */
+    /* MOBILE DRAWER */
     .nav__drawer { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(253,251,255,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 28px 10%; flex-direction: column; gap: 20px; z-index: 899; transform: translateY(-8px); opacity: 0; transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.25s; }
     .nav__drawer.open { display: flex; transform: translateY(0); opacity: 1; }
     .nav__drawer a { font-family: var(--ff-display); font-size: 1.5rem; font-weight: 300; color: var(--ink); letter-spacing: 0.02em; padding: 6px 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
     .nav__drawer a:hover { color: var(--lilac-600); padding-left: 8px; }
-    /* ── BIO ── */
+
+    /* BIO */
     .bio {
       padding-top: calc(var(--nav-h) + 56px);
       padding-bottom: var(--gap);
@@ -85,7 +86,6 @@
       top: -80px; right: -140px; opacity: 0.45; filter: blur(90px);
       pointer-events: none;
     }
-
     .bio__heading {
       font-family: var(--ff-display);
       font-size: clamp(3.2rem, 6vw, 5.2rem);
@@ -96,7 +96,6 @@
       margin-bottom: 36px;
     }
     .bio__heading em { font-style: italic; color: var(--lilac-500); }
-
     .bio__eyebrow {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
       text-transform: uppercase; color: var(--lilac-500);
@@ -105,10 +104,8 @@
     }
     .bio__eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--lilac-400); }
 
-    /* ── CTA BUTTONS ── */
-    .bio__cta-row {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px;
-    }
+    /* CTA BUTTONS */
+    .bio__cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
     .bio__cta-btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 11px 22px; border-radius: 100px;
@@ -121,7 +118,6 @@
     .bio__cta-btn:hover { background: var(--lilac-500); border-color: var(--lilac-500); color: var(--white); }
 
     .bio__divider { border: none; border-top: 1px solid var(--border); margin-bottom: 36px; }
-
     .bio__cols { display: grid; grid-template-columns: repeat(3, 1fr); border-left: 1px solid var(--border); margin-bottom: 36px; }
     .bio__col { padding: 0 28px 0 24px; border-right: 1px solid var(--border); }
     .bio__col-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac-500); margin-bottom: 12px; }
@@ -144,7 +140,92 @@
     .section-head h2 { font-family: var(--ff-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.12; color: var(--ink); margin-top: 10px; }
     .section-head h2 em { font-style: italic; color: var(--lilac-500); }
 
-    /* ── CERTIFICATIONS ── */
+    /* TOOLS STRIP */
+    .tools-strip {
+      padding-block: var(--gap);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .tools-marquee-outer {
+      position: relative;
+      overflow: hidden;
+      margin-top: 28px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+
+    @keyframes tools-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .tools-marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 44px;
+      width: max-content;
+      animation: tools-scroll 28s linear infinite;
+      will-change: transform;
+      padding-block: 8px;
+    }
+
+    .tools-marquee-outer:hover .tools-marquee-track {
+      animation-play-state: paused;
+    }
+
+    .tool-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      flex-shrink: 0;
+      transition: opacity 0.2s;
+    }
+
+    .tool-item__logo {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--lilac-50);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .tools-marquee-outer:hover .tool-item:hover .tool-item__logo {
+      border-color: var(--lilac-300);
+      background: var(--lilac-100);
+    }
+
+    .tool-item__logo img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .tool-item__logo svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .tool-item__name {
+      font-family: var(--ff-body);
+      font-size: 0.56rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      white-space: nowrap;
+    }
+
+    /* CERTIFICATIONS */
     .certifications { padding-block: var(--gap); background: linear-gradient(180deg, var(--white) 0%, var(--lilac-50) 50%, var(--white) 100%); position: relative; overflow: hidden; }
     .certifications::before { content: ''; position: absolute; bottom: -80px; right: -100px; width: 420px; height: 420px; background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%); opacity: 0.35; filter: blur(70px); pointer-events: none; }
     .cert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -157,7 +238,7 @@
     @media (max-width: 900px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px)  { .cert-grid { grid-template-columns: 1fr; } }
 
-    /* ── PHOTO STRIP ── */
+    /* PHOTO STRIP */
     .updates { padding-block: var(--gap); background: var(--white); position: relative; overflow: hidden; }
     .updates::before { content: ''; position: absolute; bottom: -80px; left: -120px; width: 300px; height: 300px; background: radial-gradient(circle, var(--lilac-200) 0%, transparent 65%); opacity: 0.4; filter: blur(70px); pointer-events: none; }
     .strip-outer { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%); }
@@ -177,13 +258,13 @@
     .strip-hint { text-align: center; margin-top: 16px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lilac-400); font-weight: 400; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .strip-hint svg { width: 12px; height: 12px; }
 
-    /* ── BACK TO TOP ── */
+    /* BACK TO TOP */
     .back-to-top-wrap { display: flex; justify-content: center; padding: 48px 0 16px; }
     .back-to-top { display: inline-flex; align-items: center; gap: 10px; padding: 13px 30px; border-radius: 100px; background: transparent; border: 1.5px solid var(--lilac-300); color: var(--lilac-600); font-family: var(--ff-body); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.22s, color 0.22s, border-color 0.22s; }
     .back-to-top:hover { background: var(--lilac-500); border-color: var(--lilac-500); color: var(--white); }
     .back-to-top__arrow { font-size: 1rem; line-height: 1; font-family: var(--ff-body); }
 
-    /* ── ANIMATIONS ── */
+    /* ANIMATIONS */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     .animate-in { opacity: 0; animation: fadeUp 0.65s cubic-bezier(.4,0,.2,1) forwards; }
     .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.22s; } .delay-3 { animation-delay: 0.34s; } .delay-4 { animation-delay: 0.46s; }
@@ -192,14 +273,14 @@
     .reveal-delay-1 { transition-delay: 0.12s; }
     .reveal-delay-2 { transition-delay: 0.24s; }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     .footer { padding: 40px 0; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
     .footer__copy { font-size: 0.8rem; font-weight: 300; color: var(--ink-light); }
     .footer__links { display: flex; gap: 24px; }
     .footer__links a { font-size: 0.8rem; font-weight: 400; color: var(--ink-light); transition: color 0.2s; }
     .footer__links a:hover { color: var(--lilac-600); }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .bio__cols { grid-template-columns: 1fr; border-left: none; }
       .bio__col { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
@@ -265,7 +346,6 @@
           </h1>
         </div>
 
-        <!-- CTA buttons -->
         <nav class="bio__cta-row reveal" aria-label="Quick navigation">
           <a href="../index.html#projects" class="bio__cta-btn">View My Work</a>
           <a href="../index.html#contact"  class="bio__cta-btn">Get In Touch</a>
@@ -289,7 +369,7 @@
         </div>
 
         <div class="bio__tags reveal reveal-delay-1">
-          <span class="bio__tag">Mixed-Methods Research</span>
+          <span class="bio__tag">Mixed Methods Research</span>
           <span class="bio__tag">Accessibility Strategy</span>
           <span class="bio__tag">Information Architecture</span>
           <span class="bio__tag">Product Management</span>
@@ -322,6 +402,384 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- TOOLS STRIP -->
+    <section class="tools-strip" aria-labelledby="tools-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="bio__eyebrow">Tools and Methods</p>
+          <h2 id="tools-heading">Research <em>toolkit</em></h2>
+        </div>
+      </div>
+
+      <div class="tools-marquee-outer reveal reveal-delay-1" role="region" aria-label="Tool logos marquee">
+        <div class="tools-marquee-track">
+
+          <!-- Set 1 -->
+
+          <!-- Figma -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <rect x="7" y="4.5" width="4" height="4" rx="1.2" fill="#7D56A0" opacity="0.5"/>
+                <rect x="13" y="4.5" width="4" height="4" rx="2" fill="#7D56A0" opacity="0.7"/>
+                <rect x="7" y="10" width="4" height="4" rx="1.2" fill="#7D56A0" opacity="0.85"/>
+                <rect x="7" y="15.5" width="4" height="4" rx="2" fill="#7D56A0"/>
+                <circle cx="15" cy="12" r="2" fill="#7D56A0" opacity="0.6"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Figma</span>
+          </div>
+
+          <!-- FigJam -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <rect x="5" y="5" width="6" height="6" rx="1.5" fill="#7D56A0" opacity="0.5"/>
+                <rect x="13" y="5" width="6" height="6" rx="1.5" fill="#7D56A0" opacity="0.85"/>
+                <rect x="5" y="13" width="6" height="6" rx="1.5" fill="#7D56A0" opacity="0.7"/>
+                <path d="M13 16a3 3 0 0 1 6 0" stroke="#7D56A0" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="16" cy="14" r="1.2" fill="#7D56A0"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">FigJam</span>
+          </div>
+
+          <!-- Miro -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <path d="M4 17V8l4 5.5 4-5.5 4 5.5 4-5.5v9" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Miro</span>
+          </div>
+
+          <!-- Maze -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <path d="M4 18V7l3.5 5 3-4.5 3 4.5 3.5-5 3 5V18" stroke="#7D56A0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Maze</span>
+          </div>
+
+          <!-- Optimal Workshop -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <circle cx="12" cy="12" r="6.5" stroke="#7D56A0" stroke-width="1.5" opacity="0.4"/>
+                <circle cx="12" cy="12" r="3.5" stroke="#7D56A0" stroke-width="1.5" opacity="0.7"/>
+                <circle cx="12" cy="12" r="1.5" fill="#7D56A0"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Optimal Workshop</span>
+          </div>
+
+          <!-- Qualtrics -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <circle cx="11.5" cy="11" r="5" stroke="#7D56A0" stroke-width="1.7"/>
+                <path d="M15 15l3.5 3.5" stroke="#7D56A0" stroke-width="1.9" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Qualtrics</span>
+          </div>
+
+          <!-- Dovetail -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <path d="M7 6h5a5 5 0 0 1 0 10H7V6Z" stroke="#7D56A0" stroke-width="1.7" stroke-linejoin="round"/>
+                <line x1="7" y1="11" x2="14" y2="11" stroke="#7D56A0" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Dovetail</span>
+          </div>
+
+          <!-- Google Analytics -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <rect x="4" y="14.5" width="4" height="5" rx="1.2" fill="#7D56A0" opacity="0.4"/>
+                <rect x="10" y="10" width="4" height="9.5" rx="1.2" fill="#7D56A0" opacity="0.65"/>
+                <rect x="16" y="5" width="4" height="14.5" rx="1.2" fill="#7D56A0"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Google Analytics</span>
+          </div>
+
+          <!-- Notion -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <path d="M7 18V6l10 12V6" stroke="#7D56A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Notion</span>
+          </div>
+
+          <!-- Slack -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <rect x="4.5" y="9" width="6.5" height="2.5" rx="1.25" fill="#7D56A0"/>
+                <rect x="4.5" y="9" width="2.5" height="6.5" rx="1.25" fill="#7D56A0" opacity="0.5"/>
+                <rect x="13" y="12.5" width="6.5" height="2.5" rx="1.25" fill="#7D56A0" opacity="0.7"/>
+                <rect x="17" y="4.5" width="2.5" height="6.5" rx="1.25" fill="#7D56A0" opacity="0.45"/>
+                <rect x="9" y="13" width="2.5" height="6.5" rx="1.25" fill="#7D56A0" opacity="0.6"/>
+                <rect x="12.5" y="4.5" width="6.5" height="2.5" rx="1.25" fill="#7D56A0" opacity="0.85"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Slack</span>
+          </div>
+
+          <!-- Zoom -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <rect x="3" y="8.5" width="11" height="7" rx="2" fill="#7D56A0" opacity="0.8"/>
+                <path d="M14 11l6.5-3v8L14 13v-2Z" fill="#7D56A0"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Zoom</span>
+          </div>
+
+          <!-- Microsoft Teams -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <circle cx="14.5" cy="8" r="2.5" fill="#7D56A0" opacity="0.5"/>
+                <path d="M9.5 14c0-2.209 1.791-4 5-4h1.5c2 0 3.5 1.4 3.5 3.5V17H9.5V14Z" fill="#7D56A0" opacity="0.45"/>
+                <circle cx="8.5" cy="9.5" r="2" fill="#7D56A0" opacity="0.9"/>
+                <path d="M4 15c0-1.933 1.567-3.5 3.5-3.5h2c1.933 0 3.5 1.567 3.5 3.5V17H4v-2Z" fill="#7D56A0" opacity="0.9"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Teams</span>
+          </div>
+
+          <!-- Jira -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <path d="M12 4l7 7-7 7" stroke="#7D56A0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                <path d="M5 20h7a7 7 0 0 0 7-7V4" stroke="#7D56A0" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Jira</span>
+          </div>
+
+          <!-- Confluence -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <path d="M4 17c3.5-1.5 6-5 6-10" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M4 7c3.5 1.5 6 5 6 10" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+                <path d="M14 17c3.5-1.5 6-5 6-10" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/>
+                <path d="M14 7c3.5 1.5 6 5 6 10" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round" opacity="0.4"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Confluence</span>
+          </div>
+
+          <!-- Canva -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <circle cx="12" cy="12" r="7" stroke="#7D56A0" stroke-width="1.4" opacity="0.35"/>
+                <path d="M16 9.5A5.5 5.5 0 1 0 16 14.5" stroke="#7D56A0" stroke-width="1.9" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Canva</span>
+          </div>
+
+          <!-- Microsoft Office -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <rect x="4.5" y="4.5" width="6.5" height="6.5" rx="1.5" fill="#7D56A0"/>
+                <rect x="13" y="4.5" width="6.5" height="6.5" rx="1.5" fill="#7D56A0" opacity="0.6"/>
+                <rect x="4.5" y="13" width="6.5" height="6.5" rx="1.5" fill="#7D56A0" opacity="0.6"/>
+                <rect x="13" y="13" width="6.5" height="6.5" rx="1.5" fill="#7D56A0" opacity="0.3"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">MS Office</span>
+          </div>
+
+          <!-- SPSS -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <rect x="4" y="5" width="16" height="3.5" rx="1" fill="#7D56A0"/>
+                <rect x="4" y="10.5" width="10" height="3.5" rx="1" fill="#7D56A0" opacity="0.6"/>
+                <rect x="4" y="16" width="13" height="3.5" rx="1" fill="#7D56A0" opacity="0.35"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">IBM SPSS</span>
+          </div>
+
+          <!-- UserTesting -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <circle cx="12" cy="9" r="3.5" stroke="#7D56A0" stroke-width="1.6"/>
+                <path d="M5.5 20c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5" stroke="#7D56A0" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">UserTesting</span>
+          </div>
+
+          <!-- Airtable -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <path d="M12 4L20 20H4L12 4Z" stroke="#7D56A0" stroke-width="1.7" stroke-linejoin="round"/>
+                <line x1="8" y1="15" x2="16" y2="15" stroke="#7D56A0" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Airtable</span>
+          </div>
+
+          <!-- Google Forms -->
+          <div class="tool-item">
+            <div class="tool-item__logo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="24" height="24" rx="6" fill="#EDE0FB"/>
+                <rect x="5.5" y="4" width="13" height="16" rx="2" stroke="#7D56A0" stroke-width="1.5"/>
+                <line x1="8.5" y1="9" x2="15.5" y2="9" stroke="#7D56A0" stroke-width="1.3" stroke-linecap="round"/>
+                <line x1="8.5" y1="12.5" x2="15.5" y2="12.5" stroke="#7D56A0" stroke-width="1.3" stroke-linecap="round"/>
+                <line x1="8.5" y1="16" x2="13" y2="16" stroke="#7D56A0" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="tool-item__name">Google Forms</span>
+          </div>
+
+          <!-- Set 2 — duplicate for seamless loop -->
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><rect x="7" y="4.5" width="4" height="4" rx="1.2" fill="#7D56A0" opacity="0.5"/><rect x="13" y="4.5" width="4" height="4" rx="2" fill="#7D56A0" opacity="0.7"/><rect x="7" y="10" width="4" height="4" rx="1.2" fill="#7D56A0" opacity="0.85"/><rect x="7" y="15.5" width="4" height="4" rx="2" fill="#7D56A0"/><circle cx="15" cy="12" r="2" fill="#7D56A0" opacity="0.6"/></svg></div>
+            <span class="tool-item__name">Figma</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><rect x="5" y="5" width="6" height="6" rx="1.5" fill="#7D56A0" opacity="0.5"/><rect x="13" y="5" width="6" height="6" rx="1.5" fill="#7D56A0" opacity="0.85"/><rect x="5" y="13" width="6" height="6" rx="1.5" fill="#7D56A0" opacity="0.7"/><path d="M13 16a3 3 0 0 1 6 0" stroke="#7D56A0" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="14" r="1.2" fill="#7D56A0"/></svg></div>
+            <span class="tool-item__name">FigJam</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><path d="M4 17V8l4 5.5 4-5.5 4 5.5 4-5.5v9" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="tool-item__name">Miro</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><path d="M4 18V7l3.5 5 3-4.5 3 4.5 3.5-5 3 5V18" stroke="#7D56A0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="tool-item__name">Maze</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><circle cx="12" cy="12" r="6.5" stroke="#7D56A0" stroke-width="1.5" opacity="0.4"/><circle cx="12" cy="12" r="3.5" stroke="#7D56A0" stroke-width="1.5" opacity="0.7"/><circle cx="12" cy="12" r="1.5" fill="#7D56A0"/></svg></div>
+            <span class="tool-item__name">Optimal Workshop</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><circle cx="11.5" cy="11" r="5" stroke="#7D56A0" stroke-width="1.7"/><path d="M15 15l3.5 3.5" stroke="#7D56A0" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <span class="tool-item__name">Qualtrics</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><path d="M7 6h5a5 5 0 0 1 0 10H7V6Z" stroke="#7D56A0" stroke-width="1.7" stroke-linejoin="round"/><line x1="7" y1="11" x2="14" y2="11" stroke="#7D56A0" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/></svg></div>
+            <span class="tool-item__name">Dovetail</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><rect x="4" y="14.5" width="4" height="5" rx="1.2" fill="#7D56A0" opacity="0.4"/><rect x="10" y="10" width="4" height="9.5" rx="1.2" fill="#7D56A0" opacity="0.65"/><rect x="16" y="5" width="4" height="14.5" rx="1.2" fill="#7D56A0"/></svg></div>
+            <span class="tool-item__name">Google Analytics</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><path d="M7 18V6l10 12V6" stroke="#7D56A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="tool-item__name">Notion</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><rect x="4.5" y="9" width="6.5" height="2.5" rx="1.25" fill="#7D56A0"/><rect x="4.5" y="9" width="2.5" height="6.5" rx="1.25" fill="#7D56A0" opacity="0.5"/><rect x="13" y="12.5" width="6.5" height="2.5" rx="1.25" fill="#7D56A0" opacity="0.7"/><rect x="17" y="4.5" width="2.5" height="6.5" rx="1.25" fill="#7D56A0" opacity="0.45"/><rect x="9" y="13" width="2.5" height="6.5" rx="1.25" fill="#7D56A0" opacity="0.6"/><rect x="12.5" y="4.5" width="6.5" height="2.5" rx="1.25" fill="#7D56A0" opacity="0.85"/></svg></div>
+            <span class="tool-item__name">Slack</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><rect x="3" y="8.5" width="11" height="7" rx="2" fill="#7D56A0" opacity="0.8"/><path d="M14 11l6.5-3v8L14 13v-2Z" fill="#7D56A0"/></svg></div>
+            <span class="tool-item__name">Zoom</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><circle cx="14.5" cy="8" r="2.5" fill="#7D56A0" opacity="0.5"/><path d="M9.5 14c0-2.209 1.791-4 5-4h1.5c2 0 3.5 1.4 3.5 3.5V17H9.5V14Z" fill="#7D56A0" opacity="0.45"/><circle cx="8.5" cy="9.5" r="2" fill="#7D56A0" opacity="0.9"/><path d="M4 15c0-1.933 1.567-3.5 3.5-3.5h2c1.933 0 3.5 1.567 3.5 3.5V17H4v-2Z" fill="#7D56A0" opacity="0.9"/></svg></div>
+            <span class="tool-item__name">Teams</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><path d="M12 4l7 7-7 7" stroke="#7D56A0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/><path d="M5 20h7a7 7 0 0 0 7-7V4" stroke="#7D56A0" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <span class="tool-item__name">Jira</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><path d="M4 17c3.5-1.5 6-5 6-10" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round"/><path d="M4 7c3.5 1.5 6 5 6 10" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/><path d="M14 17c3.5-1.5 6-5 6-10" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/><path d="M14 7c3.5 1.5 6 5 6 10" stroke="#7D56A0" stroke-width="1.8" stroke-linecap="round" opacity="0.4"/></svg></div>
+            <span class="tool-item__name">Confluence</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><circle cx="12" cy="12" r="7" stroke="#7D56A0" stroke-width="1.4" opacity="0.35"/><path d="M16 9.5A5.5 5.5 0 1 0 16 14.5" stroke="#7D56A0" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <span class="tool-item__name">Canva</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><rect x="4.5" y="4.5" width="6.5" height="6.5" rx="1.5" fill="#7D56A0"/><rect x="13" y="4.5" width="6.5" height="6.5" rx="1.5" fill="#7D56A0" opacity="0.6"/><rect x="4.5" y="13" width="6.5" height="6.5" rx="1.5" fill="#7D56A0" opacity="0.6"/><rect x="13" y="13" width="6.5" height="6.5" rx="1.5" fill="#7D56A0" opacity="0.3"/></svg></div>
+            <span class="tool-item__name">MS Office</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><rect x="4" y="5" width="16" height="3.5" rx="1" fill="#7D56A0"/><rect x="4" y="10.5" width="10" height="3.5" rx="1" fill="#7D56A0" opacity="0.6"/><rect x="4" y="16" width="13" height="3.5" rx="1" fill="#7D56A0" opacity="0.35"/></svg></div>
+            <span class="tool-item__name">IBM SPSS</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><circle cx="12" cy="9" r="3.5" stroke="#7D56A0" stroke-width="1.6"/><path d="M5.5 20c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5" stroke="#7D56A0" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <span class="tool-item__name">UserTesting</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><path d="M12 4L20 20H4L12 4Z" stroke="#7D56A0" stroke-width="1.7" stroke-linejoin="round"/><line x1="8" y1="15" x2="16" y2="15" stroke="#7D56A0" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span class="tool-item__name">Airtable</span>
+          </div>
+
+          <div class="tool-item" aria-hidden="true">
+            <div class="tool-item__logo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#EDE0FB"/><rect x="5.5" y="4" width="13" height="16" rx="2" stroke="#7D56A0" stroke-width="1.5"/><line x1="8.5" y1="9" x2="15.5" y2="9" stroke="#7D56A0" stroke-width="1.3" stroke-linecap="round"/><line x1="8.5" y1="12.5" x2="15.5" y2="12.5" stroke="#7D56A0" stroke-width="1.3" stroke-linecap="round"/><line x1="8.5" y1="16" x2="13" y2="16" stroke="#7D56A0" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+            <span class="tool-item__name">Google Forms</span>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -543,7 +1001,7 @@
     });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
-    /* ── REVEAL ON SCROLL ── */
+    /* REVEAL ON SCROLL */
     const revealObserver = new IntersectionObserver(
       entries => entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
