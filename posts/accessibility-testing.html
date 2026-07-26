@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Screen reader compatibility is not the same as screen reader usability — Hafiza Mehak Munir</title>
-  <meta name="description" content="An explanation of the difference between WCAG compliance and real screen reader usability, with common patterns that separate the two." />
+  <title>Why accessibility testing should begin before the first prototype — Hafiza Mehak Munir</title>
+  <meta name="description" content="A look at why accessibility research belongs in early discovery rather than a final compliance check, drawn from a rideshare accessibility study with blind and low vision riders." />
 
   <link rel="icon"             type="image/x-icon" href="../../images/favicon.ico" />
   <link rel="icon"             type="image/png" sizes="32x32" href="../../images/favicon-32x32.png" />
@@ -233,10 +233,10 @@
             All Posts
           </a>
           <p class="cs-hero__label">Accessibility Considerations</p>
-          <h1 class="cs-hero__title" id="cs-title">Screen reader compatibility is not the same as screen reader usability</h1>
-          <p class="cs-hero__summary">A page can pass an automated accessibility scan and still be difficult to use with a screen reader. This post explains the gap between compliance testing and real assistive technology use.</p>
+          <h1 class="cs-hero__title" id="cs-title">Why accessibility testing should begin before the first prototype</h1>
+          <p class="cs-hero__summary">Structural accessibility barriers are set early in a project and are expensive to fix once an interface is built. This post looks at what changed when accessibility testing moved to the start of the research process.</p>
           <div class="cs-hero__meta">
-            <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><time datetime="2026-04-22">April 22, 2026</time></span>
+            <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><time datetime="2026-07-01">July 1, 2026</time></span>
             <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>6 min read</span>
             <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-9M14 17H5M17 3v18M7 21V3"/></svg>Hafiza Mehak Munir</span>
           </div>
@@ -254,9 +254,9 @@
             <p class="cs-toc__title">Contents</p>
             <ul class="cs-toc__list" role="list">
               <li><a class="cs-toc__link" href="#overview">Overview</a></li>
-              <li><a class="cs-toc__link" href="#automated-testing">What automated testing measures</a></li>
-              <li><a class="cs-toc__link" href="#common-gaps">Where the gap shows up</a></li>
-              <li><a class="cs-toc__link" href="#testing-real-use">Testing with real use</a></li>
+              <li><a class="cs-toc__link" href="#cost">The cost of testing late</a></li>
+              <li><a class="cs-toc__link" href="#early-testing">What early testing looks like</a></li>
+              <li><a class="cs-toc__link" href="#framework">A framework for teams</a></li>
               <li><a class="cs-toc__link" href="#takeaways">Takeaways</a></li>
               <li><a class="cs-toc__link" href="#references">References</a></li>
             </ul>
@@ -266,31 +266,34 @@
           <div>
             <section class="cs-section reveal" id="overview" aria-labelledby="overview-heading">
               <p class="cs-section__label">Overview</p>
-              <h2 class="cs-section__title" id="overview-heading">Two related but different questions</h2>
-              <p class="cs-prose">A page can pass an automated accessibility scan, meet every applicable WCAG success criterion, and still be difficult to use with a screen reader. Compatibility and usability are related but distinct. Compatibility asks whether assistive technology can parse and announce the content correctly. Usability asks whether a screen reader user can actually accomplish their goal in a reasonable amount of time and effort. A page can score well on the first question and poorly on the second.</p>
+              <h2 class="cs-section__title" id="overview-heading">Accessibility as a research question, not a checklist</h2>
+              <p class="cs-prose">Accessibility is usually treated as a quality check. A design is finished, a build is nearly ready, and someone runs an audit against WCAG success criteria before launch. This approach catches some problems. It misses many more. The barriers that matter most to blind and low vision users, and to people relying on assistive technology, are often structural. They live in the information architecture, the interaction model, and the order in which content is exposed to a screen reader, not in surface level styling that an audit can catch after the fact.</p>
+              <p class="cs-prose" style="margin-top:16px">This post draws on a study of the rideshare experience for blind and low vision riders. The research began with the assumption that accessibility problems were mostly about missing labels and poor color contrast. What the interviews and testing sessions actually surfaced was different. The most disruptive barriers were about trust, timing, and control: not knowing if a driver had arrived, not being able to confirm a vehicle without asking a stranger, not being certain the app had registered a cancellation. None of these problems would have been caught by a compliance audit run at the end of the project.</p>
             </section>
 
-            <section class="cs-section reveal" id="automated-testing" aria-labelledby="automated-testing-heading">
-              <p class="cs-section__label">Compliance</p>
-              <h2 class="cs-section__title" id="automated-testing-heading">What automated testing actually measures</h2>
-              <p class="cs-prose">Automated accessibility tools check for the presence of specific technical properties, such as alt attributes on images, labels associated with form fields, sufficient color contrast, and valid heading structure. These checks are valuable and catch real problems, but they evaluate the code, not the experience of using it. A form can have a properly labeled field for every input and still present those fields in an order that makes no logical sense when read aloud, forcing a screen reader user to build a mental map of the form before they can complete it.</p>
-              <p class="cs-prose" style="margin-top:16px">None of this shows up in an automated report, because the report has no way to evaluate sequence, redundancy, or cognitive load. Those qualities only become visible when someone actually navigates the page with a screen reader.</p>
+            <section class="cs-section reveal" id="cost" aria-labelledby="cost-heading">
+              <p class="cs-section__label">The Cost of Testing Late</p>
+              <h2 class="cs-section__title" id="cost-heading">What gets lost when accessibility comes last</h2>
+              <p class="cs-prose">When accessibility testing happens after key decisions are made, the fixes available are limited to what does not require rework. Teams add alt text, adjust contrast ratios, and confirm tab order. These changes matter, but they cannot repair a flow that assumes the user can visually confirm a car has arrived, or a notification pattern that depends on peripheral vision. By the time testing happens, the interaction model is fixed. Only the surface can change.</p>
+              <p class="cs-prose" style="margin-top:16px">There is also a research cost. A late accessibility audit is typically conducted by an internal specialist or an automated tool, not by people who actually use assistive technology daily. Automated tools catch a narrow band of issues, such as missing alt attributes, insufficient contrast, and unlabeled form fields. They cannot tell a team whether a flow makes sense when navigated by voice, or whether a series of nested menus is exhausting to move through with a screen reader. That judgment only comes from people with lived experience of the barrier.</p>
             </section>
 
-            <section class="cs-section reveal" id="common-gaps" aria-labelledby="common-gaps-heading">
-              <p class="cs-section__label">Patterns</p>
-              <h2 class="cs-section__title" id="common-gaps-heading">Where the gap shows up most often</h2>
-              <p class="cs-prose">Three patterns repeatedly separated a technically compliant page from a usable one in this research. Long, unlabeled regions of repeated content, such as a list of products with no distinguishing information read aloud before the product name, forced participants to listen through redundant text on every item. Deeply nested navigation, where reaching a specific setting required moving through several unlabeled levels, was technically navigable but exhausting to use, since screen reader users typically move through content sequentially rather than scanning visually the way a sighted user would. Dynamic content updates, such as a cart total changing after a quantity edit, were sometimes invisible to a screen reader entirely if the update was not announced through a live region, even though the visual page updated correctly.</p>
+            <section class="cs-section reveal" id="early-testing" aria-labelledby="early-testing-heading">
+              <p class="cs-section__label">In Practice</p>
+              <h2 class="cs-section__title" id="early-testing-heading">What early testing actually looks like</h2>
+              <p class="cs-prose">Early accessibility testing does not require a finished prototype. It requires a testable concept: a flow sketch, a paper prototype, or a low fidelity wireframe walked through with a screen reader user. In the rideshare study, this meant recruiting blind and low vision participants during the discovery phase, before any interface decisions were locked in. Sessions combined semi structured interviews about current rideshare habits with think aloud walkthroughs of the existing app, so the barriers participants described were grounded in specific moments rather than general frustration.</p>
+              <p class="cs-prose" style="margin-top:16px">This approach surfaces structural issues while they are still cheap to fix. If a proposed flow assumes visual confirmation of a vehicle, that assumption can be challenged in a sketch. Once it is built into a working prototype, replacing it becomes a much larger conversation involving engineering, product, and design leadership.</p>
               <div class="pull-quote">
                 <span class="pull-quote__mark" aria-hidden="true">"</span>
-                <p class="pull-quote__text">The page announced correctly. It just took four times as long to use as the same task took a sighted participant, because nothing about the sequence considered how it would sound.</p>
+                <p class="pull-quote__text">The barriers people described were rarely about missing labels. They were about not knowing what the app already knew and having no reliable way to find out.</p>
               </div>
             </section>
 
-            <section class="cs-section reveal" id="testing-real-use" aria-labelledby="testing-real-use-heading">
-              <p class="cs-section__label">Method</p>
-              <h2 class="cs-section__title" id="testing-real-use-heading">Testing with real assistive technology use</h2>
-              <p class="cs-prose">Closing this gap requires testing with people who use screen readers daily, not just running an automated scan or having a sighted team member navigate with a screen reader turned on temporarily. Daily users have developed habits, keyboard shortcuts, and expectations built over years of using the technology, and they notice friction that a first time user of a screen reader will not. Their feedback tends to focus less on whether something is technically accessible and more on whether it is efficient, which is ultimately the more useful question for a team trying to build something people will actually use.</p>
+            <section class="cs-section reveal" id="framework" aria-labelledby="framework-heading">
+              <p class="cs-section__label">Framework</p>
+              <h2 class="cs-section__title" id="framework-heading">A simple framework for including accessibility earlier</h2>
+              <p class="cs-prose">Three shifts made the difference in this project. First, accessibility research questions were included in the discovery guide alongside general usability questions, rather than treated as a separate track. Second, participants who use assistive technology were recruited for the same early rounds of testing as everyone else, not a later specialized round. Third, findings were framed in terms of information architecture and interaction sequencing, not just interface details, so design and product could act on them before screens were built.</p>
+              <p class="cs-prose" style="margin-top:16px">None of this requires a large research team or an extended timeline. It requires treating accessibility as a research question from the first round of discovery, rather than a compliance step near the end.</p>
             </section>
 
             <section class="cs-section reveal" id="takeaways" aria-labelledby="takeaways-heading">
@@ -299,19 +302,19 @@
               <div class="takeaway-list">
                 <div class="takeaway-item">
                   <div class="takeaway-item__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-                  <p class="takeaway-item__body">Passing an automated accessibility scan confirms technical compliance, not usability for screen reader users.</p>
+                  <p class="takeaway-item__body">Structural accessibility barriers are set early and are expensive to fix once an interface is built.</p>
                 </div>
                 <div class="takeaway-item">
                   <div class="takeaway-item__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-                  <p class="takeaway-item__body">Redundant repeated content, deeply nested navigation, and unannounced dynamic updates are common gaps between compliance and usability.</p>
+                  <p class="takeaway-item__body">Automated audits catch surface level issues but cannot evaluate whether a flow makes sense to someone using assistive technology.</p>
                 </div>
                 <div class="takeaway-item">
                   <div class="takeaway-item__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-                  <p class="takeaway-item__body">Testing with people who use screen readers daily surfaces friction that automated tools and first time screen reader users will not notice.</p>
+                  <p class="takeaway-item__body">Recruiting participants who use assistive technology into early discovery research surfaces problems while they are still cheap to address.</p>
                 </div>
                 <div class="takeaway-item">
                   <div class="takeaway-item__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-                  <p class="takeaway-item__body">The more useful question is not whether a page is technically accessible, but whether it is efficient to use.</p>
+                  <p class="takeaway-item__body">Accessibility findings should be framed around structure and sequencing, not just labels and contrast.</p>
                 </div>
               </div>
             </section>
